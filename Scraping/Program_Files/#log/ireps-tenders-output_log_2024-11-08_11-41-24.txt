@@ -1,0 +1,2691 @@
+Starting script execution at 2024-11-08_11-41-24
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\Indian Railway' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KRCL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DMRC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\MRVC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CRIS' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RITES Limited' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAILTEL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DFCCIL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 01: Indian Railway
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 649089
+verification Code:  cee71a
+
+--------- ZONE LIST ---------
+Banaras Locomotive Works
+COFMOW
+CORE
+Central Railway
+Chittaranjan Locomotive Works
+East Central Railway
+East Coast Railway
+Eastern Railway
+IRICEN
+IRIEEN
+IRIFM
+IRIMEE
+IRISET
+IRITM
+IROAF
+Integral Coach Factory
+JRRPFA
+Metro
+Modern Coach Factory, Raebareli
+NFR Construction
+National Academy of Indian Railways
+North Central Railway
+North East Frontier Railway
+North Eastern Railway
+North Western Railway
+Northern Railway
+Patiala Locomotive Works
+RDSO
+Rail Coach Factory, Kapurthala
+Rail Wheel Factory
+Rail Wheel Plant, Bela
+Railway Board
+South Central Railway
+South East Central Railway
+South Eastern Railway
+South Western Railway
+Southern Railway
+West Central Railway
+Western Railway
+Workshop Projects Organization
+
+Scraping ZONE -> Banaras Locomotive Works
+----------------
+
+Tender search results  3
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76885159/viewNitPdf_4683295.pdf
+Download successful
+Department: BLW HQ-ELECTRICAL/BLW
+Tender No: EL-1179-W-1173
+Name of Work: Replacement of Centralized Air Conditioning Plant, AHU & Cooling Tower of Computer Building & D&D building.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 12:47
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 6666914.46
+Earnest Money: 133300.00
+Contract Type: Works
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77467158/viewNitPdf_4718531.pdf
+Download successful
+Department: BLW HQ-MECHANICAL/BLW
+Tender No: DYPLANT-R-810
+Name of Work: "Supply, Fitment, Commissioning & Prove out of MS angle type DSL (215 meter) on South side in Bay-2 of extended Loco Assembly Shop".
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 15/10/2024 16:04
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1773363.00
+Earnest Money: 35500.00
+Contract Type: Works
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76885150/viewNitPdf_4683253.pdf
+Download successful
+Department: BLW HQ-ELECTRICAL/BLW
+Tender No: EL-1209-W-1174
+Name of Work: "Provision of power supply for common effluent treatment plant for Central Hospital at BLW. "
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 21/11/2024 15:00
+Date and Time of Uploading Tender: 29/10/2024 10:35
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1621717.68
+Earnest Money: 32400.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+Scraping ZONE -> COFMOW
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> CORE
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> Central Railway
+----------------
+
+Tender search results  180
+Pages =  8
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77939901/viewNitPdf_4741866.pdf
+Download successful
+Department: ELS-KYN-ELECTRICAL/CENTRAL RLY
+Tender No: ELSKYNWKS24-24Prot-Guard
+Name of Work: Fabrication Supply & Installation of protection guard for BP/FP pipes and angle cock of WAP-7 locos as per Drawing No. TACP7FA-04 (Rev.1) Qty.50 Locos at Electric Loco Shed, Kalyan.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 11:00
+Date and Time of Uploading Tender: 17/10/2024 16:38
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 958750.00
+Earnest Money: 19200.00
+Contract Type: Works
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77987605/viewNitPdf_4744600.pdf
+Download successful
+Department: CE-SHOP-MTN-ELECTRICAL/CENTRAL RLY
+Tender No: PG_DTL_2024-25_OP_12
+Name of Work: Outsourcing of RSP work regarding Upgradation of ICF Rake under PBI No.612/24- 25 during POH for 03 Months
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 12:00
+Date and Time of Uploading Tender: 17/10/2024 13:38
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 11329501.52
+Earnest Money: 206700.00
+Contract Type: Works
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77572852/viewNitPdf_4724656.pdf
+Download successful
+Department: ELW-BHUSAWAL-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-ELW-Tender-2024-25-29
+Name of Work: Implementation of Green Co Rating System Certification at ELW-BSL.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 09/10/2024 10:57
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 861400.00
+Earnest Money: 17200.00
+Contract Type: Works
+Tender  : 4   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77630736/viewNitPdf_4727878.pdf
+Download successful
+Department: ELW-BHUSAWAL-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-ELW-Tender-2024-25-32
+Name of Work: Calibration of Measuring Instruments / Tools (Electrical/ Electronic / Mechanical).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 07/10/2024 16:55
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2885707.20
+Earnest Money: 57700.00
+Contract Type: Works
+Tender  : 5   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77939362/viewNitPdf_4741804.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-91-2024-01
+Name of Work: Provision of labour room, Merchant room and Goods office at 8 Goods Sheds (Pandhurna(PAR), Ajni(AQ), Rajur(RJR), Wani(WUN), chikni Road(CKNI), Kayar(KYR), Multai(MTY), kalmeshwar(KSWR) provision of CCTV Camera and other facilities.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 15/10/2024 16:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 30306945.41
+Earnest Money: 301500.00
+Contract Type: Works
+Tender  : 6   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77837773/viewNitPdf_4736172.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t1
+Name of Work: Transportation of P.Way material from various locations of Bhusawal Division and from other division to Bhusawal division at various location.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 09/10/2024 16:49
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 38969156.72
+Earnest Money: 344900.00
+Contract Type: Works
+Tender  : 7   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76993662/viewNitPdf_4689095.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-S-24
+Name of Work: Improvement to quarters Type-II and Type-III at manik nagar colony Miraj, Kolhapur and other colony under ADEN/MRJ.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:15
+Date and Time of Uploading Tender: 16/10/2024 17:23
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 29478715.87
+Earnest Money: 297400.00
+Contract Type: Works
+Tender  : 8   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77975525/viewNitPdf_4743649.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-38
+Name of Work: Provision of equipment for monitoring real time status, Supply and installation of Indoor and Outdoor Signalling equipment in Solapur Division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:30
+Date and Time of Uploading Tender: 17/10/2024 16:44
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 9735476.36
+Earnest Money: 194700.00
+Contract Type: Works
+Tender  : 9   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77864566/viewNitPdf_4737615.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-25-10
+Name of Work: SION Colony - Repairing of celling plaster, doors and windows, kitchen platform, flooring and water proofing of WC & Bath, Water supply system, drainage system and internal painting etc. of building No.RB-I/42 to 47 at SION Colony under ADEN(Wks)Byculla.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 11:00
+Date and Time of Uploading Tender: 11/10/2024 17:57
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 16473738.51
+Earnest Money: 232400.00
+Contract Type: Works
+Tender  : 10   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77816464/viewNitPdf_4734790.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-AEE-EOT-24-25-664A
+Name of Work: CAMC (ELECTRICAL PORTION) OF EOT CRANES with M&P No. 2505, 2446, 2631, 2648, 2666, 2664, 2677, 2678, 2649, 2679, 2680, 2418, 2516, 2209, 2482, 2486, 2294, 2427 & 2643 FOR PERIOD OF ONE YEAR (QTY. 19 NOS.)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 11:00
+Date and Time of Uploading Tender: 09/10/2024 17:00
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 6198837.47
+Earnest Money: 124000.00
+Contract Type: Works
+Tender  : 11   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77758525/viewNitPdf_4731870.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-25-07
+Name of Work: A) Replacement of Type - III Quarters 16 Units at Lonavala under ADEN (N) LNL. B) VLDI-KJT & KJT-PNVL:- Improvement to service buildings from VLDI to KJT and KJT to PNVL under ADEN(T)KYN section.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 11:00
+Date and Time of Uploading Tender: 10/10/2024 17:50
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 47856427.80
+Earnest Money: 389300.00
+Contract Type: Works
+Tender  : 12   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77853186/viewNitPdf_4737051.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-25-08
+Name of Work: Supplying & Stacking of 65 mm machine crushed ballast at Thakurli Depot.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 11:00
+Date and Time of Uploading Tender: 10/10/2024 17:36
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 55461448.11
+Earnest Money: 427300.00
+Contract Type: Works
+Tender  : 13   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026012/viewNitPdf_4747420.pdf
+Download successful
+Department: PUNE DIVISION-MECHANICAL/CENTRAL RLY
+Tender No: PA-MECH-IOH-NMG-24-25_R1
+Name of Work: IOH of Bogies of NMG Coaches over Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 12:00
+Date and Time of Uploading Tender: 18/10/2024 18:20
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8738980.00
+Earnest Money: 174800.00
+Contract Type: Works
+Tender  : 14   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77901409/viewNitPdf_4739913.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-KYN-2024-07
+Name of Work: Annual Maintenance Contract for flood light and high mast towers in Mumbai Division for a period of three years.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 11/11/2024 13:00
+Date and Time of Uploading Tender: 11/10/2024 14:13
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15805249.04
+Earnest Money: 229000.00
+Contract Type: Service
+Tender  : 15   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77980278/viewNitPdf_4743970.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-92-2024-01
+Name of Work: Proposed misc. P. Way work between Gumgaon - Butibori -Borkhedi section under SSE (P. Way) Butibori length under ADEN (South) NGP jurisdiction
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 17:22
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8830097.84
+Earnest Money: 176600.00
+Contract Type: Works
+Tender  : 16   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77885314/viewNitPdf_4739024.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t2
+Name of Work: ADEN L BSL jurisdiction :- Repairs / Miscellaneous works at various bridges like WW/RW, flooring/apron, inspection steps, height gauge, CPG, waterway cleaning, jacketing etc. Rev 24-25
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 13:24
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 22307582.27
+Earnest Money: 261500.00
+Contract Type: Works
+Tender  : 17   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77906062/viewNitPdf_4740259.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t5
+Name of Work: Nashik Station - Provision of two stabling lines in DN direction.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15068973.29
+Earnest Money: 225400.00
+Contract Type: Works
+Tender  : 18   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77894446/viewNitPdf_4739449.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t3
+Name of Work: BSL Divn- BSL-BD section- Replacement of steel girders by PSC slabs with strengthening to sub structure at Bridge No. 476/1 (2/9.14m Skew) PID No. 01.01.32.23.3.50.003 (UWP 22-23)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 12:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20038329.74
+Earnest Money: 250200.00
+Contract Type: Works
+Tender  : 19   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77503187/viewNitPdf_4720696.pdf
+Download successful
+Department: SOLAPUR DIVISION-ENGG/CENTRAL RLY
+Tender No: 75-2024-SrDENC
+Name of Work: Rendering of Blacksmith for various types of track activities in Solapur division (Re- Invitation).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 19:43
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 10105142.40
+Earnest Money: 200500.00
+Contract Type: Works
+Tender  : 20   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77507379/viewNitPdf_4721167.pdf
+Download successful
+Department: SOLAPUR DIVISION-ENGG/CENTRAL RLY
+Tender No: 74-2024-SrDENC
+Name of Work: Mutation of Railway Land in Solapur Division Required for Safety fencing.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 19:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 34164746.88
+Earnest Money: 320800.00
+Contract Type: Works
+Tender  : 21   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77875553/viewNitPdf_4738430.pdf
+Download successful
+Department: ELW-BHUSAWAL-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-ELW-TENDER-2024-25-28
+Name of Work: IOH work of motorized wheel set of WAP-7 electric locomotive for 2024-25.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 16:00
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 396000.00
+Earnest Money: 7900.00
+Contract Type: Works
+Tender  : 22   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77567803/viewNitPdf_4724251.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR112024-2025
+Name of Work: Epoxy painting of PSC track girder on Br. No. 982/1 3rd line, Br. No. 973/1 3rd line, Br. No. 1003/1 3rd line on AMF-NGP section and Br. No. 807/1 3rd & 4th line on BD-NGP section of Nagpur Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:01
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4750697.78
+Earnest Money: 95000.00
+Contract Type: Works
+Tender  : 23   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77570008/viewNitPdf_4724463.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR142024-2025
+Name of Work: Replacement of Bed plates of Godavari bridge No. 193/1 Up & Dn, on IGP-BSL section of Bhusawal division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 13:15
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3675814.87
+Earnest Money: 73500.00
+Contract Type: Works
+Tender  : 24   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77568336/viewNitPdf_4724277.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR122024-2025
+Name of Work: Epoxy painting of PSC & RCC track girder on Br. No. 85/1, 132/1, 155/2, 192/1, & 258/1 on PA-MRJ-KOP section and Br. No. 2/1, 6/1, 7/4, 16/1 & 21/1 on LNN-PLLD section of Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 5929150.46
+Earnest Money: 118600.00
+Contract Type: Works
+Tender  : 25   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77569082/viewNitPdf_4724368.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR132024-2025
+Name of Work: Painting of Track girder bridges, ROBs and RH girders on various section over Solapur division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:30
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3877890.20
+Earnest Money: 77600.00
+Contract Type: Works
+
+
+Tender  : 26   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77894446/viewNitPdf_4739449.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t3
+Name of Work: BSL Divn- BSL-BD section- Replacement of steel girders by PSC slabs with strengthening to sub structure at Bridge No. 476/1 (2/9.14m Skew) PID No. 01.01.32.23.3.50.003 (UWP 22-23)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 12:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20038329.74
+Earnest Money: 250200.00
+Contract Type: Works
+Tender  : 27   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77906062/viewNitPdf_4740259.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t5
+Name of Work: Nashik Station - Provision of two stabling lines in DN direction.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15068973.29
+Earnest Money: 225400.00
+Contract Type: Works
+Tender  : 28   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78006600/viewNitPdf_4745942.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-N-24
+Name of Work: Repairs to Height Gauges to ROB no. 190/2 & 190/3 in Pune yard.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:15
+Date and Time of Uploading Tender: 17/10/2024 20:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8232799.63
+Earnest Money: 164700.00
+Contract Type: Works
+Tender  : 29   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77791438/viewNitPdf_4733908.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-N-23
+Name of Work: Replacement of 20 nos. Porta cabins for OFC room in Lonavla- Pune- Daund of Pune division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:15
+Date and Time of Uploading Tender: 15/10/2024 15:56
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20005796.20
+Earnest Money: 250000.00
+Contract Type: Works
+Tender  : 30   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77896934/viewNitPdf_4739711.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-39
+Name of Work: Provision of Telecom facility to new Engineering building on Solapur division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:30
+Date and Time of Uploading Tender: 17/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4297305.79
+Earnest Money: 86000.00
+Contract Type: Works
+Tender  : 31   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77861858/viewNitPdf_4737502.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-MECHANICAL/CENTRAL RLY
+Tender No: CR-NGP-M-19-DT-10-10-2024
+Name of Work: "Surface defects Detection by Eddy Current Array (ECA) testing Method on LHB wheel during D3 Schedule for a period of 1 year"
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 16:30
+Date and Time of Uploading Tender: 10/10/2024 16:40
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1048921.92
+Earnest Money: 21000.00
+Contract Type: Works
+Tender  : 32   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77642846/viewNitPdf_4728286.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: KYNLD-583-PRev-24-25-03-C
+Name of Work: Shifting of OHE mast at KM-130/347 between TGR-III & TGR-II on UPRD of Tunnel No.5C in NE ghat section in Mumbai Division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 11:00
+Date and Time of Uploading Tender: 09/10/2024 16:45
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3213994.15
+Earnest Money: 64300.00
+Contract Type: Works
+Tender  : 33   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77595428/viewNitPdf_4725775.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: KYNLD-583-PRev-2024-25-03
+Name of Work: Provision of High voltage insulation coating on bottom surface of FOB's/ROB's/Overline structure/Roof of tunnels in Kalyan and Lonavala districts.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 11:00
+Date and Time of Uploading Tender: 09/10/2024 16:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 36600432.00
+Earnest Money: 333000.00
+Contract Type: Works
+Tender  : 34   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77147699/viewNitPdf_4698727.pdf
+Download successful
+Department: PUNE DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: PUNE_ELECT_G_24_26
+Name of Work: Electrical General Portion work in the work of Development of good shed facilities at TGN station of Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 12:00
+Date and Time of Uploading Tender: 09/10/2024 16:34
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 7810250.26
+Earnest Money: 156200.00
+Contract Type: Works
+Tender  : 35   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77760625/viewNitPdf_4731883.pdf
+Download successful
+Department: PUNE DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: PUNE_ELECT_G_24_25
+Name of Work: Replacement of old fabricated type lighting tower with high mast and provision of maintenance free cable trunking at platforms over Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 12:00
+Date and Time of Uploading Tender: 11/10/2024 15:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 42292038.96
+Earnest Money: 361500.00
+Contract Type: Works
+Tender  : 36   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77767131/viewNitPdf_4732460.pdf
+Download successful
+Department: DYCE-C-NGP-ENGINEERING/CENTRAL RLY
+Tender No: DYCE-C-NGP-06of2024
+Name of Work: Construction of Major Br. No. 835/1, 5/9.15m PSC slab in connection with Wardha - Nagpur 3rd & 4th line.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 18:43
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 215737113.65
+Earnest Money: 1228700.00
+Contract Type: Works
+Tender  : 37   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026493/viewNitPdf_4747484.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-S AND T/CENTRAL RLY
+Tender No: 32-2024-NGP-ENGG-WRR
+Name of Work: Work of utility shifting/Infringement removal of S&T gears and other miscellaneous works related to Engineering work under Warora depot jurisdiction over Nagpur Division, Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 19:07
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4687337.17
+Earnest Money: 93800.00
+Contract Type: Works
+Tender  : 38   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026440/viewNitPdf_4747501.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-S AND T/CENTRAL RLY
+Tender No: 29-2024-NGP-ENGG-NGP
+Name of Work: Work of utility shifting/Infringement removal of S&T gears and other miscellaneous works related to Engineering work under Nagpur depot jurisdiction over Nagpur Division, Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 19:04
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4463949.17
+Earnest Money: 89300.00
+Contract Type: Works
+Tender  : 39   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77962199/viewNitPdf_4742992.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-S AND T/CENTRAL RLY
+Tender No: 28-2024-NGP-ENGG-AMF
+Name of Work: Work of utility shifting/Infringement removal of S&T gears and other miscellaneous works related to Engineering work under AMLA depot jurisdiction over Nagpur Division, Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 18:22
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4575643.17
+Earnest Money: 91500.00
+Contract Type: Works
+Tender  : 40   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77082493/viewNitPdf_4694517.pdf
+Download successful
+Department: CR HQ-S AND T/CENTRAL RLY
+Tender No: BSL-SNT-Project-01-TOWER
+Name of Work: Survey, design, supply, installation, testing and commissioning of TOWERs for Kavach and other associated works over Central Railway
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 28/08/2024 18:41
+Pre-Bid Conference Date and Time: 13/09/2024 15:00
+Advertised Value: 3320062428.99
+Earnest Money: 10000000.00
+Contract Type: Works
+Tender  : 41   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026487/viewNitPdf_4747483.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-S AND T/CENTRAL RLY
+Tender No: 31-2024-NGP-ENGG-WR
+Name of Work: Work of utility shifting/Infringement removal of S&T gears and other miscellaneous works related to Engineering work under WARDHA depot jurisdiction over Nagpur Division, Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 19:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4240561.17
+Earnest Money: 84800.00
+Contract Type: Works
+Tender  : 42   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78022780/viewNitPdf_4746956.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-93-2024-01
+Name of Work: Proposal for balance work regarding 3rd line in Kohli-Bharatwada section under SSE(P.Way)KSWR length under ADEN Katol sub Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 19/10/2024 15:34
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 10915459.35
+Earnest Money: 204600.00
+Contract Type: Works
+Tender  : 43   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026475/viewNitPdf_4747472.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-S AND T/CENTRAL RLY
+Tender No: 30-2024-NGP-ENGG-AJNI
+Name of Work: Work of utility shifting/Infringement removal of S&T gears and other miscellaneous works related to Engineering work under AJNI depot jurisdiction over Nagpur Division, Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 19:05
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4151205.97
+Earnest Money: 83000.00
+Contract Type: Works
+Tender  : 44   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77979652/viewNitPdf_4743906.pdf
+Download successful
+Department: TMW-NKRD-ELECTRICAL/CENTRAL RLY
+Tender No: NKTMWDRG535-T-05-2024-25
+Name of Work: Outsourcing of manpower for various assisting/ miscellaneous duties in Traction Machine Workshop, Nashik Road.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 19/10/2024 12:55
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 19227715.14
+Earnest Money: 246100.00
+Contract Type: Service
+Tender  : 45   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77815612/viewNitPdf_4734782.pdf
+Download successful
+Department: SOLAPUR DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: SUR-TD-T-2024-10R
+Name of Work: Electrical TRD portion of work in connection with Wadi-Hotagi-Daund: Extension of running lines CSR and conversion of GF points to motor operated points at Tikekarwadi, Bale & Boribail of Solapur Division. (Re-Invitation)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 11933750.23
+Earnest Money: 209700.00
+Contract Type: Works
+Tender  : 46   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77900213/viewNitPdf_4739798.pdf
+Download successful
+Department: BHUSAWAL DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-L-W-T-62-2024
+Name of Work: Sch. A - Bhusawal- Augmentation / Improvement of freight maintenance facilities in existing New sick line Bhusawal in connection with Augmentation / upgradation of wagon maintenance infrastructure. ; Sch. B-Construction of RPF Post building at Bhusawal Yard of Bhusawal Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 15:00
+Date and Time of Uploading Tender: 15/10/2024 11:41
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 9253272.00
+Earnest Money: 185100.00
+Contract Type: Works
+Tender  : 47   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77904514/viewNitPdf_4740112.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-ISO14001-24-25-669
+Name of Work: Collection and testing of various samples for environment monitoring at Parel Workshop for years 2024 & 2025 of Loco Workshop, Parel'
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 17:00
+Date and Time of Uploading Tender: 15/10/2024 09:43
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 251104.00
+Earnest Money: 5000.00
+Contract Type: Works
+Tender  : 48   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77922441/viewNitPdf_4740896.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-CC-FAS-24-25-671
+Name of Work: CAMC of facial attendance system at Loco Workshop, Parel
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 17:00
+Date and Time of Uploading Tender: 15/10/2024 09:48
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 427619.13
+Earnest Money: 8600.00
+Contract Type: Works
+Tender  : 49   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77902831/viewNitPdf_4740003.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-CSMT-2024-18
+Name of Work: Replacement of Existing Lattice/Fabricated Steel Lightning tower with new High mast tower over various locations of Mumbai Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 13/11/2024 13:00
+Date and Time of Uploading Tender: 14/10/2024 23:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 31708109.65
+Earnest Money: 308600.00
+Contract Type: Works
+Tender  : 50   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78082696/viewNitPdf_4750747.pdf
+Download successful
+Department: BHUSAWAL DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-L-W-T-64-2024
+Name of Work: Electrification work for : Sch. A:- Provision /Upgradation/Renovation of Divyangjan amenities at MANA, BGN, YAD & KTP (Murtizapur Jurisdiction), BD, AMI, WLGN, KUM, CNDB, NAVI (Badnera Jurisdiction) & SEG and NN. ; Sch. B :- Badnera- Augmentation in facilities for Divyangjan- improvement in the circulating area for seamless movement of differently abled passengers by providing slander ramps with railing for barrier free entry, non slippery tactile paving using Braille tile with signage, improvement of water booth, improvement of toilets. ; Sch. C : Provision of Divyangjan amenities at stations in section of Sr. DEN(S)BSL standard ramps, ramps at Booking window, Divyangjan water stands, Non - slippery walkway from parking lot to station building & signages at Kasbe-sukene, Kherwadi, Asvali & Ghoti stations. ; Sch. D :- Provision of Divyangjan amenities at stations in section of Sr.DEN(N) ramp at booking windows, divyangjan water stands, non-slippery walkway from parking lot to station building & signages at Bhadli, Shirsoli, Mhasawad, Maheji, Pardhade, Savda, Raver, Nimbhora, Waghoda, Dongargaon, Chandni and Nepanagar stations.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 13/11/2024 15:00
+Date and Time of Uploading Tender: 22/10/2024 16:15
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 5303154.00
+Earnest Money: 106100.00
+Contract Type: Works
+
+
+Tender  : 51   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78035702/viewNitPdf_4748112.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-94-2024-01
+Name of Work: Estimate for replacement of existing bed plate of TGB by bed plate drawing as per DRG No.- DRM(W)NGP/R-14099 with some modifications in Amla-Nagpur, Badnera- Nagpur, Wardha-Ballarshah, Butibori-Umred,Majri-Rajur & Wani-PimpleKhuti section over Nagpur Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 13/11/2024 15:00
+Date and Time of Uploading Tender: 21/10/2024 19:32
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 28149240.00
+Earnest Money: 290800.00
+Contract Type: Works
+Tender  : 52   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78074653/viewNitPdf_4750044.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: NGP-L-2024-T-24
+Name of Work: Electrical work in connection with shifting of existing 11 KV OH HT line for modification of existing HT line due to construction of Road Over Bridge (ROB) in place of Level Crossing Gate (LC) No. 49 at (Jarud-Pimpalkhuta gate ) Tq. Warud, Dist. Amravati.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 11:00
+Date and Time of Uploading Tender: 22/10/2024 18:40
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2194067.73
+Earnest Money: 43900.00
+Contract Type: Works
+Tender  : 53   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77766927/viewNitPdf_4732384.pdf
+Download successful
+Department: EL-COACHING-DP-BB-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-CSMT-2024-11
+Name of Work: Annual maintenance contract of 25 KVA inverter of M/S Hitachi Hi-Rel make fitted on roof mounted AC coaches for a period of three years
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 14/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 17:52
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 18585000.00
+Earnest Money: 243000.00
+Contract Type: Service
+Tender  : 54   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78057150/viewNitPdf_4748793.pdf
+Download successful
+Department: PUNE DIVISION-MECHANICAL/CENTRAL RLY
+Tender No: PA-MECH-DD-ART-CumminsEng
+Name of Work: Work of Comprehensive Annual Maintenance Contract for main Diesel Engine of 140 T (COWANS SHELDON NEW DESIGN NTA 855 BC) Hydraulic Break Down Rail Crane No. 141001 at ART/Daund of Pune Division on single tender
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 15:00
+Date and Time of Uploading Tender: 21/10/2024 17:41
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1298685.61
+Earnest Money: 26000.00
+Contract Type: Works
+Tender  : 55   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77886525/viewNitPdf_4739026.pdf
+Download successful
+Department: MUMBAI-CST-DIVISION-S AND T/CENTRAL RLY
+Tender No: CR-BB-TELE-2024-55
+Name of Work: "Supply, Installation, Testing and commissioning of Telecom assets including network connectivity and Conference system in Kalyan section of Mumbai Division."
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 12:51
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8619469.12
+Earnest Money: 172400.00
+Contract Type: Works
+Tender  : 56   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77853049/viewNitPdf_4737076.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t4
+Name of Work: Providing and laying of way side Gauge Face Lubricators - 153 nos. in Bhusawal division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 14/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 15:53
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 126344751.26
+Earnest Money: 781700.00
+Contract Type: Service
+Tender  : 57   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77980221/viewNitPdf_4743929.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-PD-VTL-24-25-680
+Name of Work: Comprehensive AMC to CNC VTL Plant No 2646 in wheel shop for period of Two years
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 17:00
+Date and Time of Uploading Tender: 16/10/2024 15:29
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2129849.00
+Earnest Money: 42600.00
+Contract Type: Works
+Tender  : 58   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77980176/viewNitPdf_4743977.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-POH-SCP-24-25-673
+Name of Work: Stripping, Cleaning and Painting of FIAT Bogies at Parel Workshop, Mumbai [Qty.588 Bogie sets]'
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 17:00
+Date and Time of Uploading Tender: 16/10/2024 15:16
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1240985.76
+Earnest Money: 24800.00
+Contract Type: Works
+Tender  : 59   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78110160/viewNitPdf_4753087.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-CRT-TW-24-25-660A
+Name of Work: Overhauling of CRT 5633 type Transmission (AVTEC make) of 4W Tower Wagon
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 17:00
+Date and Time of Uploading Tender: 24/10/2024 16:26
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3989037.20
+Earnest Money: 79800.00
+Contract Type: Works
+Tender  : 60   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77902527/viewNitPdf_4739966.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-02
+Name of Work: A) Painting and repairing of 1) Wadala station middle FOB at km 9.033 2) Wadala station BPT FOB (Over HB/L) at km 9.156 3) GTBN station FOB (Vashi End) at km 11.676 4) Chunabhatti Station FOB (Vashi end) at km 13.376 5) Tilak Nagar station FOB (CLA end) at km 16.475 6) Tilak Nagar station FOB (Vashi end) at km 16.682 7) Chembur station middle FOB at km 17.790 8) Govandi station FOB (Vashi End) at km 19.587 9) mankhurd station FOB (CLA end) at km 21.380 total 09 FOBs over harbor line between SNRD-MNKD. B) Army Foot Over Bridge - Maintenance of Army FOB at Currey Road, Parel - Elphinston and Ambivali stations (for 03 years)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 15/11/2024 11:00
+Date and Time of Uploading Tender: 15/10/2024 19:13
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 9071888.33
+Earnest Money: 181400.00
+Contract Type: Works
+Tender  : 61   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77984928/viewNitPdf_4744453.pdf
+Download successful
+Department: EL-COACHING-DP-BB-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-CSMT-2024-10
+Name of Work: Annual maintenance contract of 25KVA inverter of M/S HIRECT make fitted on roof mounted AC coaches over Central Railway for a period of three years.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 16/11/2024 13:00
+Date and Time of Uploading Tender: 16/10/2024 19:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 38538095.39
+Earnest Money: 342700.00
+Contract Type: Service
+Tender  : 62   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77951923/viewNitPdf_4742282.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-01
+Name of Work: Repair to broken and rusted roofing sheets of COP and FOB, Valley gutter, Down take pipes including COP Chubutara at Apta,pen,NGTN,Nidi and Roha under ADEN/PNVL/East.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 11:00
+Date and Time of Uploading Tender: 15/10/2024 18:13
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 27931691.87
+Earnest Money: 289700.00
+Contract Type: Works
+Tender  : 63   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77775072/viewNitPdf_4732838.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-04
+Name of Work: Renovation and Repairs to flooring of deck and staircases of 1) Reay Road Station (Vashi end) FOB at KM.4.176, 2)Sewri station (Vashi end) FOB at Km.7.064, 3)Tilak Nagar station (Vashi end) FOB at Km.16.682, 4) Chembur station (Vashi end) FOB at Km.17.968, 5)Govandi station (CSMT end) FOB at Km.19.393, 6) Govandi station (Vashi end) FOB Km.19.587, 7) Mankhurd station (Middle) FOB at Km.21.493, 8)King's circle station (Mahim end) FOB at Km.11.123 over Harbour line between SNRD-MNKD & VDLR-MM.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 11:00
+Date and Time of Uploading Tender: 16/10/2024 14:09
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 11828915.01
+Earnest Money: 209200.00
+Contract Type: Works
+Tender  : 64   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77777359/viewNitPdf_4732945.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-03
+Name of Work: A) WB- Repair of LAL Bungalow and cirulating area under SSE/W/WB. B) DKRD- Repairs to COP and roof sheet of Dockyard Road stations under SSE/W/WB.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 11:00
+Date and Time of Uploading Tender: 16/10/2024 13:15
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 17181588.92
+Earnest Money: 235900.00
+Contract Type: Works
+Tender  : 65   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77311002/viewNitPdf_4709218.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-25-09
+Name of Work: Phase Array Ultrasonic Testing (PAUT) of FB welded joints executed by mobile FB plants at site using RDSO verified PAUT weld tester in Mumbai Division for the period of 1 year.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 11:00
+Date and Time of Uploading Tender: 14/10/2024 17:32
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 36467208.00
+Earnest Money: 332300.00
+Contract Type: Works
+Tender  : 66   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77610447/viewNitPdf_4726860.pdf
+Download successful
+Department: PUNE DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: PUNE_ELECT_G_2024_28
+Name of Work: Repair and rewinding of different types and capacities electric motors , Fans and Pumps in Pune division
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 12:00
+Date and Time of Uploading Tender: 14/10/2024 16:59
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 5676677.55
+Earnest Money: 113500.00
+Contract Type: Works
+Tender  : 67   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76992267/viewNitPdf_4688959.pdf
+Download successful
+Department: PUNE DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: PUNE_ELECT_TRD_2024_18
+Name of Work: Balance work of TRD/OHE portion involved in Development of Satellite Terminal at Hadapsar of Pune division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 12:00
+Date and Time of Uploading Tender: 14/10/2024 17:36
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 21021136.14
+Earnest Money: 255100.00
+Contract Type: Works
+Tender  : 68   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77995373/viewNitPdf_4744931.pdf
+Download successful
+Department: EL-COACHING-DP-BB-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-CSMT-2024-13
+Name of Work: Annual maintenance contract of 25KVA inverter of M/S Electrowaves make fitted on roof mounted AC coaches over Central Railway for a period of three years.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 13:00
+Date and Time of Uploading Tender: 17/10/2024 13:54
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 32420736.00
+Earnest Money: 312100.00
+Contract Type: Service
+Tender  : 69   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78021125/viewNitPdf_4746748.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-BY-2023-03-R
+Name of Work: (A) Rewiring of Stationery Depot building & Godown at Byculla. (B) Electrification for improvement to COP at Thakurli (SG-2) on PF 1/2 and at Upper Kopar (SG-3) on PF 1&2. (C) Electrification for Thane (NSG-1):- Provision of COP on uncovered portion and improvement of COP on PF 1, 2 & 3/4.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 13:00
+Date and Time of Uploading Tender: 18/10/2024 14:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2859709.10
+Earnest Money: 57200.00
+Contract Type: Works
+Tender  : 70   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78075792/viewNitPdf_4750148.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: NGP-ELECT-TRD-2024-25-15
+Name of Work: Condition Monitoring of Traction Power Transformer as per RDSO Specification TI/MI/00038 (latest version) including Current & Potential Transformers and Lightning Arrestors installed at various TSS,SP & SSP in NGP Division for period of Two years.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 23/10/2024 12:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 7933751.84
+Earnest Money: 158700.00
+Contract Type: Works
+Tender  : 71   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78156696/viewNitPdf_4756700.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-01
+Name of Work: A1-Provision of safety fencing along the track for Itarsi- Ballarshah and Wardha - Badnera routes under Golden Quadrilateral -Golden Diagonal in Nagpur Division in SSE (P.way) Kala akhar, Ghoradongri and Betul on km 750/0-795/0, Km 795/0- 832/250 and 832/250-873/0 under Sr.DEN (N) NGPsub division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 16:50
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 762595899.75
+Earnest Money: 3963000.00
+Contract Type: Works
+Tender  : 72   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78116591/viewNitPdf_4753509.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: NGP-ELECT-TRD2024-25-04R4
+Name of Work: 25 KV AC OHE work in connection with isolation of Loop Line (UP/DN) from Main Line by providing isolators in Nagpur Division of Central Railway
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 25/10/2024 18:24
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 36552505.56
+Earnest Money: 332800.00
+Contract Type: Works
+Tender  : 73   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78156779/viewNitPdf_4756666.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-03
+Name of Work: LOT B2-Provision of Safety Fencing along the Track for ITARSI-BALLARSHAH and WARDHA-BADNERA routes under Golden Quadrilateral -Golden Diagonal in Nagpur division in SSE(PWay)Nagpur, Butibori & Sevagram from Km 1041/0- 1042/520 & 814/0-837/0, Km 800/0-814/0 and Km 759/400-800/0 & 759/941- 759/553 under Sr.DEN(CTL) Sub-division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 17:04
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 545195690.33
+Earnest Money: 2876000.00
+Contract Type: Works
+Tender  : 74   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78156794/viewNitPdf_4756667.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-04
+Name of Work: LOTB1-Provision of Safety Fencing along the Track for ITARSI-BALLARSHAH and WARDHA-BADNERA routes under Golden Quadrilateral -Golden Diagonal in Nagpur division in SSE(PWay)KATL & KSWR from Km 964/0- 1002/520 & 1002/0-1041/0, under Sr.DEN(CTL) Sub-division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 17:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 567844306.00
+Earnest Money: 2989200.00
+Contract Type: Works
+Tender  : 75   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78156708/viewNitPdf_4756665.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-02
+Name of Work: A2-Provision of safety fencing along the track for Itarsi- Ballarshah and Wardha - Badnera routes under Golden Quadrilateral -Golden Diagonal in Nagpur Division in SSE(PW) Amla (AMF), Multai (MTY), Narkhed (NRKR) from km 873/0-888/0, km 888/0-926/0 and km 926/0-964/0 under Sr.DEN(North) sub-division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 16:51
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 720818051.61
+Earnest Money: 3754100.00
+Contract Type: Works
+
+
+Tender  : 76   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78157068/viewNitPdf_4756669.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-06
+Name of Work: C1-Provision of Safety Fencing along the Track for Etarsi - Ballarshah and Wardha - Badnera routes under Golden Quadrilateral-Golden Diagonal in Nagpur division in SSE(PW) Hinganghat & Warora from Km 759/553-807/0 & 807/0-844/0 under Sr.DEN(S) Sub-division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 17:34
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 576732027.59
+Earnest Money: 3033700.00
+Contract Type: Works
+Tender  : 77   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78157045/viewNitPdf_4756718.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-05
+Name of Work: C3-Provision of Safety Fencing along the Track for Itarsi-Ballharshah and Wardha- Badnera routes under Golden Qudrilateral - Golden diagonal in Nagpur division in SSE(PW) Wardha (WR),Pulgaon (PLO),Dhamangao(DMN) from Km759/400- 730/0,730/0-709/0 & 709/0-665/0 under Sr.DEN(S) Sub-division.
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 17:26
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 743969217.20
+Earnest Money: 3869900.00
+Contract Type: Works
+Tender  : 78   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78157085/viewNitPdf_4756719.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-96-2024-07
+Name of Work: C2-Provision of Safety Fencing along the Track for Itarsi- Ballarshah and Wardha - Badnera routes under Golden Quadrilateral-Golden Diagonal in Nagpur division in SSE(PW) Bhandak & Chandrapur from Km 844/0-865/0 & 865/0-893/0 under Sr.DEN(S) Sub-division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 26/10/2024 17:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 402834002.92
+Earnest Money: 2164200.00
+Contract Type: Works
+Tender  : 79   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76959130/viewNitPdf_4686658.pdf
+Download successful
+Department: BHUSAWAL DIVISION-S AND T/CENTRAL RLY
+Tender No: BSL-N-SNT-14-2024-25
+Name of Work: Various signalling work in connection with- 1. Construction of subway at kms 547/25-27 (near LC27) in Shegaon city and Subway (LHS) at Rly kms 415/10-12 (Girna pumping road) between Jalgaon-Shirsoli stations. 2. Construction/Extension of Track Machine Siding of length 300M at 10 station of BSL Division and Rebuilding of various small span ORN-3 (10Nos) on IGP-BSL section on BSL division. 3. Provision of NHAI-PIU-AMT ROB at kms 495/17-19 between Malkapur- Wadoda station on BSL-BD section. 4. Construction of subway for closing LC85 at KM 179/15-17 on IGP- BSL section of BSL division. 5. Elimination of Manned LCs by providing subway of size 5.0x4.5 m in lieu of LC nos 02 & 08 (total-2 LCs) on BD- NRKR section on BSL division."
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 15/10/2024 18:15
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 18270808.03
+Earnest Money: 241400.00
+Contract Type: Works
+Tender  : 80   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77126748/viewNitPdf_4697400.pdf
+Download successful
+Department: SOLAPUR DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: SUR-L-T-2024-25
+Name of Work: Electrical general service portion of work in connection with construction of 09 Nos of Type-II and 2 Nos of Type-III Residential quarters at Latur station of Solapur Division
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 22/10/2024 16:20
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1906551.53
+Earnest Money: 38100.00
+Contract Type: Works
+Tender  : 81   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77126758/viewNitPdf_4697401.pdf
+Download successful
+Department: SOLAPUR DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: SUR-L-T-2024-26
+Name of Work: Electrical general service portion of work in connection with construction of 10 Nos of Type-II Residential quarters at Sangola-04 Nos, Osmanabad-04 Nos, Modnimb- 02 Nos of Solapur Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 22/10/2024 16:24
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1549539.10
+Earnest Money: 31000.00
+Contract Type: Works
+Tender  : 82   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77989980/viewNitPdf_4744723.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-S-25
+Name of Work: Balance work between BVQ-NDE section km 253/0-260/0 under SSE(PW)BVQ under ADEN/MRJ.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:15
+Date and Time of Uploading Tender: 25/10/2024 20:14
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 10543708.74
+Earnest Money: 202700.00
+Contract Type: Works
+Tender  : 83   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78016370/viewNitPdf_4746476.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-S-26
+Name of Work: (A) Pune Division-TFTR Under SSE(PW)KRD under ADEN/STR for 2020-21. (B)Provision of Track machine siding at MSR station under SSE(PW)KRD section. (C) MRJ-KOP section TRR(P) on bridge 0.74 Km & TRR(P) 1.00 Km =1.74 Km in SSE(PW)MRJ under ADEN/MRJ by 60 kg Rails. (D)MRJ-KOP section- CTR(P) Bridge (1- 6) approachs work 0.900 Km under SSE(PW)MRJ in ADEN/MRJ. & MRJ-KOPsec:-CTR (P) Bridge (6-36) approaches work 0.900km under SSE/PW/MRJ in ADEN/MRJ (E) PA- MRJ TTR(FS+TWS+WCMS)-17 set (1:12) & 3 set (1:8.5) work between PA-MRJ section under ADEN/MRJ under Sr. DEN/S/PA.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:15
+Date and Time of Uploading Tender: 25/10/2024 20:21
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 31226515.06
+Earnest Money: 306100.00
+Contract Type: Works
+Tender  : 84   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78122749/viewNitPdf_4754117.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-42
+Name of Work: Interlocking of LC Gate No.06 at Kms 552/1-2 between Latur-Latur Road section and LC Gate No.47 at Kms 500/4-5 between Dhoki- Ausa Road section of Solapur Division of Central Railway
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:30
+Date and Time of Uploading Tender: 25/10/2024 18:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15832185.06
+Earnest Money: 229200.00
+Contract Type: Works
+Tender  : 85   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78103592/viewNitPdf_4752575.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-41
+Name of Work: Integration of datalogger connectivity with COA for updating train arrival/ departure at Kurduwadi and Harangul stations of Solapur division on Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:30
+Date and Time of Uploading Tender: 25/10/2024 17:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3654773.24
+Earnest Money: 73100.00
+Contract Type: Works
+Tender  : 86   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78087359/viewNitPdf_4751436.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-40
+Name of Work: Indoor and Outdoor Signalling work in connection with Upgradation /Modernization of Infrastructure for Goods shed at Bhigvan, Bale, Pandharpur & Latur station of Solapur Division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:30
+Date and Time of Uploading Tender: 24/10/2024 11:35
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 14089146.89
+Earnest Money: 220500.00
+Contract Type: Works
+Tender  : 87   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77432283/viewNitPdf_4716594.pdf
+Download successful
+Department: MUMBAI CST DIVISION-GATI SHAKTI/CENTRAL RLY
+Tender No: CR-GSUCSMT-2024-9
+Name of Work: Track work of Augmentation of electric loco shed, Kalyan by creation of facilities for homing of 200 locos.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 19/11/2024 11:00
+Date and Time of Uploading Tender: 18/10/2024 17:21
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 13578470.11
+Earnest Money: 217900.00
+Contract Type: Works
+Tender  : 88   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77903260/viewNitPdf_4739989.pdf
+Download successful
+Department: BHUSAWAL DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BSL_ELECT_TRD_34_2024
+Name of Work: Conversion of Tramway type OHE into Conventional type OHE & Isolation of loop line along with work of repairing of OHE foundation in Khandwa -Mandwa section
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 19/11/2024 15:00
+Date and Time of Uploading Tender: 16/10/2024 11:05
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 16277975.50
+Earnest Money: 231400.00
+Contract Type: Works
+Tender  : 89   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77621946/viewNitPdf_4727709.pdf
+Download successful
+Department: SOLAPUR DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: SUR-TD-T-2024-11
+Name of Work: Proposal for conversion of Tramway OHE to Conventional OHE in Solapur Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 19/11/2024 15:00
+Date and Time of Uploading Tender: 23/10/2024 17:30
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 16689928.60
+Earnest Money: 233500.00
+Contract Type: Works
+Tender  : 90   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77976772/viewNitPdf_4743731.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t6
+Name of Work: SSE (W) BAU section - Attention/Strengthening to various bridges by CPG, Epoxy Grouting , WW/RW, Flooring/Apron, ballast wall, Gabions , Inspection steps, jacketing etc. (39 Bridges) PID No. 01.01.32.24.3.50.003 Umb 23-24
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 19/11/2024 15:00
+Date and Time of Uploading Tender: 17/10/2024 10:53
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 26743339.43
+Earnest Money: 283700.00
+Contract Type: Works
+Tender  : 91   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77996866/viewNitPdf_4745101.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-25
+Name of Work: Provision of safety fencing under SSE Pway (KPG) on DD-MMR section under ADEN (ANG).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 14:59
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 424964171.20
+Earnest Money: 2274800.00
+Contract Type: Works
+Tender  : 92   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78004467/viewNitPdf_4745718.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-28
+Name of Work: Provision of safety fencing under SSE/PWay (Talegaon) on LNL-PA section under ADEN(S)LNL.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 15:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 420380354.82
+Earnest Money: 2251900.00
+Contract Type: Works
+Tender  : 93   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78004437/viewNitPdf_4745614.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-29
+Name of Work: Provision of safety fencing under SSE/P Way (ML/Pune) on LNL-PA section under ADEN(S)LNL.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 16:49
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 317444763.81
+Earnest Money: 1737200.00
+Contract Type: Works
+Tender  : 94   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78004921/viewNitPdf_4745712.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-26
+Name of Work: Provision of safety fencing under SSE Pway (Belapur) on DD-MMR section under ADEN (ANG).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 15:01
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 245354828.26
+Earnest Money: 1376800.00
+Contract Type: Works
+Tender  : 95   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78004480/viewNitPdf_4745735.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-30
+Name of Work: Provision of safety fencing under SSE/PWay (URI) on PA-DD section under ADEN/DD.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 17:27
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 499767256.29
+Earnest Money: 2648800.00
+Contract Type: Works
+Tender  : 96   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77998328/viewNitPdf_4745178.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-27
+Name of Work: Provision of safety fencing under SSE Pway (DD & ANG) on DD-MMR section under ADEN (ANG).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 15:08
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 319691594.07
+Earnest Money: 1748500.00
+Contract Type: Works
+Tender  : 97   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78004492/viewNitPdf_4745697.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tnd-2024-CO-31
+Name of Work: Provision of safety fencing under SSE/PWay DD on PA-DD section under ADEN/DD.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 19/11/2024 15:15
+Date and Time of Uploading Tender: 24/10/2024 18:06
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 253482723.34
+Earnest Money: 1417400.00
+Contract Type: Works
+Tender  : 98   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78071731/viewNitPdf_4749881.pdf
+Download successful
+Department: LOCO-SHOP-PR-MECHANICAL/CENTRAL RLY
+Tender No: PR-ICF-PT-24-25-681
+Name of Work: Painting of ICF coaches during POH.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 19/11/2024 17:00
+Date and Time of Uploading Tender: 22/10/2024 15:08
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 6903483.24
+Earnest Money: 138100.00
+Contract Type: Works
+Tender  : 99   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77961222/viewNitPdf_4742938.pdf
+Attempt (1/5) failed. Retrying... to Download
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-06
+Name of Work: Part -A CTR(P) 7.06 Tkm with TRT & 2 Tkm with PQRS) in DEN(E) BB section (Work to be carried out by Contractor's PQRS Portal) PWP No. 2024-25:31045,31046) IRPSM ID:01.02.31.24.3.00.019 & 01.02.31.24.3.10.007 Part-B Panvel-Roha - TTR (FS+TWS+WCMSC)-10 sets (1:12-9 sets & 1:8:5-1 stes) (PWP No. 2024-25:31055). IRPSM ID:01.02.31.24.3.10.012
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 20/11/2024 11:00
+Date and Time of Uploading Tender: 18/10/2024 13:56
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 24264414.17
+Earnest Money: 271300.00
+Contract Type: Works
+Tender  : 100   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78020076/viewNitPdf_4746688.pdf
+Download successful
+Department: MUMBAI- CST-DIVISION-ENGG/CENTRAL RLY
+Tender No: CR-DRMWBB-2024-26-07
+Name of Work: Part A. Partial dismantling of vehicular Subway coming inside the plot boundary of LIG Type Tenements for PMAY Housing Scheme at Kharghar station on Creek Side ( Chargeable to Deposit work for CIDCO). Part B : Construction of road near ballast siding at Sanpada carshed.(Chargeable to Revenue)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 20/11/2024 11:00
+Date and Time of Uploading Tender: 18/10/2024 13:44
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3041713.15
+Earnest Money: 60800.00
+Contract Type: Works
+
+
+Tender  : 101   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106500239/viewNitPdf_4745083.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243264
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 102   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495844/viewNitPdf_4740165.pdf
+Download successful
+Department: ELS/KALYAN/CENTRAL RLY
+Tender No: 86245763
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 103   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495845/viewNitPdf_4740167.pdf
+Download successful
+Department: ELS/KALYAN/CENTRAL RLY
+Tender No: 86245764
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 104   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495373/viewNitPdf_4741061.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 42243022
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 105   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495846/viewNitPdf_4740174.pdf
+Download successful
+Department: ELS/KALYAN/CENTRAL RLY
+Tender No: 86245770
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 106   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106499033/viewNitPdf_4745502.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243740
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 107   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106505141/viewNitPdf_4750608.pdf
+Download successful
+Department: NGP/DIV/CENTRAL RLY
+Tender No: 95245567
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 108   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106505340/viewNitPdf_4750831.pdf
+Download successful
+Department: BHUSAWAL/DIV/CENTRAL RLY
+Tender No: 93245638D
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 109   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106503867/viewNitPdf_4749284.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241340
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 110   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495834/viewNitPdf_4740178.pdf
+Download successful
+Department: ELS/KALYAN/CENTRAL RLY
+Tender No: 86245776
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 111   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106498406/viewNitPdf_4743806.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 43235005B
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 112   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106475285/viewNitPdf_4719111.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243199
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 113   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106471194/viewNitPdf_4717108.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27242511
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 114   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106473186/viewNitPdf_4720155.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 81241052
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 115   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106474556/viewNitPdf_4717103.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27244619
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 116   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106474554/viewNitPdf_4717105.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27244774
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 117   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106471596/viewNitPdf_4717125.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27242540
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 118   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106471255/viewNitPdf_4717124.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27242000
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 119   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106472206/viewNitPdf_4717073.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243364
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 120   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/76545804/viewNitPdf_4661646.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 51230043B
+Name of Work: 
+Bidding Type: Two Stage Reverse Auction
+Tender Type: Open - Indigenous
+Bidding System: Two Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 121   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106510173/viewNitPdf_4756249.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56245411A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 122   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106506673/viewNitPdf_4752330.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56245973
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 123   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106509795/viewNitPdf_4755905.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 70241237A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 124   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106510160/viewNitPdf_4756247.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56245144A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 125   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106506204/viewNitPdf_4752741.pdf
+Download successful
+Department: BHUSAWAL/DIV/CENTRAL RLY
+Tender No: 93245837
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+
+
+Tender  : 126   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106510206/viewNitPdf_4756274.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56235998A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 127   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106497307/viewNitPdf_4741705.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241338
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 128   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106498252/viewNitPdf_4744131.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241331
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 129   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106503904/viewNitPdf_4749311.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241317B
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 130   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106505389/viewNitPdf_4750937.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56245969
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 131   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106499342/viewNitPdf_4744177.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241332
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 132   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106503867/viewNitPdf_4749284.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241340
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 133   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106509795/viewNitPdf_4755905.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 70241237A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 134   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106519871/viewNitPdf_4767011.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 38245109
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 135   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106489162/viewNitPdf_4733256.pdf
+Attempt (1/5) failed. Retrying... to Download
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 43244047
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 136   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106498511/viewNitPdf_4743257.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 80243151
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 137   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106488301/viewNitPdf_4740967.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 80243194A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 138   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106500241/viewNitPdf_4745048.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243354
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 139   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106496074/viewNitPdf_4745042.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 18243437A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 140   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495312/viewNitPdf_4739604.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 10241480A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 141   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106499383/viewNitPdf_4745240.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27244614B
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 142   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106494901/viewNitPdf_4739723.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 42243645
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 143   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106497479/viewNitPdf_4748258.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 41241758
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 144   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106497994/viewNitPdf_4742556.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243247
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 145   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106496623/viewNitPdf_4741532.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 42241006
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 146   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106492586/viewNitPdf_4736588.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 18243332B
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 147   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106497587/viewNitPdf_4742065.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 18242208
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 148   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106483886/viewNitPdf_4742764.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 43241113A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 149   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106500239/viewNitPdf_4745083.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243264
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 150   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106495373/viewNitPdf_4741061.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 42243022
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+
+
+Tender  : 151   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106513747/viewNitPdf_4761088.pdf
+Download successful
+Department: STORES/SANPADA/CENTRAL RLY
+Tender No: 74245332A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 152   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106514145/viewNitPdf_4761115.pdf
+Download successful
+Department: STORES/SANPADA/CENTRAL RLY
+Tender No: 74241076A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 153   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106513088/viewNitPdf_4759472.pdf
+Download successful
+Department: MUMBAI/DIV/CENTRAL RLY
+Tender No: 92246145A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 154   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78026012/viewNitPdf_4747420.pdf
+Download successful
+Department: PUNE DIVISION-MECHANICAL/CENTRAL RLY
+Tender No: PA-MECH-IOH-NMG-24-25_R1
+Name of Work: IOH of Bogies of NMG Coaches over Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 12:00
+Date and Time of Uploading Tender: 18/10/2024 18:20
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8738980.00
+Earnest Money: 174800.00
+Contract Type: Works
+Tender  : 155   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77901409/viewNitPdf_4739913.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BB-LG-W-KYN-2024-07
+Name of Work: Annual Maintenance Contract for flood light and high mast towers in Mumbai Division for a period of three years.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 11/11/2024 13:00
+Date and Time of Uploading Tender: 11/10/2024 14:13
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15805249.04
+Earnest Money: 229000.00
+Contract Type: Service
+Tender  : 156   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77568336/viewNitPdf_4724277.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR122024-2025
+Name of Work: Epoxy painting of PSC & RCC track girder on Br. No. 85/1, 132/1, 155/2, 192/1, & 258/1 on PA-MRJ-KOP section and Br. No. 2/1, 6/1, 7/4, 16/1 & 21/1 on LNN-PLLD section of Pune Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 5929150.46
+Earnest Money: 118600.00
+Contract Type: Works
+Tender  : 157   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77570008/viewNitPdf_4724463.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR142024-2025
+Name of Work: Replacement of Bed plates of Godavari bridge No. 193/1 Up & Dn, on IGP-BSL section of Bhusawal division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 13:15
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3675814.87
+Earnest Money: 73500.00
+Contract Type: Works
+Tender  : 158   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77567803/viewNitPdf_4724251.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR112024-2025
+Name of Work: Epoxy painting of PSC track girder on Br. No. 982/1 3rd line, Br. No. 973/1 3rd line, Br. No. 1003/1 3rd line on AMF-NGP section and Br. No. 807/1 3rd & 4th line on BD-NGP section of Nagpur Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:01
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4750697.78
+Earnest Money: 95000.00
+Contract Type: Works
+Tender  : 159   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77875553/viewNitPdf_4738430.pdf
+Download successful
+Department: ELW-BHUSAWAL-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-ELW-TENDER-2024-25-28
+Name of Work: IOH work of motorized wheel set of WAP-7 electric locomotive for 2024-25.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 16:00
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 396000.00
+Earnest Money: 7900.00
+Contract Type: Works
+Tender  : 160   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77980278/viewNitPdf_4743970.pdf
+Download successful
+Department: NAGPUR CR DIVISION-ENGINEERING/CENTRAL RLY
+Tender No: DRMWNGP-92-2024-01
+Name of Work: Proposed misc. P. Way work between Gumgaon - Butibori -Borkhedi section under SSE (P. Way) Butibori length under ADEN (South) NGP jurisdiction
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 17:22
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8830097.84
+Earnest Money: 176600.00
+Contract Type: Works
+Tender  : 161   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78011077/viewNitPdf_4746082.pdf
+Download successful
+Department: BHUSAWAL DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: BSL-L-W-T-63-2024
+Name of Work: BSL Division- Miscellaneous work to be done over Bhusawal Division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 18:51
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 6424474.00
+Earnest Money: 128500.00
+Contract Type: Works
+Tender  : 162   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77606507/viewNitPdf_4726602.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR152024-2025
+Name of Work: Providing anti-corrosive measure protection sheet for cross girder protection sheet in Open web girder & semi through girder bridges on various section over Nagpur division.(07 Bridge)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 13:46
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1097468.45
+Earnest Money: 22000.00
+Contract Type: Works
+Tender  : 163   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77569082/viewNitPdf_4724368.pdf
+Download successful
+Department: BR.LINE-HQ-ENGINEERING/CENTRAL RLY
+Tender No: CR-BrMMR132024-2025
+Name of Work: Painting of Track girder bridges, ROBs and RH girders on various section over Solapur division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 10/10/2024 12:30
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3877890.20
+Earnest Money: 77600.00
+Contract Type: Works
+Tender  : 164   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77507379/viewNitPdf_4721167.pdf
+Download successful
+Department: SOLAPUR DIVISION-ENGG/CENTRAL RLY
+Tender No: 74-2024-SrDENC
+Name of Work: Mutation of Railway Land in Solapur Division Required for Safety fencing.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 19:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 34164746.88
+Earnest Money: 320800.00
+Contract Type: Works
+Tender  : 165   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77503187/viewNitPdf_4720696.pdf
+Download successful
+Department: SOLAPUR DIVISION-ENGG/CENTRAL RLY
+Tender No: 75-2024-SrDENC
+Name of Work: Rendering of Blacksmith for various types of track activities in Solapur division (Re- Invitation).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 19:43
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 10105142.40
+Earnest Money: 200500.00
+Contract Type: Works
+Tender  : 166   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77894446/viewNitPdf_4739449.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t3
+Name of Work: BSL Divn- BSL-BD section- Replacement of steel girders by PSC slabs with strengthening to sub structure at Bridge No. 476/1 (2/9.14m Skew) PID No. 01.01.32.23.3.50.003 (UWP 22-23)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 12:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20038329.74
+Earnest Money: 250200.00
+Contract Type: Works
+Tender  : 167   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77906062/viewNitPdf_4740259.pdf
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t5
+Name of Work: Nashik Station - Provision of two stabling lines in DN direction.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 15068973.29
+Earnest Money: 225400.00
+Contract Type: Works
+Tender  : 168   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77885314/viewNitPdf_4739024.pdf
+Attempt (1/5) failed. Retrying... to Download
+Download successful
+Department: BHUSAWAL DIVN-ENGINEERING/CENTRAL RLY
+Tender No: DRMWBSL362024t2
+Name of Work: ADEN L BSL jurisdiction :- Repairs / Miscellaneous works at various bridges like WW/RW, flooring/apron, inspection steps, height gauge, CPG, waterway cleaning, jacketing etc. Rev 24-25
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:00
+Date and Time of Uploading Tender: 11/10/2024 13:24
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 22307582.27
+Earnest Money: 261500.00
+Contract Type: Works
+Tender  : 169   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77791438/viewNitPdf_4733908.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-N-23
+Name of Work: Replacement of 20 nos. Porta cabins for OFC room in Lonavla- Pune- Daund of Pune division.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:15
+Date and Time of Uploading Tender: 15/10/2024 15:56
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20005796.20
+Earnest Money: 250000.00
+Contract Type: Works
+Tender  : 170   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78006600/viewNitPdf_4745942.pdf
+Download successful
+Department: PUNE DIVISION-ENGG/CENTRAL RLY
+Tender No: DRM-W-PA-E-Tend-2024-N-24
+Name of Work: Repairs to Height Gauges to ROB no. 190/2 & 190/3 in Pune yard.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:15
+Date and Time of Uploading Tender: 17/10/2024 20:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 8232799.63
+Earnest Money: 164700.00
+Contract Type: Works
+Tender  : 171   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77896934/viewNitPdf_4739711.pdf
+Download successful
+Department: SOLAPUR DIVISION-S AND T/CENTRAL RLY
+Tender No: SUR-N-T-2024-25-39
+Name of Work: Provision of Telecom facility to new Engineering building on Solapur division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:30
+Date and Time of Uploading Tender: 17/10/2024 17:18
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4297305.79
+Earnest Money: 86000.00
+Contract Type: Works
+Tender  : 172   https://www.ireps.gov.in/ireps/lease/pdfdocs/112024/78000965/viewNitPdf_4745285.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-COMMERCIAL/CENTRAL RLY
+Tender No: NGP-NFR-AQCanteen-24-1
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 15:30
+Date and Time of Uploading Tender: 17/10/2024 15:09
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 587880.00
+Earnest Money: 
+Contract Type: Earning
+Tender  : 173   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77861858/viewNitPdf_4737502.pdf
+Download successful
+Department: NAGPUR-CR-DIVISION-MECHANICAL/CENTRAL RLY
+Tender No: CR-NGP-M-19-DT-10-10-2024
+Name of Work: "Surface defects Detection by Eddy Current Array (ECA) testing Method on LHB wheel during D3 Schedule for a period of 1 year"
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 11/11/2024 16:30
+Date and Time of Uploading Tender: 10/10/2024 16:40
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1048921.92
+Earnest Money: 21000.00
+Contract Type: Works
+Tender  : 174   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77642846/viewNitPdf_4728286.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: KYNLD-583-PRev-24-25-03-C
+Name of Work: Shifting of OHE mast at KM-130/347 between TGR-III & TGR-II on UPRD of Tunnel No.5C in NE ghat section in Mumbai Division of Central Railway.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 11:00
+Date and Time of Uploading Tender: 09/10/2024 16:45
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3213994.15
+Earnest Money: 64300.00
+Contract Type: Works
+Tender  : 175   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77595428/viewNitPdf_4725775.pdf
+Download successful
+Department: MUMBAI CST DIVISION-ELECTRICAL/CENTRAL RLY
+Tender No: KYNLD-583-PRev-2024-25-03
+Name of Work: Provision of High voltage insulation coating on bottom surface of FOB's/ROB's/Overline structure/Roof of tunnels in Kalyan and Lonavala districts.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 12/11/2024 11:00
+Date and Time of Uploading Tender: 09/10/2024 16:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 36600432.00
+Earnest Money: 333000.00
+Contract Type: Works
+
+
+Tender  : 176   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106509220/viewNitPdf_4755145.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241349
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 177   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106509223/viewNitPdf_4755129.pdf
+Download successful
+Department: STORES/BHUSAWAL/ACL/CENTRAL RLY
+Tender No: 56241345
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 178   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106502736/viewNitPdf_4747904.pdf
+Download successful
+Department: COACHING-LTT-STORES/CENTRAL RLY
+Tender No: 87245332
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 179   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106503782/viewNitPdf_4749173.pdf
+Download successful
+Department: COACHING-LTT-STORES/CENTRAL RLY
+Tender No: 87245358A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 180   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106503826/viewNitPdf_4749189.pdf
+Download successful
+Department: COACHING-LTT-STORES/CENTRAL RLY
+Tender No: 87245355A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 181   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106504478/viewNitPdf_4752821.pdf
+Download successful
+Department: STORES/CENTRAL RLY
+Tender No: 27243544A
+Name of Work: 
+Bidding Type: Normal Tender
+Tender Type: Open - Indigenous
+Bidding System: Single Packet
+Tender Closing Date and Time: 
+Date and Time of Uploading Tender: 
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 
+Earnest Money: 
+Contract Type: 
+Tender  : 182   https://www.ireps.gov.in/ireps/supply/pdfdocs/112024/106496450/viewNitPdf_4745349.pdf

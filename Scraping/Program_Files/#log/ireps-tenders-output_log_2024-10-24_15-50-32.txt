@@ -1,0 +1,51 @@
+Starting script execution at 2024-10-24_15-50-32
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\MRVC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CRIS' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RITES Limited' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAILTEL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DFCCIL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 04: MRVC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  1d396c
+Exception occurred during script execution: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=130.0.6723.59); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	GetHandleVerifier [0x00FB3853+24035]
+	(No symbol) [0x00F3BBE4]
+	(No symbol) [0x00E1C2D3]
+	(No symbol) [0x00E21D58]
+	(No symbol) [0x00E2385D]
+	(No symbol) [0x00E9A357]
+	(No symbol) [0x00E7FE8C]
+	(No symbol) [0x00E9953F]
+	(No symbol) [0x00E7FC26]
+	(No symbol) [0x00E5218C]
+	(No symbol) [0x00E5310D]
+	GetHandleVerifier [0x01259683+2800659]
+	GetHandleVerifier [0x012B423E+3172302]
+	GetHandleVerifier [0x012ACE52+3142626]
+	GetHandleVerifier [0x01056C00+692624]
+	(No symbol) [0x00F44BFD]
+	(No symbol) [0x00F41908]
+	(No symbol) [0x00F41AA0]
+	(No symbol) [0x00F33F50]
+	BaseThreadInitThunk [0x75467BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+

@@ -1,0 +1,9 @@
+Starting script execution at 2024-10-24_18-34-57
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+Master xlsx saved in  E:\$$CORRIGENDUM-Main\IREPS\Output_Files\dump\merged_IREPS_2024-10-24_18-34-58.xlsx
+Master xlsx saved in  E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\merged_IREPS_2024-10-24_18-35-00.xlsx
+Exception occurred during script execution: name 'mail_triger_main' is not defined

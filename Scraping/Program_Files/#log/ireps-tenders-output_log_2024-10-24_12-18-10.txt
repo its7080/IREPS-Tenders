@@ -1,0 +1,32 @@
+Starting script execution at 2024-10-24_12-18-10
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\Indian Railway' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KRCL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DMRC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\MRVC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CRIS' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RITES Limited' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAILTEL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DFCCIL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 01: Indian Railway
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+No atching OTP found for today's date.
+verification Code:  1bf9d6
+No alert present after clicking 'Get OTP'
+generate_otp 60 secondsgenerate_otp 59 secondsgenerate_otp 58 secondsgenerate_otp 57 secondsgenerate_otp 56 secondsgenerate_otp 55 secondsgenerate_otp 54 secondsgenerate_otp 53 secondsgenerate_otp 52 secondsgenerate_otp 51 secondsgenerate_otp 50 secondsgenerate_otp 49 secondsgenerate_otp 48 secondsgenerate_otp 47 secondsgenerate_otp 46 secondsgenerate_otp 45 secondsgenerate_otp 44 secondsgenerate_otp 43 secondsgenerate_otp 42 secondsgenerate_otp 41 secondsgenerate_otp 40 secondsgenerate_otp 39 secondsgenerate_otp 38 secondsgenerate_otp 37 secondsgenerate_otp 36 secondsgenerate_otp 35 secondsgenerate_otp 34 secondsgenerate_otp 33 secondsgenerate_otp 32 secondsgenerate_otp 31 secondsgenerate_otp 30 secondsgenerate_otp 29 secondsgenerate_otp 28 secondsgenerate_otp 27 secondsgenerate_otp 26 secondsgenerate_otp 25 secondsgenerate_otp 24 secondsgenerate_otp 23 secondsgenerate_otp 22 secondsgenerate_otp 21 secondsgenerate_otp 20 secondsgenerate_otp 19 secondsgenerate_otp 18 secondsgenerate_otp 17 secondsgenerate_otp 16 secondsgenerate_otp 15 secondsgenerate_otp 14 secondsgenerate_otp 13 secondsgenerate_otp 12 secondsgenerate_otp 11 secondsgenerate_otp 10 secondsgenerate_otp 9 secondsgenerate_otp 8 secondsgenerate_otp 7 secondsgenerate_otp 6 secondsgenerate_otp 5 secondsgenerate_otp 4 secondsgenerate_otp 3 secondsgenerate_otp 2 secondsgenerate_otp 1 seconds    Time's up!                              
+Error executing command: Command 'adb -s None shell content query --uri content://sms/inbox' returned non-zero exit status 1.
+get_sms_message 20 secondsget_sms_message 19 secondsget_sms_message 18 secondsget_sms_message 17 secondsget_sms_message 16 secondsget_sms_message 15 seconds

@@ -1,0 +1,16 @@
+Starting script execution at 2024-11-04_09-44-44
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+Deleted merged_IREPS_2024-11-02_05-07-31.xlsx
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+
+Running Orginazation. 01: Indian Railway
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+No atching OTP found for today's date.
+verification Code:  184558
+No alert present after clicking 'Get OTP'
+generate_otp 60 secondsgenerate_otp 59 secondsgenerate_otp 58 secondsgenerate_otp 57 secondsgenerate_otp 56 secondsgenerate_otp 55 secondsgenerate_otp 54 secondsgenerate_otp 53 secondsgenerate_otp 52 secondsgenerate_otp 51 secondsgenerate_otp 50 secondsgenerate_otp 49 secondsgenerate_otp 48 secondsgenerate_otp 47 secondsgenerate_otp 46 secondsgenerate_otp 45 secondsgenerate_otp 44 seconds

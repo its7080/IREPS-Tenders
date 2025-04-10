@@ -1,0 +1,723 @@
+Starting script execution at 2024-10-24_17-20-01
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DMRC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\MRVC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CRIS' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RITES Limited' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAILTEL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DFCCIL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 03: DMRC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  a58a41
+
+--------- ZONE LIST ---------
+DMRC
+
+Scraping ZONE -> DMRC
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From DMRC.
+
+
+
+
+
+Running Orginazation. 04: MRVC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  12334a
+
+--------- ZONE LIST ---------
+MRVC
+
+Scraping ZONE -> MRVC
+----------------
+
+Tender search results  1
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77732016/viewNitPdf_4730921.pdf
+Download successful
+Department: MRVC-HQ-S AND T/MRVCL
+Tender No: MRVC_SnT_TELE_IRICEN_T_3
+Name of Work: Provision and Augmentation of Telecommunication Gears in various phases in additional infrastructure facilities provided at Indian Railways Institute of Civil Engineering (IRICEN) at Pune
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 04/11/2024 15:00
+Date and Time of Uploading Tender: 03/10/2024 15:23
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 64620073.77
+Earnest Money: 473100.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+
+Exeting.... From MRVC.
+
+
+
+
+
+Running Orginazation. 05: CRIS
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  929cd0
+
+--------- ZONE LIST ---------
+CRIS
+CRIS-IMMS TESTING
+
+Scraping ZONE -> CRIS
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> CRIS-IMMS TESTING
+----------------
+No Results Found in the page.
+
+
+
+
+Exeting.... From CRIS.
+
+
+
+
+
+Running Orginazation. 06: RITES Limited
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  198f83
+
+--------- ZONE LIST ---------
+RITES Corporate Office
+
+Scraping ZONE -> RITES Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From RITES Limited.
+
+
+
+
+
+Running Orginazation. 07: RAILTEL
+https://www.ireps.gov.in/epsn/anonymSearch.do - url exception
+Retrying...
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  734d3e
+
+--------- ZONE LIST ---------
+Railtel Corporate Office
+Railtel Eastern Region
+Railtel Nothern Region
+Railtel Southern Region
+Railtel Western Region
+
+Scraping ZONE -> Railtel Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+Scraping ZONE -> Railtel Eastern Region
+----------------
+
+Pages =  0
+Zone data Saved.
+
+Scraping ZONE -> Railtel Nothern Region
+----------------
+
+Pages =  0
+Zone data Saved.
+
+Scraping ZONE -> Railtel Southern Region
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> Railtel Western Region
+----------------
+No Results Found in the page.
+
+
+
+
+Exeting.... From RAILTEL.
+
+
+
+
+
+Running Orginazation. 08: DFCCIL
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  12ec0d
+
+--------- ZONE LIST ---------
+DFC Corporate Office
+EDFC
+WDFC
+
+Scraping ZONE -> DFC Corporate Office
+----------------
+
+Tender search results  1
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77975017/viewNitPdf_4743644.pdf
+Download successful
+Department: CORPORATE OFFICE-OP AND BD/DFC CORPORATE OFFICE
+Tender No: HQ-OPBD0BD-GFTD-5-2024
+Name of Work: Plan, Construct, Develop & Operate Gati Shakti Multi-Modal Cargo Terminal (GCT) for handling Cargo on existing ballast siding towards Rewari end of New Sakhun station on DFCCIL/Railway Land
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 20/11/2024 15:00
+Date and Time of Uploading Tender: 16/10/2024 17:21
+Pre-Bid Conference Date and Time: 24/10/2024 15:30
+Advertised Value: 78000000.00
+Earnest Money: 7800000.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+Scraping ZONE -> EDFC
+----------------
+
+Tender search results  7
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77841300/viewNitPdf_4736339.pdf
+Download successful
+Department: EDFC FIELD UNIT AMBALA-CIVIL/
+Tender No: CGM_DFCC_PARKING_SHED_2
+Name of Work: Construction of Covered parking shed of 9.00x5.00 mtr size (14 Nos) on DFCCIL Station in the unit of CGM/Ambala
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 29/10/2024 15:30
+Date and Time of Uploading Tender: 08/10/2024 16:57
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4669787.61
+Earnest Money: 93400.00
+Contract Type: Works
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77860812/viewNitPdf_4737445.pdf
+Download successful
+Department: EDFC FIELD UNIT-ALLAHABAD-E-CIVIL/EDFC
+Tender No: PRYJ_E_2024_SEH
+Name of Work: Construction of All Right Signal Exchange Hut at 6 nos stations in between New Karchana Junction -New Deen Dayal Upadhyay Junction station of Eastern Dedicated Freight Corridor under CGM/PRYJ(E) Unit.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 30/10/2024 15:00
+Date and Time of Uploading Tender: 09/10/2024 13:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2951842.06
+Earnest Money: 59000.00
+Contract Type: Works
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77590544/viewNitPdf_4725501.pdf
+Download successful
+Department: EDFC FIELD UNIT- ALD-WEST-CIVIL/EDFC
+Tender No: DFCCILTRSPRYJ47-R
+Name of Work: Comprehensive Annual maintenance contract for 08 Hot Axle Box Detector Systems for a period of 36 (Thirty-Six) months under CGM/ Prayagraj(E) unit
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 04/11/2024 15:30
+Date and Time of Uploading Tender: 24/09/2024 14:03
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4945984.16
+Earnest Money: 98900.00
+Contract Type: Works
+Tender  : 4   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78022950/viewNitPdf_4746961.pdf
+Download successful
+Department: EDFC FIELD UNIT-DDU-ELECTRICAL/EDFC
+Tender No: DFCC-DDU-EL-GS-LT-SS-T011
+Name of Work: Provision for LT Sub-Station and augmentation of power supply arrangement in DFCCIL Office Complex at DDU Under CGM DDU Unit.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 08/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 16:40
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3962948.00
+Earnest Money: 79300.00
+Contract Type: Works
+Tender  : 5   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78021803/viewNitPdf_4746674.pdf
+Download successful
+Department: EDFC FIELD UNIT- ALD-WEST-CIVIL/EDFC
+Tender No: PRYJ-W-EN-EC-USFD-24-01R
+Name of Work: USFD testing of rails and welds as per Need Based Concept of USFD as per Indian Railway Standard Specification Manual for Ultrasonic testing of Rails and welds, Revised- 2022 (with latest correction slips) issued by RDSO" between New Karchana - New Bhaupur Section under the jurisdiction of CGM/PRYJ(W) unit of DFCCIL
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 14:51
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 37138164.68
+Earnest Money: 742800.00
+Contract Type: Works
+Tender  : 6   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/78003211/viewNitPdf_4745447.pdf
+Download successful
+Department: EDFC FIELD UNIT- ALD-WEST-CIVIL/EDFC
+Tender No: PRYJ-W-EN-MAINT-2024-02
+Name of Work: Track Maintenance of Double Line BG tack including DFCCIL Yards, Link Line, Formation and others works between DFCC Yamuna Bridge (Prayagraj) to New Bhaupur station section of PRYJ(W) unit of Eastern Dedicated Freight Corridor.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 18/11/2024 15:00
+Date and Time of Uploading Tender: 18/10/2024 14:16
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 83357870.50
+Earnest Money: 1667200.00
+Contract Type: Works
+Tender  : 7   https://www.ireps.gov.in/ireps/works/pdfdocs/122024/77761574/viewNitPdf_4731931.pdf
+Download successful
+Department: EDFC FIELD UNIT AMBALA-CIVIL/
+Tender No: EDFC_CGM_UMB_TM_2024_1
+Name of Work: Operation & Maintenance of 09-3X-Dynamic Tamping machine (57086) including supply of spares (as per requirements) for 12 Years with in DFCCIL Network / CGM/DFCCIL/Ambala.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/12/2024 15:00
+Date and Time of Uploading Tender: 03/10/2024 16:25
+Pre-Bid Conference Date and Time: 14/10/2024 15:00
+Advertised Value: 507016104.96
+Earnest Money: 2685100.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+Scraping ZONE -> WDFC
+----------------
+
+Tender search results  8
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77711236/viewNitPdf_4730011.pdf
+Download successful
+Department: WDFC FIELD UNIT-AHEMDABAD-S AND T/WDFC
+Tender No: DFC-ADI-SNT-02-2024-25
+Name of Work: Supply, Installation, Testing & Commissioning of 8 Channel Voice Data Logger / Monitor for Control Circuit as per technical specification no-RDSO/SPN/TC 38 - 2002 Version 2.0 or latest at WDFC OCC/Ahmedabad, DFCCIL
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 25/10/2024 15:00
+Date and Time of Uploading Tender: 01/10/2024 19:26
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2943600.00
+Earnest Money: 58900.00
+Contract Type: Works
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77386653/viewNitPdf_4713974.pdf
+Download successful
+Department: WDFC FIELD UNIT-JAIPUR-CIVIL/WDFC
+Tender No: JP-EN-FLN-RR-24-10
+Name of Work: Construction of Crew Rest Centre at New Phulera under jurisdiction of CGM/JP of WDFC.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 30/10/2024 15:00
+Date and Time of Uploading Tender: 01/10/2024 17:14
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 120275403.63
+Earnest Money: 751400.00
+Contract Type: Works
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77546411/viewNitPdf_4723398.pdf
+Download successful
+Department: WDFC FIELD UNIT-VADODARA-CIVIL/WDFC
+Tender No: BRC-EN-TEN-UDNN-24-25204R
+Name of Work: Construction of CGM Office Building at New Udhana: Facade and finishing work, Campus development work, Interior works including associated Electrical and Telecommunication works.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 31/10/2024 15:00
+Date and Time of Uploading Tender: 09/10/2024 20:52
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 38247759.01
+Earnest Money: 341200.00
+Contract Type: Works
+Tender  : 4   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77861383/viewNitPdf_4737434.pdf
+Download successful
+Department: WDFC FIELD UNIT-AHEMDABAD-ELECTRICAL/WDFC
+Tender No: DFC_ADI_EL_Retro_24-25
+Name of Work: Supply & Erection of Retro Reflective type OHE structure number plate including all fixing accessories in Palanpur to Makarpura Section
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 04/11/2024 15:00
+Date and Time of Uploading Tender: 09/10/2024 11:49
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1336662.00
+Earnest Money: 26800.00
+Contract Type: Works
+Tender  : 5   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77926479/viewNitPdf_4741038.pdf
+Download successful
+Department: WDFC FIELD UNIT-JAIPUR-CIVIL/WDFC
+Tender No: JP-EN-Quarter-2024-14
+Name of Work: Construction of Type-3 Staff Quarters at REJN, AELN, DBLN, BAGN, SMPN, PMPN & FLN and providing additional floor over existing service building at FLN DFCCIL station in the jurisdiction of CGM Jaipur.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 06/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 12:09
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 87967160.46
+Earnest Money: 589800.00
+Contract Type: Works
+Tender  : 6   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77928375/viewNitPdf_4741092.pdf
+Download successful
+Department: WDFC FIELD UNIT- MUMBAI-NORTH-ELECTRICAL/WDFC
+Tender No: DFC-MUMN-EL-VR-GVDN-GS
+Name of Work: Maintenance of General Power Supply (E&M) For Station Building, IMD, IMSD, Service Buildings, Staff Quarters, ESS Building and any other Buildings and Electrical assets like DG Sets, Fire Safety equipment, Air Conditioner System etc. between Vaitarna - New Gholwad (Excl.) in Maharashtra state (DFC continuous chainage 101.090 to 175.812 - 74.722 KMs) under Chief General Manager /DFCCIL/Mumbai (North).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 13/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 13:12
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 11201512.00
+Earnest Money: 206000.00
+Contract Type: Works
+Tender  : 7   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77907198/viewNitPdf_4740367.pdf
+Download successful
+Department: WDFC FIELD UNIT-VALSAD-CIVIL/WDFC
+Tender No: Mum_N_EN_Br_Inspection
+Name of Work: Providing Consulting Services for Detailed Technical Inspection of ROBs, RFOs (Rail Flyover), Major and Important Bridges etc. as per requirement and relevant guidelines and submitting detailed report including suggesting suitable corrective measures wherever required under the jurisdiction of CGM/DFCCIL/Mumbai/North from Vaitarna - Sachin section of WDFC
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 13/11/2024 15:00
+Date and Time of Uploading Tender: 14/10/2024 09:58
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 20473872.00
+Earnest Money: 409500.00
+Contract Type: Works
+Tender  : 8   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77938735/viewNitPdf_4741646.pdf
+Download successful
+Department: WDFC FIELD UNIT-MUMBAI-SOUTH-ELECTRICAL/WDFC
+Tender No: MUMSEL405OHEBalance
+Name of Work: Execution of balance Works for 2x25 kV High Rise OHE in JNPT-Vaitarna Section of DFCCIL in CGM/Mumbai South Unit (102 Km)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 25/11/2024 16:00
+Date and Time of Uploading Tender: 17/10/2024 17:17
+Pre-Bid Conference Date and Time: 28/10/2024 12:00
+Advertised Value: 1420785426.36
+Earnest Money: 7253900.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+
+Exeting.... From DFCCIL.
+
+
+
+
+
+Running Orginazation. 09: KERALA RAIL DEVELOPMENT CORPORATION LTD
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  1e1103
+
+--------- ZONE LIST ---------
+KRDCL HQ
+
+Scraping ZONE -> KRDCL HQ
+----------------
+No Results Found in the page.
+
+
+
+
+Exeting.... From KERALA RAIL DEVELOPMENT CORPORATION LTD.
+
+
+
+
+
+Running Orginazation. 10: RAIL VIKAS NIGAM LIMITED
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  20a523
+
+--------- ZONE LIST ---------
+RVNL
+
+Scraping ZONE -> RVNL
+----------------
+
+Tender search results  6
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/102024/77666017/viewNitPdf_4728965.pdf
+Download successful
+Department: PIU-KOLKATA-2-CIVIL/RVNL
+Tender No: RVNL_KOL_AAI-SUBWAY
+Name of Work: PACKAGE- AAI SUBWAY: "CONSTRUCTION OF AAI SUBWAY/UNDERPASS ACROSS VIP ROAD FROM AIRPORT OPERATIONAL AREA TO AAI RESIDENTIAL COLONY AT NSCBI AIRPORT, KOLKATA PASSING BELOW THE METRO RAMP STRUCTURE OF NEW GARIA-AIRPORT METRO CORRIDOR, WEST BENGAL".
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 30/10/2024 11:00
+Date and Time of Uploading Tender: 27/09/2024 17:44
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1828565411.98
+Earnest Money: 20000000.00
+Contract Type: Works
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76257102/viewNitPdf_4642793.pdf
+Download successful
+Department: PIU-BHOPAL-CIVIL/RVNL
+Tender No: RVNL-BPL-INDB-BNI-TUNNEL
+Name of Work: Construction of Tunnel T1 From Chainage Km 33+160 To Km 34+400 And Tunnel 2 From Chainage Km 57+400 To Km 66+040 With Ballast Less Track And Works Related to Formation On Approaches of Such Tunnels In Connection With Construction of Electrified New BG Railway Line Between Mangliyagaon (Indore) to Budni Stations (198 Kms) of Ratlam Division And Bhopal Division Of Western Railway And West Central Railway Respectively In Madhya Pradesh State, India
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 06/11/2024 11:00
+Date and Time of Uploading Tender: 15/07/2024 16:47
+Pre-Bid Conference Date and Time: 31/07/2024 11:30
+Advertised Value: 12085495311.00
+Earnest Money: 20000000.00
+Contract Type: Works
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/76576267/viewNitPdf_4663944.pdf
+Download successful
+Department: PIU-BHOPAL-CIVIL/RVNL
+Tender No: RVNL-BPL-INDB-BNI-PKG1B
+Name of Work: PACKAGE 1B - CONSTRUCTION OF ROADBED, MINOR BRIDGES, BUILDINGS, INSTALLATION OF TRACK (EXCLUDING SUPPLY OF RAILS, SLEEPER & THICK WEB SWITCHES), AND OTHER CIVIL ENGINEERING AND GENERAL ELECTRICAL WORKS IN CONNECTION WITH NEW BG RAILWAY LINE BETWEEN KHERI (EXCL) - PIPALIYA NANKAR STATION (CHAINAGES 57.400 - 129.000 KM) IN INDORE-BUDNI SECTION OF BHOPAL DIVISION WEST CENTRAL RAILWAY IN MADHYA PRADESH STATE, INDIA
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 08/11/2024 11:00
+Date and Time of Uploading Tender: 31/07/2024 17:29
+Pre-Bid Conference Date and Time: 23/08/2024 11:30
+Advertised Value: 10215869868.00
+Earnest Money: 20000000.00
+Contract Type: Works
+Tender  : 4   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77666404/viewNitPdf_4729005.pdf
+Download successful
+Department: PIU-BHOPAL-CIVIL/RVNL
+Tender No: RVNL-BPL-INDB-BNI-BR-PKG3
+Name of Work: PACKAGE-III : CONSTRUCTION OF MAJOR BRIDGES & ROAD UNDER BRIDGES FOR ELECTRIFIED NEW BG RAILWAY LINE (PKG-3) BETWEEN KHATEGAON (INCL) - BUDNI STATIONS (CHAINAGE 110.000 to 198.000 KM) IN BHOPAL DIVISION OF WEST CENTRAL RAILWAY IN MADHYA PRADESH STATE, INDIA.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 14/11/2024 11:00
+Date and Time of Uploading Tender: 30/09/2024 13:49
+Pre-Bid Conference Date and Time: 17/10/2024 11:30
+Advertised Value: 2171285372.00
+Earnest Money: 20000000.00
+Contract Type: Works
+Tender  : 5   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77958957/viewNitPdf_4742654.pdf
+Download successful
+Department: PIU-CHANDIGARH-2-SNT/RVNL
+Tender No: RVNL-CDG-TELE-PK1
+Name of Work: Design, Supply, Installation, Testing & Commissioning of Integrated Communication System for Tunnels (T1-T7) consisting of VHF communication, CCTV, PA System, Emergency Call and Service Telephone & IPIS at stations in connection with New Single Broad-Gauge Rail Line Between the Bhanupali- Bilaspur-Beri Section in the state of Punjab and Himachal Pradesh, India.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 14/11/2024 11:00
+Date and Time of Uploading Tender: 15/10/2024 17:43
+Pre-Bid Conference Date and Time: 23/10/2024 11:30
+Advertised Value: 431222353.33
+Earnest Money: 8625000.00
+Contract Type: Works
+Tender  : 6   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77644369/viewNitPdf_4728315.pdf
+Download successful
+Department: CORPORATE OFFICE-MECHANICAL/RVNL
+Tender No: RVNL-KOL-SMPK-SPUR-PHALTA
+Name of Work: BANK PROTECTION WORKS BY CONSTRUCTION OF SERIES OF SHORT SPURS (55 NOS) AT UP-STREAM & DOWN-STREAM OF PHALTA JETTY ALONG LEFT BANK OF RIVER HOOGHLY AT PHALTA OF SYAMA PRASAD MOOKERJEE PORT, KOLKATA IN SOUTH 24 PARGANAS, WEST BENGAL
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 14/11/2024 11:00
+Date and Time of Uploading Tender: 30/09/2024 17:59
+Pre-Bid Conference Date and Time: 07/10/2024 11:30
+Advertised Value: 342082012.95
+Earnest Money: 6842000.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+
+Exeting.... From RAIL VIKAS NIGAM LIMITED.
+
+
+
+
+
+Running Orginazation. 11: CONTAINER CORPORATION OF INDIA LTD
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  f8bb77
+
+--------- ZONE LIST ---------
+CONCOR Corporate Office
+
+Scraping ZONE -> CONCOR Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From CONTAINER CORPORATION OF INDIA LTD.
+
+
+
+
+
+Running Orginazation. 12: BRAITHWAITE AND CO. LIMITED
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  573ba0
+
+--------- ZONE LIST ---------
+BCL Corporate Office
+
+Scraping ZONE -> BCL Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From BRAITHWAITE AND CO. LIMITED.
+
+
+
+
+
+Running Orginazation. 15: IRCON INTERNATIONAL LIMITED
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  22c08a
+
+--------- ZONE LIST ---------
+IRCON Corporate Office
+
+Scraping ZONE -> IRCON Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From IRCON INTERNATIONAL LIMITED.
+
+
+
+
+
+Running Orginazation. 16: INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  23df04
+
+--------- ZONE LIST ---------
+IRCTC CORPORATE OFFICE
+
+Scraping ZONE -> IRCTC CORPORATE OFFICE
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD.
+
+
+
+
+
+Running Orginazation. 17: INDIAN RAILWAY FINANCE CORPORATION
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  1dfae8
+
+--------- ZONE LIST ---------
+IRFC Corporate Office
+
+Scraping ZONE -> IRFC Corporate Office
+----------------
+
+Pages =  0
+Zone data Saved.
+
+
+Exeting.... From INDIAN RAILWAY FINANCE CORPORATION.
+
+
+
+
+
+Running Orginazation. 18: KOLKATA METRO RAIL CORPORATION LTD
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  088008
+
+--------- ZONE LIST ---------
+KMRCL Corporate Office
+
+Scraping ZONE -> KMRCL Corporate Office
+----------------
+No Results Found in the page.
+
+
+
+
+Exeting.... From KOLKATA METRO RAIL CORPORATION LTD.
+
+
+
+
+Master xlsx saved in  E:\$$CORRIGENDUM-Main\IREPS\Output_Files\dump\merged_IREPS_2024-10-24_17-32-26.xlsx
+Master xlsx saved in  E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\merged_IREPS_2024-10-24_17-32-28.xlsx
+E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files ['am7059141480@gmail.com', 'anupammanna07@gmail.com']
+
+Email sent successfully!
+Total time taken by the Program: 0 hours, 12 minutes, 30 seconds
+Exeting in ...  10 secondsExeting in ...  9 secondsExeting in ...  8 secondsExeting in ...  7 secondsExeting in ...  6 secondsExeting in ...  5 secondsExeting in ...  4 secondsExeting in ...  3 secondsExeting in ...  2 secondsExeting in ...  1 seconds    Time's up!                              

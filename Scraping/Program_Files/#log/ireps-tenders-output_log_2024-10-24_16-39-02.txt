@@ -1,0 +1,96 @@
+Starting script execution at 2024-10-24_16-39-02
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DMRC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\MRVC' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CRIS' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RITES Limited' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAILTEL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\DFCCIL' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\$$IREPS-TENDER-SCRAPING\Newupdate\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 03: DMRC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  f8e2f9
+
+--------- ZONE LIST ---------
+DMRC
+
+Scraping ZONE -> DMRC
+----------------
+No Results Found in the page.
+
+
+
+
+Exeting.... From DMRC.
+
+
+
+
+
+Running Orginazation. 04: MRVC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  154f6f
+
+--------- ZONE LIST ---------
+MRVC
+
+Scraping ZONE -> MRVC
+----------------
+
+Tender search results  1
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/112024/77732016/viewNitPdf_4730921.pdf
+Download successful
+Department: MRVC-HQ-S AND T/MRVCL
+Tender No: MRVC_SnT_TELE_IRICEN_T_3
+Name of Work: Provision and Augmentation of Telecommunication Gears in various phases in additional infrastructure facilities provided at Indian Railways Institute of Civil Engineering (IRICEN) at Pune
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 04/11/2024 15:00
+Date and Time of Uploading Tender: 03/10/2024 15:23
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 64620073.77
+Earnest Money: 473100.00
+Contract Type: Works
+
+
+Zone data Saved.
+
+
+Exeting.... From MRVC.
+
+
+
+
+
+Running Orginazation. 05: CRIS
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 902928
+verification Code:  131390
+
+--------- ZONE LIST ---------
+CRIS
+CRIS-IMMS TESTING
+
+Scraping ZONE -> CRIS
+----------------
+
+Exception occurred during script execution: cannot access local variable 'tender_count' where it is not associated with a value

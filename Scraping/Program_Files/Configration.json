@@ -1,0 +1,21 @@
+{
+    "adb_device": "0",
+    "adb_device_ip": "192.168.0.70",
+    "sender_email_id": "tenderautomation@royalconstruct.in",
+    "sender_email_password": "Auto@2023",
+    "notification_emailids": [
+        "am7059141480@gmail.com",
+        "anupammanna07@gmail.com"
+    ],
+    "receiver_emailids": [
+        "am7059141480@gmail.com",
+        "anupammanna07@gmail.com"
+    ],
+    "dump_location": "E:\\$$CORRIGENDUM-Main\\IREPS\\Output_Files\\dump",
+    "mobile_no": "7059141480",
+    "otp_date": "2025-04-10",
+    "otp": "697745",
+    "signal_datelog": "FALSE",
+    "signal_ireps": "FALSE",
+    "email_flag": "False"
+}
