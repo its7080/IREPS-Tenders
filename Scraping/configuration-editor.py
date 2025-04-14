@@ -70,7 +70,7 @@ class JSONEditor:
             label = tk.Label(self.json_tab, text=key, font=label_font)
             label.grid(row=row, column=0, sticky='w', **padding)
             
-            if key == "adb_device":
+            if key in ("browser", "adb_device"):
                 self.adb_device_var = tk.StringVar(value=str(value))
                 enable_rb = tk.Radiobutton(self.json_tab, text="Enable", variable=self.adb_device_var, value="1", font=entry_font)
                 disable_rb = tk.Radiobutton(self.json_tab, text="Disable", variable=self.adb_device_var, value="0", font=entry_font)

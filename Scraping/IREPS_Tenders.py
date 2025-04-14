@@ -50,7 +50,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 # from chrome_updater import ChromeUpdater
 from Program_Files.scraping_library import check_internet_connection
 # from Program_Files.scraping_library import get_folder_size_in_mb
@@ -147,6 +148,7 @@ for line in lines:
 with open(config_file_path, 'r') as file:
     data = json.load(file)
 # Extract values from the JSON data
+browser = data['browser']
 adb_value = data['adb_device']
 adb_device_ip = data['adb_device_ip']
 mobile_no = data.get('mobile_no')
@@ -574,7 +576,11 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 formatted_date = four_months_later.strftime("%d/%m/%Y")
                 driver.execute_script("document.getElementById('ddmmyyDateformat2').value='" + formatted_date + "'")
                 time.sleep(0.5)
-                driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
+                # driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
+                xpath = "//input[@value='Show Results']"
+                element = driver.find_element(By.XPATH, xpath)
+                element.click()
+
                 # If everything is successful, break out of the loop
                 break
 
@@ -662,6 +668,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
         k = 0
         # Loop through all the pages
         while cnt <= page_count:
+            time.sleep(3)
             for _ in range(3):  # Try the action three times
                 try:
                     # If the element is found, you can perform further actions here
@@ -706,7 +713,8 @@ def tenders(driver, org_number, org_name, program_file_dir):
 
                 try:
                     time.sleep(1)
-                    download_button = driver.find_element(By.XPATH, "//a[contains(text(), 'Download Tender Doc. (Pdf)')]")
+                    xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
+                    download_button = driver.find_element(By.XPATH, xpath)
                     download_button.click()
                 except Exception as e:
                     # Handle other exceptions while clicking 'Custom Search' button
@@ -802,16 +810,36 @@ def tenders(driver, org_number, org_name, program_file_dir):
             if last_tender == True:
                 break
             else:
+
                 try:
-                    driver.find_element(By.XPATH, F"//a[text()='{cnt + 1}']").click()
+                    xpath = f"//a[text()='{cnt + 1}']"
+                    for attempt in range(3):
+                        try:
+                            # Wait up to 5 seconds for the element to be clickable
+                            element = WebDriverWait(driver, 5).until(
+                                EC.element_to_be_clickable((By.XPATH, xpath))
+                            )
+                            element.click()
+                            print(f"Successfully clicked page {cnt + 1} on attempt {attempt + 1}")
+                            time.sleep(5)
+                            break  # Success!
+                        except Exception as e:
+                            print(f"Attempt {attempt + 1} failed to click page {cnt + 1}: {e}")
+                            time.sleep(2)
+                    else:
+                        print(f"Failed to click page {cnt + 1} after 3 attempts.")
+
                 except Exception as e:
-                    # print(f"Page {cnt + 1} button  -  Exception")
-                    break
+                    print(f"Exception while trying to click page {cnt + 1}: {e}")
 
             if i % 10 == 0:
                 print("\n")
                 try:
-                    driver.find_element(By.XPATH, f"//a[font[text()='next']]").click()
+                    # driver.find_element(By.XPATH, f"//a[font[text()='next']]").click()
+                    xpath = "//a[font[text()='next']]"
+                    element = driver.find_element(By.XPATH, xpath)
+                    element.click()
+
                 except Exception as e:
                     print(f"Element with text 'next' not found")
                     break
@@ -926,7 +954,9 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     options = Options()
     options.add_argument("--disable-application-cache")  # Disable application cache
     options.add_argument('--ignore-certificate-errors')
-    options.add_argument("--headless")  
+    if browser == "0":
+        options.add_argument("--headless")
+    
     # options.add_argument("--disable-gpu")  
     options.add_argument("--log-level=3")
     # # Set the download path

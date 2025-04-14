@@ -1,4 +1,5 @@
 {
+    "browser": "1",
     "adb_device": "0",
     "adb_device_ip": "192.168.0.70",
     "sender_email_id": "tenderautomation@royalconstruct.in",
