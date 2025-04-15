@@ -1,0 +1,197 @@
+Starting script execution at 2025-04-15_10-35-11
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KRCL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DMRC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\MRVC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CRIS' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RITES Limited' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAILTEL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DFCCIL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 01: Indian Railway
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 187838
+verification Code:  1dc18b
+
+--------- ZONE LIST ---------
+Banaras Locomotive Works
+COFMOW
+CORE
+Central Railway
+Chittaranjan Locomotive Works
+East Central Railway
+East Coast Railway
+Eastern Railway
+IRICEN
+IRIEEN
+IRIFM
+IRIMEE
+IRISET
+IRITM
+IROAF
+Integral Coach Factory
+JRRPFA
+Metro
+Modern Coach Factory, Raebareli
+NFR Construction
+National Academy of Indian Railways
+North Central Railway
+North East Frontier Railway
+North Eastern Railway
+North Western Railway
+Northern Railway
+Patiala Locomotive Works
+RDSO
+Rail Coach Factory, Kapurthala
+Rail Wheel Factory
+Rail Wheel Plant, Bela
+Railway Board
+South Central Railway
+South East Central Railway
+South Eastern Railway
+South Western Railway
+Southern Railway
+West Central Railway
+Western Railway
+Workshop Projects Organization
+
+Scraping ZONE -> Banaras Locomotive Works
+----------------
+
+Tender search results  3
+Pages =  1
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80840975/viewNitPdf_4900323.pdf
+Download successful
+Department: BLW HQ-ENGINEERING/BLW
+Tender No: BLW-WAT-ET-029-24-25
+Name of Work: Extension of ORH(first floor) & other ancillary works under SSE/W/Admin & Repair /renovation works in suites and other repair works at OGH and VIP lounge of club under SSE/W/CT in BLW Varanasi & Construction of 6 units Type-III double Storey QTRS under SSE/W/WT & 4 units double Storey Type-IV QTRS in BLW Varanasi under SSE/W/ET in BLW Varanasi and Provision of power supply & electrification of extension portion of ORH & repairing work of OGH BLW Varanasi & Provision of power supply & electrification of 06 Units Type III & 04 Units Type IV Qtrs. in BLW/Varanasi.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 25/04/2025 15:00
+Date and Time of Uploading Tender: 27/03/2025 17:51
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 58781646.15
+Earnest Money: 443900.00
+Contract Type: Works - General
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80983326/viewNitPdf_4908043.pdf
+Download successful
+Department: BLW HQ-MEDICAL/BLW
+Tender No: MED-BLW-MGPS-DMWD-2025-26
+Name of Work: Supply , Installing , Commissioning & Testing of Extension Medical Gas Pipe Line System at disaster management ward of BLW Central Hospital.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 28/04/2025 15:00
+Date and Time of Uploading Tender: 05/04/2025 13:34
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2437422.00
+Earnest Money: 48800.00
+Contract Type: Works - General
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80975974/viewNitPdf_4907741.pdf
+Download successful
+Department: BLW HQ-ENGINEERING/BLW
+Tender No: BLW-WAT-ET-001-25-26
+Name of Work: Repairing of floor, doors, windows toilets etc of West Institute under SSE/W/WT, Provision of Jhoola, open sports items in Bal Udyan, Surya Sarovar, Kushti kendra under SSE/W/WT in BLW Varanasi & Repairing of damaged RCC slab, Mumty slab etc under SSE/W/WT in BLW Varanasi .
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 04/04/2025 17:52
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 9110734.76
+Earnest Money: 182200.00
+Contract Type: Works - General
+
+
+Zone data Saved.
+
+Scraping ZONE -> COFMOW
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> CORE
+----------------
+
+Pages =  0
+Zone data Saved.
+
+Scraping ZONE -> Central Railway
+----------------
+No Results Found in the page.
+
+
+
+Scraping ZONE -> Chittaranjan Locomotive Works
+----------------
+
+An error occurred: Tender search results Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x009380E3+60707]
+	GetHandleVerifier [0x00938124+60772]
+	(No symbol) [0x00760683]
+	(No symbol) [0x0074FED0]
+	(No symbol) [0x0076DD3F]
+	(No symbol) [0x007D3D7F]
+	(No symbol) [0x007EE129]
+	(No symbol) [0x007CCE46]
+	(No symbol) [0x0079C5D3]
+	(No symbol) [0x0079D424]
+	GetHandleVerifier [0x00B7BBC3+2435075]
+	GetHandleVerifier [0x00B77163+2416035]
+	GetHandleVerifier [0x00B9350C+2531660]
+	GetHandleVerifier [0x0094F1B5+155125]
+	GetHandleVerifier [0x00955B5D+182173]
+	GetHandleVerifier [0x0093F9B8+91640]
+	GetHandleVerifier [0x0093FB60+92064]
+	GetHandleVerifier [0x0092A620+4704]
+	BaseThreadInitThunk [0x76627BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+
+
+
+Exeting.... From Indian Railway.
+
+
+Exception occurred during script execution: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x009380E3+60707]
+	GetHandleVerifier [0x00938124+60772]
+	(No symbol) [0x007604FE]
+	(No symbol) [0x0079B898]
+	(No symbol) [0x007CCF06]
+	(No symbol) [0x007C89D5]
+	(No symbol) [0x007C7F66]
+	(No symbol) [0x007336E5]
+	(No symbol) [0x00733C3E]
+	(No symbol) [0x007340CD]
+	GetHandleVerifier [0x00B7BBC3+2435075]
+	GetHandleVerifier [0x00B77163+2416035]
+	GetHandleVerifier [0x00B9350C+2531660]
+	GetHandleVerifier [0x0094F1B5+155125]
+	GetHandleVerifier [0x00955B5D+182173]
+	(No symbol) [0x007333B0]
+	(No symbol) [0x00732BC3]
+	GetHandleVerifier [0x00C9D2AC+3620588]
+	BaseThreadInitThunk [0x76627BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+

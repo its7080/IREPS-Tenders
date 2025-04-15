@@ -12,6 +12,8 @@ venv/
 ENV/
 .venv/
 .env/
+Scraping/build/
+Scraping/dist/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
