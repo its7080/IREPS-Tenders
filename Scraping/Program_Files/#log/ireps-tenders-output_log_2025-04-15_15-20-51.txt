@@ -1,0 +1,133 @@
+Starting script execution at 2025-04-15_15-20-51
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\Indian Railway' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KRCL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DMRC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\MRVC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CRIS' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RITES Limited' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAILTEL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DFCCIL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 01: Indian Railway
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 187838
+verification Code:  70cbee
+organization dropdown  -  Exception: Message: stale element reference: stale element not found
+  (Session info: chrome=135.0.7049.85); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	GetHandleVerifier [0x009380E3+60707]
+	GetHandleVerifier [0x00938124+60772]
+	(No symbol) [0x00760683]
+	(No symbol) [0x00772081]
+	(No symbol) [0x00771160]
+	(No symbol) [0x00767893]
+	(No symbol) [0x00765D9A]
+	(No symbol) [0x007690DA]
+	(No symbol) [0x00769157]
+	(No symbol) [0x007A35A7]
+	(No symbol) [0x007CD04C]
+	(No symbol) [0x0079DCA4]
+	(No symbol) [0x007CD2C4]
+	(No symbol) [0x007EE824]
+	(No symbol) [0x007CCE46]
+	(No symbol) [0x0079C5D3]
+	(No symbol) [0x0079D424]
+	GetHandleVerifier [0x00B7BBC3+2435075]
+	GetHandleVerifier [0x00B77163+2416035]
+	GetHandleVerifier [0x00B9350C+2531660]
+	GetHandleVerifier [0x0094F1B5+155125]
+	GetHandleVerifier [0x00955B5D+182173]
+	GetHandleVerifier [0x0093F9B8+91640]
+	GetHandleVerifier [0x0093FB60+92064]
+	GetHandleVerifier [0x0092A620+4704]
+	BaseThreadInitThunk [0x76627BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+
+
+--------- ZONE LIST ---------
+Banaras Locomotive Works
+COFMOW
+CORE
+Central Railway
+Chittaranjan Locomotive Works
+East Central Railway
+East Coast Railway
+Eastern Railway
+IRICEN
+IRIEEN
+IRIFM
+IRIMEE
+IRISET
+IRITM
+IROAF
+Integral Coach Factory
+JRRPFA
+Metro
+Modern Coach Factory, Raebareli
+NFR Construction
+National Academy of Indian Railways
+North Central Railway
+North East Frontier Railway
+North Eastern Railway
+North Western Railway
+Northern Railway
+Patiala Locomotive Works
+RDSO
+Rail Coach Factory, Kapurthala
+Rail Wheel Factory
+Rail Wheel Plant, Bela
+Railway Board
+South Central Railway
+South East Central Railway
+South Eastern Railway
+South Western Railway
+Southern Railway
+West Central Railway
+Western Railway
+Workshop Projects Organization
+
+Scraping ZONE -> Banaras Locomotive Works
+----------------
+
+Tender search results  3
+Pages =  1
+Pages =  1
+Tender  : 1 Exception occurred during script execution: Message: unknown error: failed to close window in 20 seconds
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x009380E3+60707]
+	GetHandleVerifier [0x00938124+60772]
+	(No symbol) [0x00760683]
+	(No symbol) [0x00744134]
+	(No symbol) [0x00744191]
+	(No symbol) [0x007DBCB2]
+	(No symbol) [0x007CD013]
+	(No symbol) [0x0079C5D3]
+	(No symbol) [0x0079D424]
+	GetHandleVerifier [0x00B7BBC3+2435075]
+	GetHandleVerifier [0x00B77163+2416035]
+	GetHandleVerifier [0x00B9350C+2531660]
+	GetHandleVerifier [0x0094F1B5+155125]
+	GetHandleVerifier [0x00955B5D+182173]
+	GetHandleVerifier [0x0093F9B8+91640]
+	GetHandleVerifier [0x0093FB60+92064]
+	GetHandleVerifier [0x0092A620+4704]
+	BaseThreadInitThunk [0x76627BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+

@@ -14,30 +14,20 @@ import pandas as pd
 import subprocess
 import sys
 import re
-# from openpyxl import load_workbook
 import time
-# import tempfile
-# import shutil
-# import logging
 import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-# from email.mime.application import MIMEApplication
 from selenium import webdriver
 import chromedriver_autoinstaller
 from selenium.webdriver.chrome.options import Options
-# import shutil
-# import urllib.request
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
 from selenium.common.exceptions import NoSuchElementException
-# from urllib.parse import urlparse
 import requests
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.support.ui import Select
@@ -52,7 +42,9 @@ from email.mime.base import MIMEBase
 from email import encoders
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# from chrome_updater import ChromeUpdater
+
+
+
 from Program_Files.scraping_library import check_internet_connection
 # from Program_Files.scraping_library import get_folder_size_in_mb
 # from Program_Files.scraping_library import delete_empty_folders
@@ -67,25 +59,6 @@ from Program_Files.scraping_library import no_adb_mail
 from Program_Files.scraping_library import skip_zones
 from Program_Files.scraping_library import get_current_device_serial
 
-# # =======================
-# # chrome_updater
-# # =======================
-# # Create an instance of ChromeUpdater
-# updater = ChromeUpdater()
-
-# # Step 1: Open Chrome with Selenium
-# driver = updater.relaunch_chrome_with_selenium()
-
-# # Step 2: Close Chrome to prepare for the update
-# time.sleep(5)  # Simulate some activity
-# updater.close_chrome(driver)
-
-# # Step 3: Download and install the latest version of Chrome
-# updater.download_chrome_installer()
-# updater.install_chrome()
-
-# # Step 4: Relaunch Chrome after the update
-# driver = updater.relaunch_chrome_with_selenium()
 
 
 
@@ -104,11 +77,6 @@ program_files_dir = os.path.join(script_dir_path, "Program_Files")
 # Join the script path with the source path
 temp_dir_path = os.path.join(program_files_dir, "ireps_temp")
 # print(temp_dir_path)
-
-# email_file_path = os.path.join(input_files_dir, "emailid_list.txt")
-# print(email_file_path)
-# sheet_names_file_path = os.path.join(input_files_dir,"sheet_names.txt")
-# print(sheet_names_file_path)
 script_log_file_path = os.path.join(program_files_dir, "script_log.log" )
 # print(script_log_file_path)
 config_file_path = os.path.join(program_files_dir, "Configration.json")
@@ -117,8 +85,6 @@ org_file_path = os.path.join(program_files_dir, "Organization_list.txt")
 # print(org_file_path)
 ireps_data = os.path.join(program_files_dir, "ireps_data.pkl")
 # print(ireps_data)
-# file_to_save_path = os.path.join(input_files_dir, "send_mail_log.txt")
-# print(file_to_save_path)
 tender_pdf_file_path = os.path.join(temp_dir_path, "tender.pdf")
 # print(tender_pdf_file_path)
 
@@ -302,65 +268,6 @@ def login(driver, mobile_no):
             time.sleep(5)
 
     return driver  # Return driver if all login attempts fail
-
-
-# def login(driver, mobile_no):
-
-#     retries = 0
-#     while retries < 3:
-#         try:
-#             driver.refresh()
-#             # If the refresh succeeds, break out of the loop
-#             break
-#         except TimeoutException:
-#             print("Timeout exception occurred. Retrying...")
-#             retries += 1
-#             # Add some delay before retrying to avoid overwhelming the server
-#             time.sleep(2)
-#     else:
-#         # If all retries fail, raise the TimeoutException
-#         raise TimeoutException("Exceeded maximum retries. Unable to refresh.")
-
-#     time.sleep(3)
-
-#     # Retry login process up to 3 times
-#     for attempt in range(3):
-#         try:
-
-#             try:
-#                 alert = Alert(driver)
-#                 alert.accept()
-#             except:
-#                 pass
-
-#             driver, ver_code = get_verification(driver)
-
-#             if ver_code is None:
-#                 return None
-
-#             otp = load_otp()
-#             # Fill in login details and proceed
-#             driver.execute_script("document.getElementById('mobileNo').value='" + mobile_no + "'")
-#             time.sleep(1)
-#             driver.execute_script("document.getElementById('verification').value='" + ver_code + "'")
-#             time.sleep(1)
-#             driver.execute_script("document.getElementById('otp').value='" + otp + "'")
-#             time.sleep(2)
-#             driver.find_element("xpath", "//input[@value='Proceed']").click()
-
-#             # WebDriverWait block to wait for the presence of the element with ID "customSearchId"
-#             driver.find_element(By.ID, "custumSearchId").click()
-#             # If everything is successful, break out of the loop
-#             return driver
-
-#         except Exception as e:
-#             # Handle other exceptions while clicking 'Custom Search' button
-#             print(f"Attempt {attempt + 1} login or Custom Search button  -  Exception") # {e}")
-#             driver.get("https://www.ireps.gov.in/epsn/anonymSearch.do")
-#             time.sleep(5)
-
-#     return driver
-
 
 
 
@@ -726,29 +633,9 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 driver.switch_to.window(handles[2])
 
 
-                # # Define a function to wait for the page to fully load
-                # def page_fully_loaded(driver):
-                #     return driver.execute_script("return document.readyState") == "complete"
-
-                # # Wait for the page to fully load
-                # WebDriverWait(driver, 10).until(page_fully_loaded)
-
                 pdf_url = driver.current_url
                 print(" ", pdf_url)
 
-                # # Execute JavaScript to get the current window's URL
-                # window_url = driver.execute_script("return window.location.href;")
-                # url_pattern = re.compile(r'^https:\/\/www\.ireps\.gov\.in\/ireps\/works\/pdfdocs\/.*\.pdf$')
-
-                # while True:
-                #     if url_pattern.match(pdf_url):
-                #         print("URL is valid. ", pdf_url)
-                #         break
-                #     else:
-                #         print("URL is not valid.")
-                #         time.sleep(0.25)
-                #         pdf_url = driver.current_url
-                #         continue
 
                 if pdf_url.endswith(".pdf"):
                     download_pdf(pdf_url)
@@ -1047,50 +934,6 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 
     return output_file_path
 
-# # This function is use to merge xlsx files by first argument is (list of tuples)
-# def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
-#     if not os.path.exists(output_directory):
-#         os.makedirs(output_directory)
-#         print(f"Folder '{output_directory}' created successfully.")
-
-#     b = datetime.datetime.now()
-#     merged_data = pd.DataFrame()
-
-#     for folder_name in folders:
-#         folder_path = os.path.join(program_files_dir, folder_name[1])  # Replace 'path_to_root_folder' with the actual root folder path
-        
-#         # Check if the folder exists before attempting to process it
-#         if os.path.exists(folder_path) and os.path.isdir(folder_path):
-#             files = os.listdir(folder_path)
-
-#             for file in files:
-#                 if file.endswith('.xlsx'):
-#                     file_path = os.path.join(folder_path, file)
-#                     data = pd.read_excel(file_path)
-#                     b = datetime.datetime.now()
-#                     data['Get Date'] = b.strftime("%d/%m/%Y")
-#                     merged_data = pd.concat([merged_data, data], ignore_index=True)
-
-#         # else:
-#         #     # Folder not found, so skip this iteration
-#         #     print(f"Folder not found: {folder_path}. Skipping.")
-
-#     # Create the timestamp for the filename
-#     timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-
-#     # Output file path and name
-#     output_filename = f"merged_IREPS_{timestamp}.xlsx"
-#     output_file_path = os.path.join(output_directory, output_filename)
-
-#     # Save the merged data to the output file
-#     merged_data.to_excel(output_file_path, index=False)
-
-#     return output_file_path
-
-
-
-
-
 
 
 
@@ -1103,8 +946,6 @@ def load_email_flag():
             return data.get("email_flag")
     except FileNotFoundError:
         return None
-
-
 
 
 
@@ -1136,10 +977,7 @@ def send_mail(program_file_dir, all_email_ids):
         # email_body = f"{notification_text}\n{system_info}\n\nLog Data:\n{json_data}"
         email_body = f"{notification_text}\n{system_info}"
 
-        # # Remove brackets from JSON data
-        # json_object = json.loads(json_data)
-        # if isinstance(json_object, list):
-        #     json_data = json_object[0]
+
 
         # Create a MIMEText object
         msg = MIMEMultipart()
@@ -1150,18 +988,6 @@ def send_mail(program_file_dir, all_email_ids):
         msg['To'] = ", ".join(receiver_emails)
         msg['Subject'] = subject
 
-        # # Attach the log file if requested
-        # if attach_log:
-        #     if os.path.exists(log_file_path) and os.path.getsize(log_file_path) > 0:
-        #         with open(log_file_path, "rb") as attachment:
-        #             part = MIMEBase("application", "octet-stream")
-        #             part.set_payload((attachment).read())
-        #             encoders.encode_base64(part)
-        #             part.add_header("Content-Disposition", "attachment; filename= %s" % log_file_path)
-        #             msg.attach(part)
-        #     else:
-        #         print(f"The file {log_file_path} is empty or does not exist. Not attaching to the email.")
-        #         return
 
         # Attach the first .xlsx file found in the specified folder
         xlsx_folder = program_files_dir
@@ -1320,18 +1146,6 @@ def log_to_file(filename):
             print("Master xlsx saved in ", output_file_path2)
             time.sleep(2)
 
-
-
-
-            # Final E-Mail with Master xlsx and (log file if exist)
-            # mail_triger = load_email_flag()
-            # if mail_triger == "True":
-            #     if os.path.exists(log_file_path) and os.path.getsize(log_file_path) > 0:
-            #         print(program_file_dir, all_email_ids, log_file_path)
-            #         send_mail(program_file_dir, all_email_ids, log_file_path, attach_log=True)
-            #     else:
-            #         print(program_file_dir, all_email_ids, log_file_path)
-            #         send_mail(program_file_dir, all_email_ids, log_file_path, attach_log=False)
 
             if mail_triger_main == True:
                 print(program_files_dir, receiver_emailids)
