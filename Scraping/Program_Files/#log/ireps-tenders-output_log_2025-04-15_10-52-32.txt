@@ -1,0 +1,460 @@
+Starting script execution at 2025-04-15_10-52-32
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DMRC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\MRVC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CRIS' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RITES Limited' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAILTEL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DFCCIL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 02: KRCL
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 187838
+verification Code:  063386
+
+--------- ZONE LIST ---------
+Konkan Railway Corporation Ltd.
+
+Scraping ZONE -> Konkan Railway Corporation Ltd.
+----------------
+
+Tender search results  29
+Pages =  2
+Tender  : 1   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80961141/viewNitPdf_4906909.pdf
+Download successful
+Department: RATNAGIRI-DIVISION-ENGINEERING/KRCL
+Tender No: KR-RN-W-2024-77A
+Name of Work: Earthwork in cutting for lowering and flattening of slopes in Soil & Hard rock, lining of CWD and protective works at Khedshi cutting and Khedshi Syphon and Banachiwadi south approach cutting under SSE/Ratnagiri section
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 21/04/2025 15:00
+Date and Time of Uploading Tender: 26/03/2025 16:56
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 4205089.77
+Earnest Money: 84100.00
+Contract Type: Works - General
+Tender  : 2   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80998730/viewNitPdf_4908949.pdf
+Download successful
+Department: CORPORATE OFFICE-ENGINEERING/KRCL
+Tender No: KR-W-09-2025-01
+Name of Work: Construction of Underpass having clear inner dimension of 1x4.0mx3.75m (barrel length 9.18m) including approach road at Railway km 309/0-1 between Nandgaon (NAN) - Kankavali (KKW) stations of KRCL in the state of Maharashtra
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 21/04/2025 15:00
+Date and Time of Uploading Tender: 04/04/2025 17:38
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 18903976.48
+Earnest Money: 244500.00
+Contract Type: Works - General
+Tender  : 3   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80082075/viewNitPdf_4862654.pdf
+Download successful
+Department: CORPORATE OFFICE-ENGINEERING/KRCL
+Tender No: KR-W-1-58-2025-01
+Name of Work: Supplying and stacking of ballast at Murdeshwar ballast depot and loading into KRCL hoppers for CTR works under SEN/Udupi section in Senior Regional Engineer, Karwar region of Konkan Railway. E-Office file no.63674 (Rate quoted shall be excluding GST. GST shall be payable extra as applicable).
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 23/04/2025 15:00
+Date and Time of Uploading Tender: 01/04/2025 15:54
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 25816981.50
+Earnest Money: 279100.00
+Contract Type: Works - General
+Tender  : 4   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/81117842/viewNitPdf_4916028.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-20-CB
+Name of Work: Extension of Executive Lounge at Udupi Railway Station in Karnataka State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 25/04/2025 15:00
+Date and Time of Uploading Tender: 11/04/2025 16:26
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2771422.30
+Earnest Money: 55400.00
+Contract Type: Works - General
+Tender  : 5   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80374933/viewNitPdf_4877470.pdf
+Download successful
+Department: CORPORATE OFFICE-ENGINEERING/KRCL
+Tender No: KR-W-1-58-2025-02
+Name of Work: Supplying and stacking of ballast at Kundapura ballast depot and loading into KRCL hoppers for CTR (P)works under SEN/Udupi section under Karwar region over Konkan Railway in Karnataka state (Rate quoted shall be excluding GST. GST shall be payable extra as applicable.(E Office file no.64457)
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 25/04/2025 15:00
+Date and Time of Uploading Tender: 03/04/2025 09:42
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 44988513.50
+Earnest Money: 375000.00
+Contract Type: Works - General
+Tender  : 6   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/80963793/viewNitPdf_4907000.pdf
+Download successful
+Department: RATNAGIRI-DIVISION-ENGINEERING/KRCL
+Tender No: KR-RN-W-2025-05
+Name of Work: Supply of Ballast at Chiplun Ballast depot, loading into KRCL Hopper, Unloading, Spreading and Boxing of Ballast between Km.00/800 to Km.378/100 under Sr.REn/Ratnagiri."
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 25/04/2025 15:00
+Date and Time of Uploading Tender: 04/04/2025 16:41
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 12243130.80
+Earnest Money: 211200.00
+Contract Type: Works - General
+Tender  : 7   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/81210355/viewNitPdf_4922110.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2022-66-RB-RT6
+Name of Work: Structural Strengthening of FOB based on audit Reports under SEN/MAO Section.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 28/04/2025 15:00
+Date and Time of Uploading Tender: 12/04/2025 16:24
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1776053.22
+Earnest Money: 35500.00
+Contract Type: Works - General
+Tender  : 8   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/81209964/viewNitPdf_4922040.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-25-RB-RT2
+Name of Work: Diversion of seepage water in tunnels by providing pre-fabricated polycarbonate sheet frames and MS Funnel arrangements for maintenance of OHE & Track in good condition in Karnataka state of KRCL under SSE/P.way/KAWR section.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 28/04/2025 15:00
+Date and Time of Uploading Tender: 12/04/2025 16:38
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 3281483.28
+Earnest Money: 65600.00
+Contract Type: Works - General
+Tender  : 9   https://www.ireps.gov.in/ireps/works/pdfdocs/042025/79971030/viewNitPdf_4857243.pdf
+Download successful
+Department: CORPORATE OFFICE-ENGINEERING/KRCL
+Tender No: KR-W-09-2025-02
+Name of Work: Gradient verification of Railway track using LiDAR technology from Roha to Thokur station excluding station yards of Konkan Railway route.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 30/04/2025 15:00
+Date and Time of Uploading Tender: 08/04/2025 11:37
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 6026000.00
+Earnest Money: 120500.00
+Contract Type: Works - General
+Tender  : 10   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80863163/viewNitPdf_4901480.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-131-RB
+Name of Work: Maintenance of garden in various location (ORH, RRM camp office & GFITT) at Madgaon for the year 2024-25 in Goa state
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 20:00
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 579242.76
+Earnest Money: 11600.00
+Contract Type: Works - General
+Tender  : 11   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80829905/viewNitPdf_4899693.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-12-RB
+Name of Work: Repairing approach road of Karwar Railway colony within Railway boundary (phase-II) from LC-52 and up to existing subway/colony main gate under SSE/W/KAWR section Karnataka State
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:41
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2138036.22
+Earnest Money: 42800.00
+Contract Type: Works - General
+Tender  : 12   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80857422/viewNitPdf_4901246.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-129-RB
+Name of Work: Providing and fixing roofing sheets over E D (SP&BD) office, painting of office/modular shelter &other miscellaneous works at Madgaon in Goa state.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:48
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1599349.99
+Earnest Money: 32000.00
+Contract Type: Works - General
+Tender  : 13   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80841974/viewNitPdf_4900311.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-127-CB
+Name of Work: Construction of store room and office for SSE/S&T Verna and Bhatkal under SSE/W/MRDW Section
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:28
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2271563.36
+Earnest Money: 45400.00
+Contract Type: Works - General
+Tender  : 14   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80819726/viewNitPdf_4899365.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-18-RB
+Name of Work: Shotcreting Gabion face of platform at Canacona & Loliem under SSE/W/MAO section in Goa State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:23
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1699696.81
+Earnest Money: 34000.00
+Contract Type: Works - General
+Tender  : 15   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80864057/viewNitPdf_4901562.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-130-CB
+Name of Work: Construction of new rolling huts in/out at both end of Verna station in Goa State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:55
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 882967.89
+Earnest Money: 17700.00
+Contract Type: Works - General
+Tender  : 16   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80853403/viewNitPdf_4900995.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-132-CB
+Name of Work: Designing, Supplying, Erection and fixing of various Signage board at Thivim, Karmali, Karwar, Murdeshwar and Udupi Station
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 16:22
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1588068.00
+Earnest Money: 31800.00
+Contract Type: Works - General
+Tender  : 17   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80861567/viewNitPdf_4901359.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-17-RB
+Name of Work: Painting of Structural steel member of platform shelter at Pernem, Thivim, & Karmali station under SSE/W/VEN section Goa State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:49
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 980933.12
+Earnest Money: 19600.00
+Contract Type: Works - General
+Tender  : 18   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80821451/viewNitPdf_4899455.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-15-RB
+Name of Work: Repairing to Gabion platform by shotcreting and by replacing of damaged Pre-Cast coping slabs at Byndoor , Bhatkal and Chitrapura stations under SSE/W/MRWD section in Karnataka State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:47
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2023124.69
+Earnest Money: 40500.00
+Contract Type: Works - General
+Tender  : 19   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80827263/viewNitPdf_4899686.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-14-RB
+Name of Work: Painting of staff quarters under SSE/W/MRDW Section in Karnataka State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:36
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1695607.71
+Earnest Money: 33900.00
+Contract Type: Works - General
+Tender  : 20   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/81055094/viewNitPdf_4911208.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-98-RB-R1
+Name of Work: Annual sectional contract for petty works, maintenance, repair work & supply of materials under SSE/WORKS/KAWR section for the year 2024-25.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 20:03
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 5474990.74
+Earnest Money: 109500.00
+Contract Type: Works - General
+Tender  : 21   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80828078/viewNitPdf_4899688.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-11-RB
+Name of Work: Provision of tiles to kitchen platform, toilets and bathroom for staff quarters under SSE/W/MRDW section Karnataka state.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:38
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 490481.47
+Earnest Money: 9800.00
+Contract Type: Works - General
+Tender  : 22   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80814877/viewNitPdf_4898921.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-13-RB
+Name of Work: Supply of potable water through tankers to Station Buildings, Staff Quarters, GLR and other Buildings from Honawar to Senapura station under SSE/W/MEDW section for the year 2025-26.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 16:11
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 422730.00
+Earnest Money: 8500.00
+Contract Type: Works - General
+Tender  : 23   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80815764/viewNitPdf_4898984.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-128-RB
+Name of Work: Supply of potable water through tankers to Station Buildings, Staff Quarters, GLR and other Buildings from Suravali to Loliem station under JE/W/MAO section for the year 2025-26.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 16:17
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 623700.00
+Earnest Money: 12500.00
+Contract Type: Works - General
+Tender  : 24   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80832818/viewNitPdf_4899867.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-16-RB
+Name of Work: Providing PGI sheet roofing over station Building at Kumta station in Karnataka state.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:46
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1302048.92
+Earnest Money: 26100.00
+Contract Type: Works - General
+Tender  : 25   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80817428/viewNitPdf_4899053.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-10-RB
+Name of Work: Shotcreting Gabion faces of platform and by replacing damaged Pre-Cast coping slabs, paving slabs Kundapura, Barkoor, Udupi, Mulki and Surathkal stations under SSE/W/UD section in Karnataka State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:30
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1752317.62
+Earnest Money: 35100.00
+Contract Type: Works - General
+
+
+Successfully clicked page 2 on attempt 1
+Tender  : 26   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80820627/viewNitPdf_4899482.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-09-RB
+Name of Work: Shotcreting Gabion Face of platform and replacing of damaged Pre-Cast coping slabs, paving slab between Asnoti and Kumta stations under SSE/W/KW section in Karnataka State.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:32
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 851637.38
+Earnest Money: 17000.00
+Contract Type: Works - General
+Tender  : 27   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80831380/viewNitPdf_4899698.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2024-126-RB
+Name of Work: Repair and development of MULKY railway station approach road under SSE/W/UD section in Karnataka state
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:44
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 1605155.00
+Earnest Money: 32100.00
+Contract Type: Works - General
+Tender  : 28   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/80867775/viewNitPdf_4901804.pdf
+Download successful
+Department: KARWAR-DIVISION-ENGINEERING/KRCL
+Tender No: KR-KW-OL-W-2025-19-RB
+Name of Work: Providing paver block at the newly constructed Island Platform 4/5 and attending local damages in the Platform of Madgaon Railway station under SEN/W/MAO section of Konkan Railway in the state of Goa.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Single Packet System
+Tender Closing Date and Time: 02/05/2025 15:00
+Date and Time of Uploading Tender: 09/04/2025 19:52
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 2006202.33
+Earnest Money: 40100.00
+Contract Type: Works - General
+Tender  : 29   https://www.ireps.gov.in/ireps/works/pdfdocs/052025/81163983/viewNitPdf_4918778.pdf
+Download successful
+Department: CORPORATE OFFICE-GENERAL/KRCL
+Tender No: CO-11031-9-2024-GEN
+Name of Work: Booking / Issuing of (Domestic / International) Air Tickets and other allied travel related services viz. Hotel, Vehicle etc.
+Bidding Type: Normal Tender
+Tender Type: Open
+Bidding System: Two Packet System
+Tender Closing Date and Time: 09/05/2025 15:00
+Date and Time of Uploading Tender: 10/04/2025 15:32
+Pre-Bid Conference Date and Time: Not Applicable
+Advertised Value: 12500000.00
+Earnest Money: 212500.00
+Contract Type: Works - General
+
+
+Zone data Saved.
+
+
+Exeting.... From KRCL.
+
+
+
+
+
+Running Orginazation. 03: DMRC
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 187838
+verification Code:  9dcc3f

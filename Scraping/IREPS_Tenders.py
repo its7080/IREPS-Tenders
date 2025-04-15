@@ -363,36 +363,50 @@ def login(driver, mobile_no):
 
 
 
-def is_no_result_found_present_in_page(driver):
+
+
+def is_no_result_found_present_in_page(driver, timeout=20):
     """
     Check if the page contains the "No Results Found" message.
-    
+
     Args:
-        driver (WebDriver): The Selenium WebDriver instance for interacting with the page.
+        driver (WebDriver): The Selenium WebDriver instance.
+        timeout (int): Maximum number of seconds to wait for the element.
 
     Returns:
         tuple: (bool, driver) where the boolean is True if "No Results Found" is present, False otherwise.
     """
     try:
-        # Get the page source using Selenium
-        page_source = driver.page_source
+        # Wait for the 'formLabel' element to appear in the page
+        WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located((By.CLASS_NAME, 'formLabel'))
+        )
 
-        # Parse the HTML content with BeautifulSoup
-        soup = BeautifulSoup(page_source, 'html.parser')
+        # Allow some buffer time for complete rendering
+        time.sleep(2)
 
-        # Find the element containing the specific class and style attributes
-        result_element = soup.find('td', {'class': 'formLabel', 'style': 'color: #C00000'})
+        # Parse with BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
 
-        # Check if the element contains the text "No Results Found"
+        # Find target element with specific style
+        result_element = soup.find('td', {
+            'class': 'formLabel', 
+            'style': 'color: #C00000'
+        })
+
         if result_element and "No Results Found" in result_element.get_text(strip=True):
             print("No Results Found in the page.\n")
             return True, driver
 
         return False, driver
-    
-    except NoSuchElementException as e:
-        print(f"An error occurred while checking the page: {e}")
+
+    except TimeoutException:
+        print("Timeout: The element with class 'formLabel' did not appear within the given time.")
         return False, driver
+    except Exception as e:
+        print(f"Unexpected error while checking for 'No Results Found': {e}")
+        return False, driver
+
 
 
 
@@ -492,57 +506,47 @@ def getpdfdata():
 
 
 def tenders(driver, org_number, org_name, program_file_dir):
-    for _ in range(3):  # Try the action three times
+
+
+    # Retry selecting organization up to 3 times
+    for _ in range(3):
         try:
-            # Locate the dropdown element using an appropriate selector
             dropdown_element = driver.find_element(By.ID, "organization")
-            # Create a Select object and interact with the dropdown
             select = Select(dropdown_element)
-
-            # Select option by value
             select.select_by_value(org_number)
-
             time.sleep(1)
 
-            # Double select organization
-            # Check if the element is still present
-            if dropdown_element:
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
-            else:
-                print("Element with ID 'organization' not found")
-            
-            # If everything is successful, break out of the loop
-            break
+            # Manually trigger change via JS to ensure proper binding
+            driver.execute_script(
+                "document.getElementById('organization').value = arguments[0];", org_number
+            )
+            break  # Exit loop if successful
 
         except Exception as e:
-            # Handle other exceptions while clicking organization dropdown button
-            print(f"organization dropdown  -  Exception")
+            print("organization dropdown  -  Exception:", e)
             driver.refresh()
             time.sleep(2)
 
+    # Store all railway zone options in a dictionary
+    try:
+        time.sleep(1)
+        railway_zone_dropdown = Select(driver.find_element(By.XPATH, "//*[@id='railwayZone']"))
+        options = railway_zone_dropdown.options
 
-    """Stores all options in a dictionary. then print the zone list"""
+        options_dict = {
+            option.get_attribute("value"): option.get_attribute("innerText")
+            for option in options
+        }
 
-    time.sleep(1)
-    railway_zone_dropdown = Select(driver.find_element(By.XPATH, "//*[@id='railwayZone']"))
-    # print(railway_zone_dropdown)
-    options = railway_zone_dropdown.options
-    # print(options)
+        # Print filtered zone list
+        print("\n--------- ZONE LIST ---------")
+        for zone in options_dict.values():
+            if zone not in skip_zones:
+                print(zone)
 
-    options_dict = {}
-    for option in options:
-        value = option.get_attribute("value")
-        text = option.get_attribute("innerText")
-        options_dict[value] = text
+    except Exception as e:
+        print("Error while retrieving railway zone options:", e)
 
-    # Print the options dictionary
-    print("\n--------- ZONE LIST ---------")
-    for zone in options_dict.values():
-        if zone in skip_zones:
-            continue  # Skip the current iteration and move to the next one
-        print(zone)
-
-    """ End """
 
 
     for zone_number, zone in options_dict.items():
@@ -553,48 +557,50 @@ def tenders(driver, org_number, org_name, program_file_dir):
         print("----------------")
 
 
+
         for _ in range(3):  # Try the action three times
             try:
-                # filling search criteria
-                time.sleep(3)
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
-                time.sleep(3)
-                driver.execute_script("document.getElementById('workArea').value='WT'") # works
-                time.sleep(3)
-                driver.execute_script("document.getElementById('railwayZone').value='"+ zone_number +"'")
-                time.sleep(3)
-                driver.execute_script("document.getElementById('tenderType').value=2") # open
-                time.sleep(3)
-                driver.execute_script("document.getElementById('tenderStage').value=1") # published
-                time.sleep(3)
-                driver.execute_script("document.getElementsByName('selectDate')[0].value = 'TENDER_OPENING_DATE'") # Tender Closing Date
-                # Get the current date
-                current_date = datetime.datetime.now()
-                # Add four months to the current date
-                four_months_later = current_date + relativedelta(months=4)
-                # Format the date as a string (optional)
-                formatted_date = four_months_later.strftime("%d/%m/%Y")
-                driver.execute_script("document.getElementById('ddmmyyDateformat2').value='" + formatted_date + "'")
-                time.sleep(0.5)
-                # driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
-                xpath = "//input[@value='Show Results']"
-                element = driver.find_element(By.XPATH, xpath)
-                element.click()
+                time.sleep(3)  # Wait before beginning the actions
 
-                # If everything is successful, break out of the loop
-                break
+                # Fill in the form using JavaScript
+                driver.execute_script("document.getElementById('organization').value = arguments[0];", org_number)
+                time.sleep(3)
+                driver.execute_script("document.getElementById('workArea').value = 'WT';")
+                time.sleep(3)
+                driver.execute_script("document.getElementById('railwayZone').value = arguments[0];", zone_number)
+                time.sleep(3)
+                driver.execute_script("document.getElementById('tenderType').value = 2;")  # Open
+                time.sleep(3)
+                driver.execute_script("document.getElementById('tenderStage').value = 1;")  # Published
+                time.sleep(3)
+                driver.execute_script("document.getElementsByName('selectDate')[0].value = 'TENDER_OPENING_DATE';")
+                time.sleep(3)
+
+                # Calculate and set the date 4 months from now
+                current_date = datetime.datetime.now()
+                four_months_later = current_date + relativedelta(months=4)
+                formatted_date = four_months_later.strftime("%d/%m/%Y")
+
+                driver.execute_script("document.getElementById('ddmmyyDateformat2').value = arguments[0];", formatted_date)
+                time.sleep(0.5)
+
+                # Click the 'Show Results' button
+                show_results_btn = driver.find_element(By.XPATH, "//input[@value='Show Results']")
+                show_results_btn.click()
+
+                break  # Exit loop if successful
 
             except Exception as e:
-                # Handle other exceptions while clicking 'Custom Search' button
-                print(f"Show Results button  -  Exception")
+                print("Show Results button - Exception:", e)
                 driver.refresh()
                 time.sleep(2)
 
-        result, driver = is_no_result_found_present_in_page(driver)
 
+        result, driver = is_no_result_found_present_in_page(driver)
         packages = packaging()
         if result:
             continue
+
 
         try:
             tender_count = 0
@@ -623,19 +629,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
             print(f"An error occurred: Tender search results", e)
             break
 
-        # # Get the page source and parse it with BeautifulSoup
-        # soup = BeautifulSoup(driver.page_source, 'html.parser')
-        # # Find all 'b' tags within 'tr' tags
-        # b_tags = soup.find_all('b')
-        # # Iterate over the 'b' tags
-        # for i in range(len(b_tags)):
-        #     # If the 'b' tag contains "Tender search results"
-        #     if "Tender search results" in b_tags[i].text:
-        #         # If there is a next 'b' tag, print it
-        #         if i+1 < len(b_tags):
-        #             tender_count = b_tags[i+1].text
-        #             print("Tender search results ", tender_count)
-        #         break
+
 
 
         # Get the current date and time

@@ -1,0 +1,60 @@
+Starting script execution at 2025-04-15_10-47-46
+
+Internet connection is available.
+
+|-----| Welcome to the IREPS Scraping system! |-----|
+
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KRCL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DMRC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\MRVC' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CRIS' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RITES Limited' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAILTEL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\DFCCIL' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KERALA RAIL DEVELOPMENT CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\RAIL VIKAS NIGAM LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\CONTAINER CORPORATION OF INDIA LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\BRAITHWAITE AND CO. LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\IRCON INTERNATIONAL LIMITED' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY CATERING AND TOURISM CORPORATION LTD' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\INDIAN RAILWAY FINANCE CORPORATION' does not exist.
+The folder 'E:\IREPS\IREPS-Tenders\Scraping\Program_Files\KOLKATA METRO RAIL CORPORATION LTD' does not exist.
+
+Running Orginazation. 02: KRCL
+https://www.ireps.gov.in/epsn/anonymSearch.do link is Accessible 
+Current Mobile NO.  7059141480
+The OTP for today is: 187838
+verification Code:  1e78dd
+
+--------- ZONE LIST ---------
+Konkan Railway Corporation Ltd.
+
+Scraping ZONE -> Konkan Railway Corporation Ltd.
+----------------
+Tender search results 29
+Pages = 2
+Tender: 1 chrome-extension://mhjfbmdgcfjbbpaeojofohoefgiehjai/index.html
+Exception occurred during script execution: Message: unknown error: failed to close window in 20 seconds
+  (Session info: chrome=135.0.7049.85)
+Stacktrace:
+	GetHandleVerifier [0x009380E3+60707]
+	GetHandleVerifier [0x00938124+60772]
+	(No symbol) [0x00760683]
+	(No symbol) [0x00744134]
+	(No symbol) [0x00744191]
+	(No symbol) [0x007DBCB2]
+	(No symbol) [0x007CD013]
+	(No symbol) [0x0079C5D3]
+	(No symbol) [0x0079D424]
+	GetHandleVerifier [0x00B7BBC3+2435075]
+	GetHandleVerifier [0x00B77163+2416035]
+	GetHandleVerifier [0x00B9350C+2531660]
+	GetHandleVerifier [0x0094F1B5+155125]
+	GetHandleVerifier [0x00955B5D+182173]
+	GetHandleVerifier [0x0093F9B8+91640]
+	GetHandleVerifier [0x0093FB60+92064]
+	GetHandleVerifier [0x0092A620+4704]
+	BaseThreadInitThunk [0x76627BA9+25]
+	RtlInitializeExceptionChain [0x774EC0CB+107]
+	RtlClearBits [0x774EC04F+191]
+
