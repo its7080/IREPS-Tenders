@@ -66,7 +66,11 @@ from Program_Files.scraping_library import delete_xlsx_files
 from Program_Files.scraping_library import no_adb_mail
 from Program_Files.scraping_library import skip_zones
 from Program_Files.scraping_library import get_current_device_serial
+from Program_Files.captcha_solver import predict_captcha
 
+import base64
+import io
+from PIL import Image
 # # =======================
 # # chrome_updater
 # # =======================
@@ -150,6 +154,7 @@ with open(config_file_path, 'r') as file:
 # Extract values from the JSON data
 browser = data['browser']
 adb_value = data['adb_device']
+captcha_manual_input = data["captcha_manual_input"]
 adb_device_ip = data['adb_device_ip']
 mobile_no = data.get('mobile_no')
 dump_location = data.get('dump_location')
@@ -229,18 +234,69 @@ def is_under_maintenance(driver, url):
 
 
 
-def get_verification(driver): # blue #3BB9FF & red #640A0A
-    # Find all img elements inside the span with id "verimage" using XPath
-    img_tags = driver.find_elements(By.XPATH, "//span[@id='verimage']//img")
+# def get_verification(driver):
+#     if captcha_manual_input == 1:
 
-    # Iterate through the img elements
-    for img_tag in img_tags:
-        src = img_tag.get_attribute("src")
-        if "Captcha.jpg?r=" in src:
-            six_chars = src.split('Captcha.jpg?r=')[1][:6]
-            # print("Image Source:", src)
-            print("verification Code: ", six_chars)
-    return driver, six_chars
+#          # blue #3BB9FF & red #640A0A
+#     # Find all img elements inside the span with id "verimage" using XPath
+#     img_tags = driver.find_elements(By.XPATH, "//span[@id='verimage']//img")
+
+#     # Iterate through the img elements
+#     for img_tag in img_tags:
+#         src = img_tag.get_attribute("src")
+#         if "Captcha.jpg?r=" in src:
+#             captcha_chars = src.split('Captcha.jpg?r=')[1][:6]
+#             # print("Image Source:", src)
+#             print("verification Code: ", captcha_chars)
+#     return driver, captcha_chars
+
+
+def get_verification(driver):
+    captcha_chars = None
+
+    if captcha_manual_input == 1:
+        # Locate the captcha <img>
+        img_element = driver.find_element(By.ID, "imgCaptcha")
+        src = img_element.get_attribute("src")
+
+        if src.startswith("data:image"):
+            # Base64 decode
+            img_data = src.split(",")[1]
+            image = Image.open(io.BytesIO(base64.b64decode(img_data)))
+            image.show()  # Opens the image in default viewer
+
+        # Ask user input
+        captcha_chars = input("Enter CAPTCHA from the image: ").strip()
+
+    else:
+        # Step 1: Get captcha image element
+        img_element = driver.find_element(By.ID, "imgCaptcha")
+        src = img_element.get_attribute("src")
+
+        # Save captcha image to temp.png
+        if src.startswith("data:image"):  # If base64 encoded
+            header, encoded = src.split(",", 1)
+            data = base64.b64decode(encoded)
+            with open("temp.png", "wb") as f:
+                f.write(data)
+        else:  # If src is a URL
+            response = requests.get(src)
+            with open("temp.png", "wb") as f:
+                f.write(response.content)
+
+        # Step 2: Run prediction
+        test_image = "temp.png"
+        predicted_text = predict_captcha(os.path.join(program_files_dir, "captcha_model.pth"), test_image)
+        print(f"Predicted text: {predicted_text}")
+
+        # Step 3: Remove temp.png
+        if os.path.exists("temp.png"):
+            os.remove("temp.png")
+
+        captcha_chars = predicted_text.strip()
+
+
+    return driver, captcha_chars
 
 
 
@@ -272,7 +328,7 @@ def login(driver, mobile_no):
     time.sleep(3)  # Short delay before starting login
 
     # Attempt the login process up to 3 times
-    for attempt in range(3):
+    for attempt in range(100):
         try:
             # Accept alert if present, then proceed
             Alert(driver).accept()
@@ -934,6 +990,10 @@ def generate_otp(driver, mobile_no):
         # Check if an alert is present
         alert = driver.switch_to.alert
         print("Alert Text:", alert.text)
+        if alert.text == "you have entered wrong verification code.":
+            alert.accept()
+            generate_otp(driver, mobile_no)
+
         alert.accept()  # Close the alert (Accept/Dismiss)
     except NoAlertPresentException:
         print("No alert present after clicking 'Get OTP'")
@@ -1101,14 +1161,14 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 
 
 
-# Load dump location from JSON file
-def load_email_flag():
-    try:
-        with open(config_file_path, "r") as file:
-            data = json.load(file)
-            return data.get("email_flag")
-    except FileNotFoundError:
-        return None
+# # Load dump location from JSON file
+# def load_email_flag():
+#     try:
+#         with open(config_file_path, "r") as file:
+#             data = json.load(file)
+#             return data.get("email_flag")
+#     except FileNotFoundError:
+#         return None
 
 
 
@@ -1235,7 +1295,7 @@ def log_to_file(filename):
     # Create a filename based on current date and time
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     new_filename = f"{filename}_{timestamp}.txt"
-    full_filename = os.path.join(script_dir_path, program_files_dir, "#log", new_filename)
+    full_filename = os.path.join(script_dir_path, program_files_dir, "consolelog", new_filename)
     # print(full_filename)
     # time.sleep(1000)
     packge = packaging()
@@ -1271,15 +1331,15 @@ def log_to_file(filename):
             print("\n|-----| Welcome to the IREPS Scraping system! |-----|\n")
 
 
-            # Read the JSON file & Update the email_flag
-            with open(config_file_path, 'r') as file:
-                config_data = json.load(file)
-            config_data['email_flag'] = "False"
-            # config_data['otp_file_location'] = config_file_path
+            # # Read the JSON file & Update the email_flag
+            # with open(config_file_path, 'r') as file:
+            #     config_data = json.load(file)
+            # config_data['email_flag'] = "False"
+            # # config_data['otp_file_location'] = config_file_path
 
-            # Write the updated data back to the file
-            with open(config_file_path, 'w') as file:
-                json.dump(config_data, file, indent=4)
+            # # Write the updated data back to the file
+            # with open(config_file_path, 'w') as file:
+            #     json.dump(config_data, file, indent=4)
 
             # Deleting xlsx files
             delete_xlsx_files(program_files_dir)
@@ -1396,6 +1456,6 @@ def log_to_file(filename):
         log_file.close()              # Close the log file
 
 if __name__ == "__main__":
-    create_folder_if_not_exists(os.path.join(script_dir_path, program_files_dir, "#log"))
+    create_folder_if_not_exists(os.path.join(script_dir_path, program_files_dir, "consolelog"))
     log_to_file("ireps-tenders-output_log")
     sys.exit()

@@ -1,6 +1,7 @@
 {
     "browser": "1",
     "adb_device": "0",
+    "captcha_manual_input": "0",
     "adb_device_ip": "192.168.0.70",
     "sender_email_id": "tenderautomation@royalconstruct.in",
     "sender_email_password": "Auto@2023",
@@ -12,11 +13,10 @@
         "am7059141480@gmail.com",
         "anupammanna07@gmail.com"
     ],
-    "dump_location": "E:\\IREPS\\IREPS-Tenders\\Scraping\\data-dump",
+    "dump_location": "F:\\IREPS-Tenders\\Scraping\\datadump",
     "mobile_no": "7059141480",
-    "otp_date": "2025-04-14",
-    "otp": "859837",
+    "otp_date": "2025-09-17",
+    "otp": "194504",
     "signal_datelog": "FALSE",
-    "signal_ireps": "FALSE",
-    "email_flag": "False"
+    "signal_ireps": "FALSE"
 }
