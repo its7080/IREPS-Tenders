@@ -29,6 +29,7 @@ The repository contains two related applications:
 │   ├── CONFIGURATION.md          # Configuration reference
 │   └── DASHBOARD.md              # Dashboard usage notes
 ├── Commands.md                   # Minimal setup commands
+├── run_menu.bat                  # Windows menu runner for venv-backed scripts
 └── requirements.txt              # Unified project dependency list
 ```
 
@@ -66,6 +67,16 @@ pip install -r requirements.txt
 ```
 
 The project now uses one unified dependency file at the repository root. Install dependencies from the root before running either the scraper or the dashboard.
+
+### Windows menu runner
+
+Windows users can also launch the menu-based runner from the repository root:
+
+```bat
+run_menu.bat
+```
+
+The menu uses `venv` as the virtual environment folder, can create/update that environment, installs `requirements.txt`, and launches the configuration editor, scraper, dashboard, CAPTCHA utility, or an activated command prompt.
 
 ## Configuration
 
