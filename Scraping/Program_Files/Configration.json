@@ -7,16 +7,18 @@
     "sender_email_password": "Auto@2023",
     "notification_emailids": [
         "am7059141480@gmail.com",
-        "anupammanna07@gmail.com"
+        "anupammanna07@gmail.com",
+        "anupammanna51@gmail.com"
     ],
     "receiver_emailids": [
         "am7059141480@gmail.com",
-        "anupammanna07@gmail.com"
+        "anupammanna07@gmail.com",
+        "anupammanna51@gmail.com"
     ],
     "dump_location": "F:\\IREPS-Tenders\\Scraping\\datadump",
     "mobile_no": "7059141480",
-    "otp_date": "2025-09-17",
-    "otp": "194504",
+    "otp_date": "2025-10-31",
+    "otp": "385435",
     "signal_datelog": "FALSE",
     "signal_ireps": "FALSE"
 }

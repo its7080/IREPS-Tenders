@@ -993,6 +993,8 @@ def generate_otp(driver, mobile_no):
         if alert.text == "you have entered wrong verification code.":
             alert.accept()
             generate_otp(driver, mobile_no)
+        else:
+            alert.accept()
 
         alert.accept()  # Close the alert (Accept/Dismiss)
     except NoAlertPresentException:
@@ -1298,7 +1300,7 @@ def log_to_file(filename):
     full_filename = os.path.join(script_dir_path, program_files_dir, "consolelog", new_filename)
     # print(full_filename)
     # time.sleep(1000)
-    packge = packaging()
+    # packge = packaging()
     
 
     # Open the log file in append mode for regular output
