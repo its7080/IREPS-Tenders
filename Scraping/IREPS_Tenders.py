@@ -166,7 +166,16 @@ class PlaywrightElement:
 
     def click(self):
         before_pages = list(self.driver.context.pages)
-        self.locator.click(timeout=self.driver.default_timeout)
+        try:
+            # no_wait_after avoids false timeouts on IREPS actions that submit forms
+            # or open tabs but keep the original page in a busy state.
+            self.locator.click(timeout=self.driver.default_timeout, no_wait_after=True)
+        except PlaywrightTimeoutError:
+            # The element can be visible and enabled but Playwright may still time out
+            # waiting for the browser action to finish. Fall back to the DOM click so
+            # one slow organization does not abort the whole scraping run.
+            self.locator.evaluate("element => element.click()", timeout=self.driver.default_timeout)
+
         self.driver._sync_pages()
         for page in self.driver.context.pages:
             if page not in before_pages:
@@ -327,6 +336,13 @@ class PlaywrightDriver:
 
     def execute_script(self, script):
         return self.page.evaluate(script)
+
+    def close_current_page(self):
+        try:
+            self.page.close()
+        except Exception:
+            pass
+        self._sync_pages()
 
     def close(self):
         try:
@@ -707,6 +723,37 @@ def is_no_result_found_present_in_page(driver):
 
 
 
+def _wait_for_new_window(driver, previous_handles, timeout=10):
+    """Return a newly opened Playwright page, or None if no tab appears."""
+    deadline = time.time() + timeout
+    previous_handles = set(previous_handles)
+
+    while time.time() < deadline:
+        handles = driver.window_handles
+        new_handles = [handle for handle in handles if handle not in previous_handles]
+        if new_handles:
+            new_handle = new_handles[-1]
+            driver.switch_to.window(new_handle)
+            return new_handle
+        time.sleep(0.25)
+
+    return None
+
+
+def _close_child_windows(driver, initial_handle):
+    """Close every open page except the search-results page."""
+    for window_handle in list(driver.window_handles):
+        if window_handle == initial_handle:
+            continue
+        try:
+            driver.switch_to.window(window_handle)
+            time.sleep(0.25)
+            driver.close_current_page()
+        except Exception:
+            pass
+    driver.switch_to.window(initial_handle)
+
+
 def download_pdf(url, retries=5):
     for i in range(retries):
         try:
@@ -1000,6 +1047,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 k += 1
                 print('\r' + "Tender  : " + str(k) + " ", end='')
 
+                handles_before_tender = driver.window_handles
                 try:
                     a_tag.click()
                     # WebDriverWait(driver, 20).until(lambda x: x.execute_script('return document.readyState') == 'complete')
@@ -1008,17 +1056,20 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     driver.switch_to.window(initial_handle)
                     time.sleep(2)
                     continue
-            
 
-                handles = driver.window_handles
-                time.sleep(0.25)
-                driver.switch_to.window(handles[1])
+                tender_window = _wait_for_new_window(driver, handles_before_tender, timeout=10)
+                if tender_window is None:
+                    print("Tender detail window did not open - skipping tender")
+                    driver.switch_to.window(initial_handle)
+                    time.sleep(2)
+                    continue
 
                 # # checkpoint
                 # temp_url = driver.current_url
                 # print(" >> ", temp_url)
 
 
+                handles_before_pdf = driver.window_handles
                 try:
                     time.sleep(1)
                     xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
@@ -1027,17 +1078,16 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 except Exception as e:
                     # Handle other exceptions while clicking 'Custom Search' button
                     print(f"Download Tender Doc. (Pdf) button - Exception")
-                    for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                        driver.switch_to.window(window_handle)
-                        time.sleep(0.25)
-                        driver.close()
-                    driver.switch_to.window(initial_handle)
+                    _close_child_windows(driver, initial_handle)
                     time.sleep(2)
                     continue
 
-                handles = driver.window_handles
-                time.sleep(0.25)
-                driver.switch_to.window(handles[2])
+                pdf_window = _wait_for_new_window(driver, handles_before_pdf, timeout=10)
+                if pdf_window is None:
+                    print("Tender PDF window did not open - skipping tender")
+                    _close_child_windows(driver, initial_handle)
+                    time.sleep(2)
+                    continue
 
 
                 # # Define a function to wait for the page to fully load
@@ -1067,11 +1117,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 if pdf_url.endswith(".pdf"):
                     download_pdf(pdf_url)
                 else:
-                    for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                        driver.switch_to.window(window_handle)
-                        time.sleep(0.25)
-                        driver.close()
-                    driver.switch_to.window(initial_handle)
+                    _close_child_windows(driver, initial_handle)
                     continue
 
                 dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata()
@@ -1102,11 +1148,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 worksheet1.write(k, 14, contract_type)
 
                 # Switch back to the initial window
-                for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                    driver.switch_to.window(window_handle)
-                    time.sleep(0.25)
-                    driver.close()
-                driver.switch_to.window(initial_handle)
+                _close_child_windows(driver, initial_handle)
 
                 if k == tender_count:
                     last_tender = True
