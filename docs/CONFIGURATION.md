@@ -40,7 +40,7 @@ You can also edit both files directly in a text editor. Keep JSON syntax valid a
 
 | Field | Purpose |
 | --- | --- |
-| `browser` | Browser mode. In the scraper, `0` enables headless Chrome and other values run visible Chrome. |
+| `browser` | Browser mode. In the scraper, `0` enables headless Playwright Chromium and other values run visible Chromium. |
 | `adb_device` | Enables/disables Android Debug Bridge integration for OTP-related workflows. |
 | `captcha_manual_input` | Controls whether CAPTCHA is handled manually or through the automated solver path. |
 | `adb_device_ip` | IP address used when connecting to an Android device over ADB. |
@@ -54,6 +54,7 @@ You can also edit both files directly in a text editor. Keep JSON syntax valid a
 | `otp` | OTP value used during login. Treat as sensitive and short-lived. |
 | `signal_datelog` | Internal signal value reset by the scraper at startup. |
 | `signal_ireps` | Internal signal value reset by the scraper at startup. |
+| `max_org_workers` | Maximum number of organizations to scrape concurrently with separate Playwright browser contexts. |
 
 ## Organization list format
 
