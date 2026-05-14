@@ -1,4 +1,4 @@
-"""Launcher for the modern IREPS configuration editor."""
+"""Backward-compatible launcher for the misspelled configration-editor filename."""
 
 from configuration_editor_app import launch
 
