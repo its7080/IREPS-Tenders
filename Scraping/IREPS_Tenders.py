@@ -20,27 +20,20 @@ import time
 # import shutil
 # import logging
 import datetime
+import concurrent.futures
+import threading
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 # from email.mime.application import MIMEApplication
-from selenium import webdriver
-import chromedriver_autoinstaller
-from selenium.webdriver.chrome.options import Options
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 # import shutil
 # import urllib.request
-from selenium.webdriver.common.alert import Alert
-from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
-from selenium.common.exceptions import NoSuchElementException
 # from urllib.parse import urlparse
 import requests
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.support.ui import Select
 import xlsxwriter
 import math
 import pdfplumber
@@ -50,8 +43,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
 # from chrome_updater import ChromeUpdater
 from Program_Files.scraping_library import check_internet_connection
 # from Program_Files.scraping_library import get_folder_size_in_mb
@@ -78,7 +70,7 @@ from PIL import Image
 # updater = ChromeUpdater()
 
 # # Step 1: Open Chrome with Selenium
-# driver = updater.relaunch_chrome_with_selenium()
+# driver = updater.relaunch_chrome_with_playwright()
 
 # # Step 2: Close Chrome to prepare for the update
 # time.sleep(5)  # Simulate some activity
@@ -89,7 +81,7 @@ from PIL import Image
 # updater.install_chrome()
 
 # # Step 4: Relaunch Chrome after the update
-# driver = updater.relaunch_chrome_with_selenium()
+# driver = updater.relaunch_chrome_with_playwright()
 
 
 
@@ -123,8 +115,266 @@ ireps_data = os.path.join(program_files_dir, "ireps_data.pkl")
 # print(ireps_data)
 # file_to_save_path = os.path.join(input_files_dir, "send_mail_log.txt")
 # print(file_to_save_path)
+
 tender_pdf_file_path = os.path.join(temp_dir_path, "tender.pdf")
 # print(tender_pdf_file_path)
+
+_thread_local = threading.local()
+_otp_lock = threading.Lock()
+
+
+class TimeoutException(Exception):
+    """Compatibility exception used by the former Selenium flow."""
+
+
+class NoSuchElementException(Exception):
+    """Raised when a Playwright locator cannot resolve an element."""
+
+
+class NoAlertPresentException(Exception):
+    """Raised when code asks for an alert but no dialog was captured."""
+
+
+class By:
+    ID = "id"
+    XPATH = "xpath"
+    CSS_SELECTOR = "css selector"
+
+
+def _selector(by, value):
+    if by == By.ID:
+        return f"#{value}"
+    if by == By.XPATH or by == "xpath":
+        return f"xpath={value}"
+    if by == By.CSS_SELECTOR:
+        return value
+    return value
+
+
+def _active_pdf_path():
+    return getattr(_thread_local, "tender_pdf_file_path", tender_pdf_file_path)
+
+
+def _safe_filename(value):
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value).strip("_") or "org"
+
+
+class PlaywrightElement:
+    def __init__(self, driver, locator):
+        self.driver = driver
+        self.locator = locator
+
+    def click(self):
+        before_pages = list(self.driver.context.pages)
+        self.locator.click(timeout=self.driver.default_timeout)
+        self.driver._sync_pages()
+        for page in self.driver.context.pages:
+            if page not in before_pages:
+                try:
+                    page.wait_for_load_state("domcontentloaded", timeout=10000)
+                except PlaywrightTimeoutError:
+                    pass
+                self.driver._register_page(page)
+        return None
+
+    def get_attribute(self, name):
+        if name == "innerText":
+            return self.locator.inner_text(timeout=self.driver.default_timeout)
+        return self.locator.get_attribute(name, timeout=self.driver.default_timeout)
+
+
+class Select:
+    def __init__(self, element):
+        self.element = element
+
+    def select_by_value(self, value):
+        self.element.locator.select_option(value=str(value), timeout=self.element.driver.default_timeout)
+
+    @property
+    def options(self):
+        return [
+            PlaywrightElement(self.element.driver, self.element.locator.locator("option").nth(index))
+            for index in range(self.element.locator.locator("option").count())
+        ]
+
+
+class PlaywrightAlert:
+    def __init__(self, driver):
+        self.driver = driver
+        if driver.last_dialog is None:
+            raise NoAlertPresentException("No alert present")
+        self._dialog = driver.last_dialog
+        self.text = self._dialog.message
+
+    def accept(self):
+        try:
+            self._dialog.accept()
+        finally:
+            self.driver.last_dialog = None
+
+
+class Alert:
+    def __init__(self, driver):
+        self._alert = PlaywrightAlert(driver)
+
+    @property
+    def text(self):
+        return self._alert.text
+
+    def accept(self):
+        self._alert.accept()
+
+
+class _SwitchTo:
+    def __init__(self, driver):
+        self.driver = driver
+
+    def window(self, handle):
+        self.driver.switch_to_window(handle)
+
+    @property
+    def alert(self):
+        return PlaywrightAlert(self.driver)
+
+
+class PlaywrightDriver:
+    def __init__(self, page, context, browser_handle, playwright_handle, default_timeout=10000):
+        self.page = page
+        self.context = context
+        self.browser_handle = browser_handle
+        self.playwright_handle = playwright_handle
+        self.default_timeout = default_timeout
+        self.last_dialog = None
+        self.switch_to = _SwitchTo(self)
+        self._known_pages = []
+        self._register_page(page)
+
+    def _register_page(self, page):
+        if page not in self._known_pages:
+            self._known_pages.append(page)
+            page.on("dialog", self._capture_dialog)
+
+    def _capture_dialog(self, dialog):
+        self.last_dialog = dialog
+
+    def _sync_pages(self):
+        for page in self.context.pages:
+            self._register_page(page)
+
+    @property
+    def page_source(self):
+        return self.page.content()
+
+    @property
+    def current_url(self):
+        return self.page.url
+
+    @property
+    def current_window_handle(self):
+        return self.page
+
+    @property
+    def window_handles(self):
+        self._sync_pages()
+        return list(self.context.pages)
+
+    def switch_to_window(self, handle):
+        self._sync_pages()
+        self.page = handle
+        try:
+            self.page.bring_to_front()
+            self.page.wait_for_load_state("domcontentloaded", timeout=10000)
+        except Exception:
+            pass
+
+    def set_page_load_timeout(self, seconds):
+        self.default_timeout = int(seconds * 1000)
+        self.page.set_default_navigation_timeout(self.default_timeout)
+
+    def implicitly_wait(self, seconds):
+        self.default_timeout = int(seconds * 1000)
+        self.context.set_default_timeout(self.default_timeout)
+
+    def get(self, url):
+        try:
+            self.page.goto(url, wait_until="domcontentloaded", timeout=self.default_timeout)
+        except PlaywrightTimeoutError as exc:
+            raise TimeoutException(str(exc)) from exc
+
+    def refresh(self):
+        try:
+            self.page.reload(wait_until="domcontentloaded", timeout=self.default_timeout)
+        except PlaywrightTimeoutError as exc:
+            raise TimeoutException(str(exc)) from exc
+
+    def find_element(self, by=None, value=None):
+        if value is None:
+            value = by
+            by = None
+        locator = self.page.locator(_selector(by, value)).first
+        try:
+            locator.wait_for(state="attached", timeout=self.default_timeout)
+            return PlaywrightElement(self, locator)
+        except PlaywrightTimeoutError as exc:
+            raise NoSuchElementException(str(exc)) from exc
+
+    def find_elements(self, by=None, value=None):
+        if value is None:
+            value = by
+            by = None
+        locator = self.page.locator(_selector(by, value))
+        return [PlaywrightElement(self, locator.nth(index)) for index in range(locator.count())]
+
+    def execute_script(self, script):
+        return self.page.evaluate(script)
+
+    def close(self):
+        try:
+            self.page.close()
+        except Exception:
+            pass
+        try:
+            self.context.close()
+        except Exception:
+            pass
+        try:
+            self.browser_handle.close()
+        except Exception:
+            pass
+        self.playwright_handle.stop()
+
+
+class WebDriverWait:
+    def __init__(self, driver, timeout):
+        self.driver = driver
+        self.timeout = timeout
+
+    def until(self, condition):
+        end_time = time.time() + self.timeout
+        last_error = None
+        while time.time() < end_time:
+            try:
+                value = condition(self.driver)
+                if value:
+                    return value
+            except Exception as exc:
+                last_error = exc
+            time.sleep(0.25)
+        raise TimeoutException(str(last_error) if last_error else "Timed out waiting for condition")
+
+
+class EC:
+    @staticmethod
+    def element_to_be_clickable(locator_tuple):
+        by, value = locator_tuple
+
+        def _predicate(driver):
+            element = driver.find_element(by, value)
+            if element.locator.is_visible() and element.locator.is_enabled():
+                return element
+            return False
+
+        return _predicate
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
@@ -461,7 +711,7 @@ def download_pdf(url, retries=5):
     for i in range(retries):
         try:
             response = requests.get(url, timeout=10)
-            with open(tender_pdf_file_path, 'wb') as output_file:
+            with open(_active_pdf_path(), 'wb') as output_file:
                 output_file.write(response.content)
             print("Download successful")
             return True
@@ -478,7 +728,7 @@ def download_pdf(url, retries=5):
 def getpdfdata():
 
     # Extract PDF heading
-    with pdfplumber.open(tender_pdf_file_path) as pdf_heading:
+    with pdfplumber.open(_active_pdf_path()) as pdf_heading:
         first_page = pdf_heading.pages[0]
         pdf_heading_text = first_page.extract_text()
         # Extract the first line assuming it contains the main heading
@@ -486,7 +736,7 @@ def getpdfdata():
 
 
     # Extract table data
-    with pdfplumber.open(tender_pdf_file_path) as pdf:
+    with pdfplumber.open(_active_pdf_path()) as pdf:
         table = pdf.pages[0].extract_tables()[0]
         # Extracting table data
         table = [[value for value in sublist if value is not None] for sublist in table]
@@ -507,7 +757,7 @@ def getpdfdata():
                 extracted_info[item[0]] = item[1]
 
         # Extracting text data
-        with pdfplumber.open(tender_pdf_file_path) as pdf_text:
+        with pdfplumber.open(_active_pdf_path()) as pdf_text:
             page_text = pdf_text.pages[0].extract_text()
             tender_no_index = page_text.find("Tender No:")
             if tender_no_index != -1:
@@ -701,7 +951,9 @@ def tenders(driver, org_number, org_name, program_file_dir):
         # Create a file name using the value and the formatted date and time
         file_name = f'{zone}_{fname}.xlsx'
         # Create a file path for the new Excel workbook
-        file_path = os.path.join(program_files_dir, org_name, file_name)
+        org_output_dir = os.path.join(program_files_dir, org_name)
+        os.makedirs(org_output_dir, exist_ok=True)
+        file_path = os.path.join(org_output_dir, file_name)
         # Create a new Excel workbook and a worksheet within it
         workbook = xlsxwriter.Workbook(file_path)
         worksheet1 = workbook.add_worksheet("ListOfTenders")
@@ -902,10 +1154,6 @@ def tenders(driver, org_number, org_name, program_file_dir):
 
             cnt += 1
 
-        # Create the folder if it doesn't exist
-        file_path = f"{program_files_dir}/{org_name}"
-        if not os.path.exists(file_path):
-            os.makedirs(file_path)
         # Close the workbook and print a message
         workbook.close()
         print("Zone data Saved.")
@@ -1002,74 +1250,79 @@ def generate_otp(driver, mobile_no):
 
 
 
-def tenders_main(org_number, org_name, mobile_no, program_files_dir):
-    mail_triger = False
-    chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                        # and if it doesn't exist, download it automatically,
-                                        # then add chromedriver to path
+def _create_playwright_driver():
+    playwright_handle = sync_playwright().start()
+    pw_browser = playwright_handle.chromium.launch(
+        headless=(browser == "0"),
+        args=["--disable-application-cache", "--ignore-certificate-errors"],
+    )
+    context = pw_browser.new_context(ignore_https_errors=True)
+    page = context.new_page()
+    driver = PlaywrightDriver(page, context, pw_browser, playwright_handle)
+    driver.set_page_load_timeout(60)
+    driver.implicitly_wait(10)
+    return driver
 
-    # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
-    # print(org_number, org_name, mobile_no, otp_file_location)
 
-    options = Options()
-    options.add_argument("--disable-application-cache")  # Disable application cache
-    options.add_argument('--ignore-certificate-errors')
-    if browser == "0":
-        options.add_argument("--headless")
-    
-    # options.add_argument("--disable-gpu")  
-    options.add_argument("--log-level=3")
-    # # Set the download path
-    # options.add_experimental_option("prefs", {
-    #     "download.default_directory": initial_download,
-    #     "download.prompt_for_download": False,
-    #     "download.directory_upgrade": True,
-    #     "safebrowsing.enabled": True
-    #     })
-
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(60)  
-    driver.implicitly_wait(10) # Wait for a few seconds to see the results  
-
-    # Open a website
-    # Open the URL and wait for the page title to be "IREPS - Guest Login"
-    url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
-    
-
-    while True:
-        try:
-            driver.get(url)
-            break # break the loop if no exception occurs
-        except Exception as e:
-            print(f"{url} - url exception") # - {e}") # print the exception message
-            print("Retrying...") # print a retry message
-            time.sleep(2)
-
-    driver = is_under_maintenance(driver, url)
-    print("Current Mobile NO. ", mobile_no)
-
+def _ensure_otp_ready(driver, mobile_no):
+    """Generate the daily OTP only once when organization workers run in parallel."""
     if is_otp_valid():
-        driver = login(driver, mobile_no)
-        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    else:
-        driver = generate_otp(driver, mobile_no)
+        return
+
+    with _otp_lock:
+        if is_otp_valid():
+            return
+        generate_otp(driver, mobile_no)
         countdown_timer("generate_otp", 60)
 
         while get_sms_message():
             countdown_timer("get_sms_message", 20)
             get_sms_message()
 
+
+def tenders_main(org_number, org_name, mobile_no, program_files_dir):
+    mail_triger = False
+    driver = None
+    _thread_local.tender_pdf_file_path = os.path.join(
+        temp_dir_path,
+        f"tender_{_safe_filename(org_number)}_{_safe_filename(org_name)}_{threading.get_ident()}.pdf",
+    )
+
+    # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
+    # print(org_number, org_name, mobile_no, otp_file_location)
+
+    try:
+        driver = _create_playwright_driver()
+
+        # Open a website
+        # Open the URL and wait for the page title to be "IREPS - Guest Login"
+        url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
+
+        while True:
+            try:
+                driver.get(url)
+                break # break the loop if no exception occurs
+            except Exception as e:
+                print(f"{url} - url exception") # - {e}") # print the exception message
+                print("Retrying...") # print a retry message
+                time.sleep(2)
+
+        driver = is_under_maintenance(driver, url)
+        print("Current Mobile NO. ", mobile_no)
+
+        _ensure_otp_ready(driver, mobile_no)
         driver = login(driver, mobile_no)
         mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    print(f"\n\nExeting.... From {org_name}.\n\n")
-    driver.close()
-
-    return mail_triger
-
-
-
-
-
+        print(f"\n\nExeting.... From {org_name}.\n\n")
+        return mail_triger
+    finally:
+        if driver is not None:
+            driver.close()
+        try:
+            if os.path.exists(_active_pdf_path()):
+                os.remove(_active_pdf_path())
+        except Exception:
+            pass
 
 
 def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
@@ -1364,13 +1617,27 @@ def log_to_file(filename):
             else:
                 adb = True
             
+            mail_triger_main = False
             if adb:
-                # Iterating through all Orginazation 
-                for orginazation in organizations:
-                    org_number, org_name = orginazation
-                    print(f"\nRunning Orginazation. {org_number}: {org_name}")
-                    mail_triger_main = tenders_main(org_number, org_name, mobile_no, program_files_dir)
-                    print("\n")
+                # Run one Playwright browser context per organization in parallel.
+                max_workers = int(data.get("max_org_workers", min(4, max(1, len(organizations)))))
+                max_workers = max(1, min(max_workers, max(1, len(organizations))))
+                print(f"\nStarting organization scraping with {max_workers} worker thread(s).")
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers, thread_name_prefix="IREPSOrg") as executor:
+                    future_to_org = {
+                        executor.submit(tenders_main, org_number, org_name, mobile_no, program_files_dir): (org_number, org_name)
+                        for org_number, org_name in organizations
+                    }
+
+                    for future in concurrent.futures.as_completed(future_to_org):
+                        org_number, org_name = future_to_org[future]
+                        try:
+                            org_mail_trigger = future.result()
+                            mail_triger_main = mail_triger_main or bool(org_mail_trigger)
+                            print(f"\nCompleted Orginazation. {org_number}: {org_name}")
+                        except Exception as exc:
+                            print(f"\nOrginazation failed. {org_number}: {org_name} - {exc}")
                     # subprocess.run([sys.executable, "Tender.py", org_number, org_name, mobile_no, otp_file_location, program_files_dir])
                     # subprocess.run(["Tender.exe", org_number, org_name, mobile_no, otp_file_location, program_file_dir])
 

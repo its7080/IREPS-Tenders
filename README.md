@@ -38,8 +38,7 @@ The repository contains two related applications:
 The project was written for a desktop automation environment and has several external runtime requirements:
 
 - Python 3.10+ recommended.
-- Google Chrome installed.
-- ChromeDriver-compatible browser automation support. The scraper uses `chromedriver-autoinstaller`.
+- Playwright Chromium runtime installed. Install Python dependencies, then run `python -m playwright install chromium` once on the target machine.
 - Internet access to reach IREPS.
 - A valid IREPS guest/mobile OTP workflow.
 - Optional: Android Debug Bridge (`adb`) if OTP retrieval is configured through a connected Android device.
@@ -169,7 +168,7 @@ The dependency files also include `pyinstaller`, so these executables were likel
 ## Troubleshooting
 
 - **Dashboard cannot find data:** Start it from `Analysis/`, or update `directory_path` in `Analysis/script.py`.
-- **Selenium/Chrome errors:** Confirm Chrome is installed and compatible with the ChromeDriver resolved by `chromedriver-autoinstaller`.
+- **Playwright/Chromium errors:** Run `python -m playwright install chromium` and confirm the machine can launch Chromium in headed or headless mode.
 - **OTP/login fails:** Confirm `mobile_no`, OTP date, OTP value, and ADB/manual OTP settings in `Configration.json`.
 - **ADB device not detected:** Confirm USB debugging is enabled, the device is trusted, and `adb devices` lists it.
 - **No organizations are scraped:** Confirm active lines in `Organization_list.txt` are not commented with `#` and follow `number: name` format.
