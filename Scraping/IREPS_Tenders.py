@@ -1454,10 +1454,17 @@ def send_mail(program_file_dir, all_email_ids):
 class Tee:
     def __init__(self, *files):
         self.files = files
+        self._lock = threading.Lock()
 
     def write(self, text):
-        for file in self.files:
-            file.write(text)
+        if not text:
+            return
+
+        with self._lock:
+            for file in self.files:
+                file.write(text)
+            if "\n" in text:
+                self.flush()
 
     def flush(self):
         for file in self.files:
@@ -1478,11 +1485,19 @@ def log_to_file(filename):
     packge = packaging()
     
 
-    # Open the log file in append mode for regular output
-    log_file = open(full_filename, 'a')
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(line_buffering=True, write_through=True)
 
-    # Redirect stdout to the log file and console simultaneously
-    sys.stdout = Tee(sys.stdout, log_file)
+    # Open the log file in line-buffered mode so worker output is written immediately.
+    log_file = open(full_filename, 'a', buffering=1, encoding='utf-8')
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+
+    # Redirect stdout/stderr to the log file and console simultaneously.
+    realtime_log = Tee(original_stdout, log_file)
+    sys.stdout = realtime_log
+    sys.stderr = Tee(original_stderr, log_file)
 
     try:
 
@@ -1624,8 +1639,11 @@ def log_to_file(filename):
         log_file.write(error_message + "\n")  # Write the error message to log file
 
     finally:
-        # Restore the original stdout
-        sys.stdout = sys.__stdout__  # Restore original stdout
+        sys.stdout.flush()
+        sys.stderr.flush()
+        # Restore the original streams
+        sys.stdout = original_stdout
+        sys.stderr = original_stderr
         log_file.close()              # Close the log file
 
 if __name__ == "__main__":
