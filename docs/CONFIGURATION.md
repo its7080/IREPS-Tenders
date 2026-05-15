@@ -14,23 +14,16 @@ The scraper is configured with two files under `Scraping/Program_Files/`:
 From the `Scraping/` directory, run:
 
 ```bash
-python configuration-editor.py
+python IREPS_scraping_gui.py
 ```
 
-A compatibility launcher is also available for the common misspelling:
+The modern single-file editor provides:
 
-```bash
-python configration-editor.py
-```
-
-The modern editor provides:
-
-- a Fluent-inspired dark/light mode desktop shell
-- status cards for configuration, organization count, scraper state, and theme
+- the same top bar, left status panel, organization-card list, right workspace, and bottom status bar layout as `scraping_gui.py`
 - tabbed configuration and organization editors
-- an activity tab with live scraper logs
+- a live log tab with export/clear controls
 - background scraper launch controls that keep the UI responsive
-- scaling and appearance controls for Windows desktop displays
+- dark/light mode and quick output-folder access
 
 ### Manual editing
 

@@ -53,7 +53,7 @@ goto MENU
 
 :CONFIG_EDITOR
 call :ENSURE_VENV || goto MENU
-call :RUN_PYTHON_IN_DIR "Scraping" "configuration-editor.py"
+call :RUN_PYTHON_IN_DIR "Scraping" "IREPS_scraping_gui.py"
 goto MENU
 
 :SCRAPER
