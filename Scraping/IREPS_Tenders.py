@@ -163,6 +163,8 @@ excel_file_path = data.get('excel_file_path')
 notification_emailids = data['notification_emailids']
 receiver_emailids = data['receiver_emailids']
 # print(notification_emailids)
+sender_email_id = data['sender_email_id']
+sender_email_password = data['sender_email_password']
 # time.sleep(1000)
 
 
@@ -1251,8 +1253,8 @@ def send_mail(program_file_dir, all_email_ids):
         smtp_server = "smtp.office365.com"
         port = 587
 
-        username = "tenderautomation@royalconstruct.in"
-        password = "Auto@2023"
+        username = sender_email_id
+        password = sender_email_password
 
         # Start the connection to the SMTP server
         server = smtplib.SMTP(smtp_server, port)

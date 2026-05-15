@@ -15,8 +15,9 @@
     ],
     "dump_location": "F:\\IREPS-Tenders\\Scraping\\datadump",
     "mobile_no": "7059141480",
-    "otp_date": "2025-09-17",
-    "otp": "194504",
+    "otp_date": "2026-05-15",
+    "otp": "841570",
     "signal_datelog": "FALSE",
-    "signal_ireps": "FALSE"
+    "signal_ireps": "FALSE",
+    "max_org_workers": 4
 }
