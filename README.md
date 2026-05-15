@@ -18,7 +18,7 @@ The repository contains two related applications:
 │   └── script.py                 # Dash dashboard
 ├── Scraping/
 │   ├── IREPS_Tenders.py          # Main scraper/orchestrator
-│   ├── configuration-editor.py   # Modern CustomTkinter configuration portal
+│   ├── IREPS_scraping_gui.py      # Single-file CustomTkinter configuration and scraper portal
 │   └── Program_Files/
 │       ├── Configration.json     # Runtime configuration
 │       ├── Organization_list.txt # Enabled/disabled organization list
@@ -89,7 +89,7 @@ Use the modern CustomTkinter GUI portal when running in a desktop environment:
 
 ```bash
 cd Scraping
-python configuration-editor.py
+python IREPS_scraping_gui.py
 ```
 
 The portal supports dark/light mode, status cards, tabbed settings, live log streaming, and a threaded scraper launcher. You can also edit the files manually. See [docs/CONFIGURATION.md](docs/CONFIGURATION.md) for a field-by-field overview and organization-list format.
@@ -162,7 +162,7 @@ The dashboard de-duplicates rows by `Tender No.`.
 The repository includes prebuilt Windows executables:
 
 - `Scraping/IREPS_Tenders.exe`
-- `Scraping/configuration-editor.exe`
+- `Scraping/IREPS_scraping_gui.exe`
 
 The dependency files also include `pyinstaller`, so these executables were likely built from the Python scripts. If rebuilding, prefer doing so in a clean virtual environment that matches the target operating system.
 

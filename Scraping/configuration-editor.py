@@ -1,6 +1,6 @@
-"""Launcher for the modern IREPS configuration editor."""
+"""Compatibility launcher for the single-file IREPS scraping GUI."""
 
-from configuration_editor_app import launch
+from IREPS_scraping_gui import launch
 
 
 if __name__ == "__main__":
