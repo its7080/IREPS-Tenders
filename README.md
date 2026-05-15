@@ -4,7 +4,7 @@ IREPS Tenders Automation is a Python project for collecting Indian Railways E-Pr
 
 The repository contains two related applications:
 
-- **Scraping application** (`Scraping/`): uses Selenium and helper utilities to open IREPS, log in with a mobile OTP flow, iterate configured organizations and zones, download/parse tender details, write Excel outputs, merge workbooks, and send summary emails.
+- **Scraping application** (`Scraping/`): uses Playwright and helper utilities to open IREPS, log in with a mobile OTP flow, iterate configured organizations and zones, download/parse tender details, write Excel outputs, merge workbooks, and send summary emails.
 - **Analysis dashboard** (`Analysis/`): reads generated Excel files and serves a local Dash dashboard with tender tables, metric cards, filters, and charts.
 
 > **Security note:** The current repository contains local runtime configuration files. Before sharing, deploying, or publishing this project, move credentials, mobile numbers, OTPs, SMTP passwords, and recipient lists out of tracked files and into environment variables or an ignored local config file.
@@ -38,8 +38,7 @@ The repository contains two related applications:
 The project was written for a desktop automation environment and has several external runtime requirements:
 
 - Python 3.10+ recommended.
-- Google Chrome installed.
-- ChromeDriver-compatible browser automation support. The scraper uses `chromedriver-autoinstaller`.
+- Playwright browser binaries installed with `python -m playwright install chromium`.
 - Internet access to reach IREPS.
 - A valid IREPS guest/mobile OTP workflow.
 - Optional: Android Debug Bridge (`adb`) if OTP retrieval is configured through a connected Android device.
@@ -56,6 +55,7 @@ Create and activate a virtual environment, then install dependencies.
 py -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+python -m playwright install chromium
 ```
 
 ### Linux/macOS shell
@@ -64,6 +64,7 @@ pip install -r requirements.txt
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+python -m playwright install chromium
 ```
 
 The project now uses one unified dependency file at the repository root. Install dependencies from the root before running either the scraper or the dashboard.
@@ -108,7 +109,7 @@ High-level execution flow:
 2. Reset internal run signals in the configuration file.
 3. Check internet connectivity.
 4. Optionally check/connect an Android device through ADB.
-5. Open IREPS with Selenium/Chrome.
+5. Open IREPS with Playwright/Chromium.
 6. Validate OTP and log in.
 7. Iterate configured organizations and available zones.
 8. Download and parse tender data.
@@ -169,7 +170,7 @@ The dependency files also include `pyinstaller`, so these executables were likel
 ## Troubleshooting
 
 - **Dashboard cannot find data:** Start it from `Analysis/`, or update `directory_path` in `Analysis/script.py`.
-- **Selenium/Chrome errors:** Confirm Chrome is installed and compatible with the ChromeDriver resolved by `chromedriver-autoinstaller`.
+- **Playwright/Chromium errors:** Confirm the Playwright Chromium browser is installed with `python -m playwright install chromium`.
 - **OTP/login fails:** Confirm `mobile_no`, OTP date, OTP value, and ADB/manual OTP settings in `Configration.json`.
 - **ADB device not detected:** Confirm USB debugging is enabled, the device is trusted, and `adb devices` lists it.
 - **No organizations are scraped:** Confirm active lines in `Organization_list.txt` are not commented with `#` and follow `number: name` format.
