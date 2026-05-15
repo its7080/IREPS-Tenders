@@ -355,7 +355,7 @@ def login(driver, mobile_no):
             driver.find_element(By.ID, "custumSearchId").click()
             return driver  # Return driver if login succeeds
         except Exception as e:
-            print(f"Attempt {attempt + 1} failed - Exception: {e}")
+            print(f"Attempt {attempt + 1} failed - Exception: you have entered wrong verification code")
             driver.get("https://www.ireps.gov.in/epsn/anonymSearch.do")
             time.sleep(5)
 
