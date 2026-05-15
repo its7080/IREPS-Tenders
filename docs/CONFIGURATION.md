@@ -47,6 +47,7 @@ You can also edit both files directly in a text editor. Keep JSON syntax valid a
 | `otp` | OTP value used during login. Treat as sensitive and short-lived. |
 | `signal_datelog` | Internal signal value reset by the scraper at startup. |
 | `signal_ireps` | Internal signal value reset by the scraper at startup. |
+| `max_org_workers` | Maximum number of organizations scraped in parallel. The scraper waits for every organization worker to finish before merging xlsx files. Manual CAPTCHA mode forces this to `1`. |
 
 ## Organization list format
 
