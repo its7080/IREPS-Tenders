@@ -47,6 +47,9 @@ import pdfplumber
 import platform
 import socket
 import tempfile
+import threading
+import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -132,6 +135,8 @@ SHORT_WAIT_SECONDS = 5
 PDF_DOWNLOAD_TIMEOUT = 30
 PDF_DOWNLOAD_RETRIES = 5
 PDF_DOWNLOAD_CHUNK_SIZE = 1024 * 1024
+CHROMEDRIVER_INSTALL_LOCK = threading.Lock()
+OTP_REFRESH_LOCK = threading.Lock()
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
@@ -169,6 +174,7 @@ excel_file_path = data.get('excel_file_path')
 # otp_file_location = data['otp_file_location']
 notification_emailids = data['notification_emailids']
 receiver_emailids = data['receiver_emailids']
+max_org_workers = data.get('max_org_workers', 1)
 # print(notification_emailids)
 sender_email_id = data['sender_email_id']
 sender_email_password = data['sender_email_password']
@@ -509,15 +515,15 @@ def is_no_result_found_present_in_page(driver):
 
 
 
-def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
-    os.makedirs(temp_dir_path, exist_ok=True)
+def download_pdf(url, pdf_file_path, retries=PDF_DOWNLOAD_RETRIES):
+    os.makedirs(os.path.dirname(pdf_file_path), exist_ok=True)
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
     }
 
     for i in range(retries):
-        tmp_file_path = f"{tender_pdf_file_path}.download"
+        tmp_file_path = f"{pdf_file_path}.download"
         downloaded_bytes = 0
         try:
             with requests.get(url, headers=headers, timeout=PDF_DOWNLOAD_TIMEOUT, stream=True) as response:
@@ -533,7 +539,7 @@ def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
             if downloaded_bytes == 0:
                 raise ValueError("Downloaded PDF is empty")
 
-            os.replace(tmp_file_path, tender_pdf_file_path)
+            os.replace(tmp_file_path, pdf_file_path)
             print("Download successful")
             return True
         except Exception as e:
@@ -547,11 +553,11 @@ def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
 
 
 
-def getpdfdata():
+def getpdfdata(pdf_file_path):
     default_values = ("", "", "", "", "", "", "", "", "", "", "", "")
 
     try:
-        with pdfplumber.open(tender_pdf_file_path) as pdf:
+        with pdfplumber.open(pdf_file_path) as pdf:
             if not pdf.pages:
                 print("PDF has no pages.")
                 return default_values
@@ -884,16 +890,17 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 #         continue
 
                 if pdf_url.lower().endswith(".pdf"):
-                    if not download_pdf(pdf_url):
+                    pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
+                    if not download_pdf(pdf_url, pdf_file_path):
                         close_extra_windows(driver, initial_handle)
                         continue
                 else:
                     close_extra_windows(driver, initial_handle)
                     continue
 
-                dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata()
-                if os.path.exists(tender_pdf_file_path):
-                    os.remove(tender_pdf_file_path)
+                dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata(pdf_file_path)
+                if os.path.exists(pdf_file_path):
+                    os.remove(pdf_file_path)
 
                 try:
                     # Calculate due_days
@@ -1070,9 +1077,10 @@ def generate_otp(driver, mobile_no):
 def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     mail_triger = False
     driver = None
-    chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                        # and if it doesn't exist, download it automatically,
-                                        # then add chromedriver to path
+    with CHROMEDRIVER_INSTALL_LOCK:
+        chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+                                            # and if it doesn't exist, download it automatically,
+                                            # then add chromedriver to path
 
     # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
     # print(org_number, org_name, mobile_no, otp_file_location)
@@ -1120,19 +1128,18 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
         driver = is_under_maintenance(driver, url)
         print("Current Mobile NO. ", mobile_no)
 
-        if is_otp_valid():
-            driver = login(driver, mobile_no)
-            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-        else:
-            driver = generate_otp(driver, mobile_no)
-            countdown_timer("generate_otp", 60)
+        if not is_otp_valid():
+            with OTP_REFRESH_LOCK:
+                if not is_otp_valid():
+                    driver = generate_otp(driver, mobile_no)
+                    countdown_timer("generate_otp", 60)
 
-            while get_sms_message():
-                countdown_timer("get_sms_message", 20)
-                get_sms_message()
+                    while get_sms_message():
+                        countdown_timer("get_sms_message", 20)
+                        get_sms_message()
 
-            driver = login(driver, mobile_no)
-            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+        driver = login(driver, mobile_no)
+        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
     finally:
         print(f"\n\nExeting.... From {org_name}.\n\n")
         if driver is not None:
@@ -1144,6 +1151,63 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
 
     return mail_triger
 
+
+
+def get_configured_org_worker_count(total_organizations):
+    """Return the safe organization worker count from Configration.json."""
+    if total_organizations <= 0:
+        return 0
+
+    try:
+        configured_workers = int(max_org_workers)
+    except (TypeError, ValueError):
+        configured_workers = 1
+
+    configured_workers = max(1, configured_workers)
+
+    if str(captcha_manual_input) == "1" and configured_workers > 1:
+        print("Manual CAPTCHA input is enabled; forcing organization workers to 1.")
+        configured_workers = 1
+
+    return min(configured_workers, total_organizations)
+
+
+
+def scrape_organization(orginazation):
+    """Scrape one organization and return True when it produced mail-worthy data."""
+    org_number, org_name = orginazation
+    print(f"\nRunning Orginazation. {org_number}: {org_name}")
+    mail_trigger = tenders_main(org_number, org_name, mobile_no, program_files_dir)
+    print(f"Finished Orginazation. {org_number}: {org_name}\n")
+    return bool(mail_trigger)
+
+
+
+def scrape_organizations_with_workers(orginazations):
+    """Run organization scraping workers and wait for all of them before returning."""
+    if not orginazations:
+        print("No organizations configured for scraping.")
+        return False
+
+    worker_count = get_configured_org_worker_count(len(orginazations))
+    print(f"Starting {worker_count} organization worker(s) for {len(orginazations)} organization(s).")
+
+    mail_trigger_main = False
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_to_organization = {
+            executor.submit(scrape_organization, orginazation): orginazation
+            for orginazation in orginazations
+        }
+
+        for future in as_completed(future_to_organization):
+            org_number, org_name = future_to_organization[future]
+            try:
+                mail_trigger_main = bool(future.result()) or mail_trigger_main
+            except Exception as exc:
+                print(f"Organization worker failed for {org_number}: {org_name}. Error: {exc}")
+
+    print("All organization workers finished. Starting xlsx merge.")
+    return mail_trigger_main
 
 
 def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
@@ -1477,15 +1541,11 @@ def log_to_file(filename):
             else:
                 adb = True
             
+            mail_triger_main = False
             if adb:
-                # Iterating through all Orginazation 
-                for orginazation in organizations:
-                    org_number, org_name = orginazation
-                    print(f"\nRunning Orginazation. {org_number}: {org_name}")
-                    mail_triger_main = tenders_main(org_number, org_name, mobile_no, program_files_dir)
-                    print("\n")
-                    # subprocess.run([sys.executable, "Tender.py", org_number, org_name, mobile_no, otp_file_location, program_files_dir])
-                    # subprocess.run(["Tender.exe", org_number, org_name, mobile_no, otp_file_location, program_file_dir])
+                # Run Orginazation scraping in parallel and wait for all workers
+                # before creating the master xlsx files.
+                mail_triger_main = scrape_organizations_with_workers(organizations)
 
 
             # master xlsx output directory
