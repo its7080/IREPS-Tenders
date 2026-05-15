@@ -37,7 +37,7 @@ The repository contains two related applications:
 
 The project was written for a desktop automation environment and has several external runtime requirements:
 
-- Python 3.10+ recommended.
+- Python 3.10, 3.11, or 3.12 recommended. Python 3.13+ is not currently supported by the pinned scientific/ML dependencies used by the scraper build.
 - Google Chrome installed.
 - ChromeDriver-compatible browser automation support. The scraper uses `chromedriver-autoinstaller`.
 - Internet access to reach IREPS.
