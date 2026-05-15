@@ -1181,94 +1181,110 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 # smtp send status 
 def send_mail(program_file_dir, all_email_ids):
     # Check if read_email_ids list has at least one item
-    
-    if all_email_ids:
-        sender_email = "tenderautomation@royalconstruct.in"
-        receiver_emails = all_email_ids # ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"] 
-        subject = "IREPS Tender Scraping Report"
+    if not all_email_ids:
+        print("Email skipped: receiver_emailids is empty.")
+        return False
 
-        notification_text = "This is an automated notification to inform you that the IREPS tender scraping process has been completed. please verify the results \n\n"
+    if not sender_email_id or not sender_email_password:
+        print("Email skipped: sender_email_id or sender_email_password is missing in Configration.json.")
+        return False
 
-        # Gather system information
-        system_info = (
-            f"System: {platform.system()}\n"
-            f"Hostname: {socket.gethostname()}\n"
-            f"IP Address: {socket.gethostbyname(socket.gethostname())}\n"
-            f"Working Directory: {os.getcwd()}\n"
-            f"Windows Version: {platform.win32_ver()[1]}\n"
+    sender_email = sender_email_id
+    receiver_emails = all_email_ids # ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"]
+    subject = "IREPS Tender Scraping Report"
+
+    notification_text = "This is an automated notification to inform you that the IREPS tender scraping process has been completed. please verify the results \n\n"
+
+    # Gather system information
+    system_info = (
+        f"System: {platform.system()}\n"
+        f"Hostname: {socket.gethostname()}\n"
+        f"IP Address: {socket.gethostbyname(socket.gethostname())}\n"
+        f"Working Directory: {os.getcwd()}\n"
+        f"Windows Version: {platform.win32_ver()[1]}\n"
+    )
+    # Convert dictionary to JSON format
+    # json_data = json.dumps(exception_data_Dictionary, indent=4)
+
+    # Concatenate the notification text, system information, and json data
+    # email_body = f"{notification_text}\n{system_info}\n\nLog Data:\n{json_data}"
+    email_body = f"{notification_text}\n{system_info}"
+
+    # # Remove brackets from JSON data
+    # json_object = json.loads(json_data)
+    # if isinstance(json_object, list):
+    #     json_data = json_object[0]
+
+    # Create a MIMEText object
+    msg = MIMEMultipart()
+    msg.attach(MIMEText(email_body))
+
+    # Set the sender and recipients
+    msg['From'] = sender_email
+    msg['To'] = ", ".join(receiver_emails)
+    msg['Subject'] = subject
+
+    # # Attach the log file if requested
+    # if attach_log:
+    #     if os.path.exists(log_file_path) and os.path.getsize(log_file_path) > 0:
+    #         with open(log_file_path, "rb") as attachment:
+    #             part = MIMEBase("application", "octet-stream")
+    #             part.set_payload((attachment).read())
+    #             encoders.encode_base64(part)
+    #             part.add_header("Content-Disposition", "attachment; filename= %s" % log_file_path)
+    #             msg.attach(part)
+    #     else:
+    #         print(f"The file {log_file_path} is empty or does not exist. Not attaching to the email.")
+    #         return
+
+    # Attach the first .xlsx file found in the specified folder
+    xlsx_folder = program_file_dir
+
+    # List all files in the folder
+    files_in_folder = os.listdir(xlsx_folder)
+
+    # Find the first .xlsx file
+    attachment_found = False
+    for filename in files_in_folder:
+        if filename.endswith(".xlsx"):
+            xlsx_file_path = os.path.join(xlsx_folder, filename)
+            with open(xlsx_file_path, "rb") as attachment:
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload((attachment).read())
+                encoders.encode_base64(part)
+                part.add_header("Content-Disposition", f"attachment; filename={filename}")
+                msg.attach(part)
+            attachment_found = True
+            break  # Attach the first .xlsx file found
+
+    if not attachment_found:
+        print(f"Email warning: no .xlsx attachment found in {xlsx_folder}.")
+
+    # Establish a connection to the SMTP server
+    smtp_server = "smtp.office365.com"
+    port = 587
+
+    try:
+        with smtplib.SMTP(smtp_server, port, timeout=30) as server:
+            server.starttls()
+            server.login(sender_email_id, sender_email_password)
+            server.sendmail(sender_email, receiver_emails, msg.as_string())
+    except smtplib.SMTPAuthenticationError as e:
+        print(
+            "Email could not be sent: SMTP authentication failed. "
+            "Verify sender_email_id/sender_email_password in Configration.json, "
+            "use the mailbox app password if MFA is enabled, and confirm SMTP AUTH is enabled for the mailbox. "
+            f"Details: {e}"
         )
-        # Convert dictionary to JSON format
-        # json_data = json.dumps(exception_data_Dictionary, indent=4)
+        return False
+    except (smtplib.SMTPException, OSError) as e:
+        print(f"Email could not be sent, but scraping output was saved successfully. Error: {e}")
+        return False
 
-        # Concatenate the notification text, system information, and json data
-        # email_body = f"{notification_text}\n{system_info}\n\nLog Data:\n{json_data}"
-        email_body = f"{notification_text}\n{system_info}"
+    print("\nEmail sent successfully!")
+    return True
 
-        # # Remove brackets from JSON data
-        # json_object = json.loads(json_data)
-        # if isinstance(json_object, list):
-        #     json_data = json_object[0]
 
-        # Create a MIMEText object
-        msg = MIMEMultipart()
-        msg.attach(MIMEText(email_body))
-
-        # Set the sender and recipients
-        msg['From'] = sender_email
-        msg['To'] = ", ".join(receiver_emails)
-        msg['Subject'] = subject
-
-        # # Attach the log file if requested
-        # if attach_log:
-        #     if os.path.exists(log_file_path) and os.path.getsize(log_file_path) > 0:
-        #         with open(log_file_path, "rb") as attachment:
-        #             part = MIMEBase("application", "octet-stream")
-        #             part.set_payload((attachment).read())
-        #             encoders.encode_base64(part)
-        #             part.add_header("Content-Disposition", "attachment; filename= %s" % log_file_path)
-        #             msg.attach(part)
-        #     else:
-        #         print(f"The file {log_file_path} is empty or does not exist. Not attaching to the email.")
-        #         return
-
-        # Attach the first .xlsx file found in the specified folder
-        xlsx_folder = program_files_dir
-
-        # List all files in the folder
-        files_in_folder = os.listdir(xlsx_folder)
-
-        # Find the first .xlsx file
-        for filename in files_in_folder:
-            if filename.endswith(".xlsx"):
-                xlsx_file_path = os.path.join(xlsx_folder, filename)
-                with open(xlsx_file_path, "rb") as attachment:
-                    part = MIMEBase("application", "octet-stream")
-                    part.set_payload((attachment).read())
-                    encoders.encode_base64(part)
-                    part.add_header("Content-Disposition", f"attachment; filename={filename}")
-                    msg.attach(part)
-                break  # Attach the first .xlsx file found 
-
-        # Establish a connection to the SMTP server
-        smtp_server = "smtp.office365.com"
-        port = 587
-
-        username = sender_email_id
-        password = sender_email_password
-
-        # Start the connection to the SMTP server
-        server = smtplib.SMTP(smtp_server, port)
-        server.starttls()
-        server.login(username, password)
-
-        # Send the email
-        server.sendmail(sender_email, receiver_emails, msg.as_string())
-
-        # Close the connection
-        server.quit()
-
-        print("\nEmail sent successfully!")
-        pass
 
 
 

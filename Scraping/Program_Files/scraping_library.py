@@ -142,10 +142,19 @@ def delete_folder(folder_path):
 
 
 def no_adb_mail(subject, message, all_email_ids):
-    # Email configurations
-    sender_email = "tenderautomation@royalconstruct.in"
-    sender_password = "Auto@2023"  # Replace with the actual password
-    receiver_emails = all_email_ids  # ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"] 
+    # Email configurations. Environment variables allow local credential overrides
+    # without editing tracked files.
+    sender_email = os.environ.get("IREPS_SENDER_EMAIL", "tenderautomation@royalconstruct.in")
+    sender_password = os.environ.get("IREPS_SENDER_EMAIL_PASSWORD", "Auto@2023")
+    receiver_emails = all_email_ids  # ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"]
+
+    if not receiver_emails:
+        print("no_adb_mail() skipped: no recipient email IDs configured.")
+        return False
+
+    if not sender_email or not sender_password:
+        print("no_adb_mail() skipped: sender email or password is missing.")
+        return False
 
     # Create the email message
     msg = MIMEMultipart()
@@ -158,14 +167,28 @@ def no_adb_mail(subject, message, all_email_ids):
     body = message + "\n\n" + automated_message  # Append the automated message to the provided message
     msg.attach(MIMEText(body, 'plain'))
 
-    # Establish a connection with the SMTP server
-    with smtplib.SMTP('smtp.office365.com', 587) as server:
-        server.starttls()
-        # Login to the email account
-        server.login(sender_email, sender_password)
-        # Send the email
-        server.sendmail(sender_email, receiver_emails, msg.as_string())
+    try:
+        # Establish a connection with the SMTP server
+        with smtplib.SMTP('smtp.office365.com', 587, timeout=30) as server:
+            server.starttls()
+            # Login to the email account
+            server.login(sender_email, sender_password)
+            # Send the email
+            server.sendmail(sender_email, receiver_emails, msg.as_string())
+    except smtplib.SMTPAuthenticationError as e:
+        print(
+            "no_adb_mail() could not send email: SMTP authentication failed. "
+            "Update IREPS_SENDER_EMAIL/IREPS_SENDER_EMAIL_PASSWORD or mailbox SMTP settings. "
+            f"Details: {e}"
+        )
+        return False
+    except (smtplib.SMTPException, OSError) as e:
+        print(f"no_adb_mail() could not send email. Error: {e}")
+        return False
+
     print("no_adb_mail() Triggered!!!")
+    return True
+
     # Usage example:
     # global_send_email("Test Subject", "Hello! This is the main message of the email.", ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"])
 
