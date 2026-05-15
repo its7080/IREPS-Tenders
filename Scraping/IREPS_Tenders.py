@@ -47,6 +47,9 @@ import pdfplumber
 import platform
 import socket
 import tempfile
+import threading
+import uuid
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -132,6 +135,9 @@ SHORT_WAIT_SECONDS = 5
 PDF_DOWNLOAD_TIMEOUT = 30
 PDF_DOWNLOAD_RETRIES = 5
 PDF_DOWNLOAD_CHUNK_SIZE = 1024 * 1024
+CHROMEDRIVER_INSTALL_LOCK = threading.Lock()
+OTP_REFRESH_LOCK = threading.Lock()
+INDIAN_RAILWAY_ORG_NUMBER = "01"
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
@@ -169,6 +175,8 @@ excel_file_path = data.get('excel_file_path')
 # otp_file_location = data['otp_file_location']
 notification_emailids = data['notification_emailids']
 receiver_emailids = data['receiver_emailids']
+max_org_workers = data.get('max_org_workers', 1)
+max_zone_workers = data.get('max_zone_workers', max_org_workers)
 # print(notification_emailids)
 sender_email_id = data['sender_email_id']
 sender_email_password = data['sender_email_password']
@@ -509,15 +517,15 @@ def is_no_result_found_present_in_page(driver):
 
 
 
-def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
-    os.makedirs(temp_dir_path, exist_ok=True)
+def download_pdf(url, pdf_file_path, retries=PDF_DOWNLOAD_RETRIES):
+    os.makedirs(os.path.dirname(pdf_file_path), exist_ok=True)
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
     }
 
     for i in range(retries):
-        tmp_file_path = f"{tender_pdf_file_path}.download"
+        tmp_file_path = f"{pdf_file_path}.download"
         downloaded_bytes = 0
         try:
             with requests.get(url, headers=headers, timeout=PDF_DOWNLOAD_TIMEOUT, stream=True) as response:
@@ -533,7 +541,7 @@ def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
             if downloaded_bytes == 0:
                 raise ValueError("Downloaded PDF is empty")
 
-            os.replace(tmp_file_path, tender_pdf_file_path)
+            os.replace(tmp_file_path, pdf_file_path)
             print("Download successful")
             return True
         except Exception as e:
@@ -547,11 +555,11 @@ def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
 
 
 
-def getpdfdata():
+def getpdfdata(pdf_file_path):
     default_values = ("", "", "", "", "", "", "", "", "", "", "", "")
 
     try:
-        with pdfplumber.open(tender_pdf_file_path) as pdf:
+        with pdfplumber.open(pdf_file_path) as pdf:
             if not pdf.pages:
                 print("PDF has no pages.")
                 return default_values
@@ -618,7 +626,7 @@ def getpdfdata():
 
 
 
-def tenders(driver, org_number, org_name, program_file_dir):
+def select_organization(driver, org_number):
     for _ in range(3):  # Try the action three times
         try:
             # Locate the dropdown element using an appropriate selector
@@ -639,9 +647,9 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
             else:
                 print("Element with ID 'organization' not found")
-            
+
             # If everything is successful, break out of the loop
-            break
+            return
 
         except Exception as e:
             # Handle other exceptions while clicking organization dropdown button
@@ -649,6 +657,13 @@ def tenders(driver, org_number, org_name, program_file_dir):
             driver.refresh()
             time.sleep(2)
 
+    raise TimeoutException(f"Unable to select organization {org_number}")
+
+
+
+def get_zone_options(driver, org_number):
+    """Select an organization and return the enabled zone options to scrape."""
+    select_organization(driver, org_number)
 
     """Stores all options in a dictionary. then print the zone list"""
 
@@ -661,26 +676,36 @@ def tenders(driver, org_number, org_name, program_file_dir):
     options = railway_zone_dropdown.options
     # print(options)
 
-    options_dict = {}
+    zone_options = []
     for option in options:
         value = option.get_attribute("value")
         text = option.get_attribute("innerText")
-        options_dict[value] = text
+        if text in skip_zones: # this condition skip all zones inside skip_zones
+            continue  # Skip the current iteration and move to the next one
+        zone_options.append((value, text))
 
     # Print the options dictionary
     print("\n--------- ZONE LIST ---------")
-    for zone in options_dict.values():
-        if zone in skip_zones:
-            continue  # Skip the current iteration and move to the next one
+    for _, zone in zone_options:
         print(zone)
 
     """ End """
+    return zone_options
 
 
-    for zone_number, zone in options_dict.items():
+
+def tenders(driver, org_number, org_name, program_file_dir, zones_to_scrape=None):
+    zone_options = get_zone_options(driver, org_number)
+    if zones_to_scrape is not None:
+        selected_zone_numbers = {zone_number for zone_number, _ in zones_to_scrape}
+        zone_options = [
+            (zone_number, zone)
+            for zone_number, zone in zone_options
+            if zone_number in selected_zone_numbers
+        ]
+
+    for zone_number, zone in zone_options:
         last_tender = False
-        if zone in skip_zones: # this condition skip all zones inside skip_zones
-            continue  # Skip the current iteration and move to the next one
         print(f"\nScraping ZONE -> {zone}")
         print("----------------")
 
@@ -731,13 +756,13 @@ def tenders(driver, org_number, org_name, program_file_dir):
         try:
             tender_count = 0
             time.sleep(3.5)
-            
+
             # Get the page source and parse it with BeautifulSoup
             soup = BeautifulSoup(driver.page_source, 'html.parser')
-            
+
             # Find all 'b' tags within 'tr' tags
             b_tags = soup.find_all('b')
-            
+
             # Iterate over the 'b' tags
             for i in range(len(b_tags)):
                 # If the 'b' tag contains "Tender search results"
@@ -806,7 +831,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
             for _ in range(3):  # Try the action three times
                 try:
                     # If the element is found, you can perform further actions here
-                    a_tags = driver.find_elements(By.CSS_SELECTOR, "a[onclick]")      
+                    a_tags = driver.find_elements(By.CSS_SELECTOR, "a[onclick]")
                     # If everything is successful, break out of the loop
                     break
                 except Exception as e:
@@ -836,7 +861,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     close_extra_windows(driver, initial_handle)
                     time.sleep(2)
                     continue
-            
+
 
                 # # checkpoint
                 # temp_url = driver.current_url
@@ -884,16 +909,17 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 #         continue
 
                 if pdf_url.lower().endswith(".pdf"):
-                    if not download_pdf(pdf_url):
+                    pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
+                    if not download_pdf(pdf_url, pdf_file_path):
                         close_extra_windows(driver, initial_handle)
                         continue
                 else:
                     close_extra_windows(driver, initial_handle)
                     continue
 
-                dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata()
-                if os.path.exists(tender_pdf_file_path):
-                    os.remove(tender_pdf_file_path)
+                dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata(pdf_file_path)
+                if os.path.exists(pdf_file_path):
+                    os.remove(pdf_file_path)
 
                 try:
                     # Calculate due_days
@@ -901,7 +927,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     uploading_datetime = datetime.datetime.strptime(date_time_of_uploading_tender, '%d/%m/%Y %H:%M')
                     due_days = (closing_datetime - uploading_datetime).days
                 except ValueError as e:
-                    due_days = " " 
+                    due_days = " "
                     pass
 
                 worksheet1.write(k, 0, zone)
@@ -976,7 +1002,6 @@ def tenders(driver, org_number, org_name, program_file_dir):
         print("Zone data Saved.")
 
     return True
-
 
 
 # extract message from adb device connected
@@ -1067,15 +1092,11 @@ def generate_otp(driver, mobile_no):
 
 
 
-def tenders_main(org_number, org_name, mobile_no, program_files_dir):
-    mail_triger = False
-    driver = None
-    chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                        # and if it doesn't exist, download it automatically,
-                                        # then add chromedriver to path
-
-    # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
-    # print(org_number, org_name, mobile_no, otp_file_location)
+def create_ireps_driver():
+    with CHROMEDRIVER_INSTALL_LOCK:
+        chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+                                            # and if it doesn't exist, download it automatically,
+                                            # then add chromedriver to path
 
     options = Options()
     options.add_argument("--disable-application-cache")  # Disable application cache
@@ -1099,40 +1120,74 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     #     "safebrowsing.enabled": True
     #     })
 
+    driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(60)
+    driver.implicitly_wait(10) # Wait for a few seconds to see the results
+
+    # Open a website
+    # Open the URL and wait for the page title to be "IREPS - Guest Login"
+    url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
+
+    while True:
+        try:
+            driver.get(url)
+            break # break the loop if no exception occurs
+        except Exception as e:
+            print(f"{url} - url exception") # - {e}") # print the exception message
+            print("Retrying...") # print a retry message
+            time.sleep(2)
+
+    driver = is_under_maintenance(driver, url)
+    return driver
+
+
+
+def ensure_logged_in(driver, mobile_no):
+    print("Current Mobile NO. ", mobile_no)
+
+    if not is_otp_valid():
+        with OTP_REFRESH_LOCK:
+            if not is_otp_valid():
+                driver = generate_otp(driver, mobile_no)
+                countdown_timer("generate_otp", 60)
+
+                while get_sms_message():
+                    countdown_timer("get_sms_message", 20)
+                    get_sms_message()
+
+    return login(driver, mobile_no)
+
+
+
+def discover_organization_zones(org_number, org_name):
+    """Open a short-lived browser session to discover zones for an organization."""
+    driver = None
     try:
-        driver = webdriver.Chrome(options=options)
-        driver.set_page_load_timeout(60)
-        driver.implicitly_wait(10) # Wait for a few seconds to see the results
-
-        # Open a website
-        # Open the URL and wait for the page title to be "IREPS - Guest Login"
-        url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
-
-        while True:
+        driver = create_ireps_driver()
+        driver = ensure_logged_in(driver, mobile_no)
+        return get_zone_options(driver, org_number)
+    finally:
+        print(f"\n\nExeting.... From zone discovery for {org_name}.\n\n")
+        if driver is not None:
             try:
-                driver.get(url)
-                break # break the loop if no exception occurs
-            except Exception as e:
-                print(f"{url} - url exception") # - {e}") # print the exception message
-                print("Retrying...") # print a retry message
-                time.sleep(2)
+                driver.quit()
+            except Exception as exc:
+                print(f"Unable to quit Chrome cleanly: {exc}")
+        gc.collect()
 
-        driver = is_under_maintenance(driver, url)
-        print("Current Mobile NO. ", mobile_no)
 
-        if is_otp_valid():
-            driver = login(driver, mobile_no)
-            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-        else:
-            driver = generate_otp(driver, mobile_no)
-            countdown_timer("generate_otp", 60)
 
-            while get_sms_message():
-                countdown_timer("get_sms_message", 20)
-                get_sms_message()
+def tenders_main(org_number, org_name, mobile_no, program_files_dir, zones_to_scrape=None):
+    mail_triger = False
+    driver = None
 
-            driver = login(driver, mobile_no)
-            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+    # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
+    # print(org_number, org_name, mobile_no, otp_file_location)
+
+    try:
+        driver = create_ireps_driver()
+        driver = ensure_logged_in(driver, mobile_no)
+        mail_triger = tenders(driver, org_number, org_name, program_files_dir, zones_to_scrape)
     finally:
         print(f"\n\nExeting.... From {org_name}.\n\n")
         if driver is not None:
@@ -1144,6 +1199,135 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
 
     return mail_triger
 
+
+def get_configured_org_worker_count(total_organizations):
+    """Return the safe organization worker count from Configration.json."""
+    if total_organizations <= 0:
+        return 0
+
+    try:
+        configured_workers = int(max_org_workers)
+    except (TypeError, ValueError):
+        configured_workers = 1
+
+    configured_workers = max(1, configured_workers)
+
+    if str(captcha_manual_input) == "1" and configured_workers > 1:
+        print("Manual CAPTCHA input is enabled; forcing organization workers to 1.")
+        configured_workers = 1
+
+    return min(configured_workers, total_organizations)
+
+
+def get_configured_zone_worker_count(total_zones):
+    """Return the safe zone worker count from Configration.json."""
+    if total_zones <= 0:
+        return 0
+
+    try:
+        configured_workers = int(max_zone_workers)
+    except (TypeError, ValueError):
+        configured_workers = 1
+
+    configured_workers = max(1, configured_workers)
+
+    if str(captcha_manual_input) == "1" and configured_workers > 1:
+        print("Manual CAPTCHA input is enabled; forcing zone workers to 1.")
+        configured_workers = 1
+
+    return min(configured_workers, total_zones)
+
+
+
+def should_scrape_zones_with_workers(org_number, org_name):
+    """Indian Railway has many zones, so split its zones across zone workers."""
+    return str(org_number).zfill(2) == INDIAN_RAILWAY_ORG_NUMBER
+
+
+
+def scrape_organization_zone(org_number, org_name, zone_option):
+    """Scrape one zone for an organization in its own browser session."""
+    zone_number, zone_name = zone_option
+    print(f"\nRunning zone worker. {org_number}: {org_name} -> {zone_name}")
+    mail_trigger = tenders_main(
+        org_number,
+        org_name,
+        mobile_no,
+        program_files_dir,
+        zones_to_scrape=[zone_option],
+    )
+    print(f"Finished zone worker. {org_number}: {org_name} -> {zone_name}\n")
+    return bool(mail_trigger)
+
+
+
+def scrape_zones_with_workers(org_number, org_name):
+    """Discover zones for Indian Railway and wait for every zone worker to finish."""
+    zone_options = discover_organization_zones(org_number, org_name)
+    if not zone_options:
+        print(f"No zones configured for {org_number}: {org_name}.")
+        return False
+
+    worker_count = get_configured_zone_worker_count(len(zone_options))
+    print(f"Starting {worker_count} zone worker(s) for {org_number}: {org_name} across {len(zone_options)} zone(s).")
+
+    mail_trigger_main = False
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_to_zone = {
+            executor.submit(scrape_organization_zone, org_number, org_name, zone_option): zone_option
+            for zone_option in zone_options
+        }
+
+        for future in as_completed(future_to_zone):
+            zone_number, zone_name = future_to_zone[future]
+            try:
+                mail_trigger_main = bool(future.result()) or mail_trigger_main
+            except Exception as exc:
+                print(f"Zone worker failed for {org_number}: {org_name} -> {zone_name}. Error: {exc}")
+
+    print(f"All zone workers finished for {org_number}: {org_name}.")
+    return mail_trigger_main
+
+
+
+def scrape_organization(orginazation):
+    """Scrape one organization and return True when it produced mail-worthy data."""
+    org_number, org_name = orginazation
+    print(f"\nRunning Orginazation. {org_number}: {org_name}")
+    if should_scrape_zones_with_workers(org_number, org_name):
+        mail_trigger = scrape_zones_with_workers(org_number, org_name)
+    else:
+        mail_trigger = tenders_main(org_number, org_name, mobile_no, program_files_dir)
+    print(f"Finished Orginazation. {org_number}: {org_name}\n")
+    return bool(mail_trigger)
+
+
+
+def scrape_organizations_with_workers(orginazations):
+    """Run organization scraping workers and wait for all of them before returning."""
+    if not orginazations:
+        print("No organizations configured for scraping.")
+        return False
+
+    worker_count = get_configured_org_worker_count(len(orginazations))
+    print(f"Starting {worker_count} organization worker(s) for {len(orginazations)} organization(s).")
+
+    mail_trigger_main = False
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_to_organization = {
+            executor.submit(scrape_organization, orginazation): orginazation
+            for orginazation in orginazations
+        }
+
+        for future in as_completed(future_to_organization):
+            org_number, org_name = future_to_organization[future]
+            try:
+                mail_trigger_main = bool(future.result()) or mail_trigger_main
+            except Exception as exc:
+                print(f"Organization worker failed for {org_number}: {org_name}. Error: {exc}")
+
+    print("All organization workers finished. Starting xlsx merge.")
+    return mail_trigger_main
 
 
 def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
@@ -1390,10 +1574,17 @@ def send_mail(program_file_dir, all_email_ids):
 class Tee:
     def __init__(self, *files):
         self.files = files
+        self._lock = threading.Lock()
 
     def write(self, text):
-        for file in self.files:
-            file.write(text)
+        if not text:
+            return
+
+        with self._lock:
+            for file in self.files:
+                file.write(text)
+            if "\n" in text:
+                self.flush()
 
     def flush(self):
         for file in self.files:
@@ -1414,11 +1605,19 @@ def log_to_file(filename):
     packge = packaging()
     
 
-    # Open the log file in append mode for regular output
-    log_file = open(full_filename, 'a')
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(line_buffering=True, write_through=True)
 
-    # Redirect stdout to the log file and console simultaneously
-    sys.stdout = Tee(sys.stdout, log_file)
+    # Open the log file in line-buffered mode so worker output is written immediately.
+    log_file = open(full_filename, 'a', buffering=1, encoding='utf-8')
+    original_stdout = sys.stdout
+    original_stderr = sys.stderr
+
+    # Redirect stdout/stderr to the log file and console simultaneously.
+    realtime_log = Tee(original_stdout, log_file)
+    sys.stdout = realtime_log
+    sys.stderr = Tee(original_stderr, log_file)
 
     try:
 
@@ -1477,15 +1676,11 @@ def log_to_file(filename):
             else:
                 adb = True
             
+            mail_triger_main = False
             if adb:
-                # Iterating through all Orginazation 
-                for orginazation in organizations:
-                    org_number, org_name = orginazation
-                    print(f"\nRunning Orginazation. {org_number}: {org_name}")
-                    mail_triger_main = tenders_main(org_number, org_name, mobile_no, program_files_dir)
-                    print("\n")
-                    # subprocess.run([sys.executable, "Tender.py", org_number, org_name, mobile_no, otp_file_location, program_files_dir])
-                    # subprocess.run(["Tender.exe", org_number, org_name, mobile_no, otp_file_location, program_file_dir])
+                # Run Orginazation scraping in parallel and wait for all workers
+                # before creating the master xlsx files.
+                mail_triger_main = scrape_organizations_with_workers(organizations)
 
 
             # master xlsx output directory
@@ -1564,8 +1759,11 @@ def log_to_file(filename):
         log_file.write(error_message + "\n")  # Write the error message to log file
 
     finally:
-        # Restore the original stdout
-        sys.stdout = sys.__stdout__  # Restore original stdout
+        sys.stdout.flush()
+        sys.stderr.flush()
+        # Restore the original streams
+        sys.stdout = original_stdout
+        sys.stderr = original_stderr
         log_file.close()              # Close the log file
 
 if __name__ == "__main__":

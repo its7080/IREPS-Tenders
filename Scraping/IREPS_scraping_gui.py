@@ -170,7 +170,9 @@ class ScraperRunner:
             self.log_queue.put(("error", f"Scraper file not found: {self.store.scraper_path}"))
             return
 
-        command = [sys.executable, str(self.store.scraper_path)]
+        command = [sys.executable, "-u", str(self.store.scraper_path)]
+        env = os.environ.copy()
+        env["PYTHONUNBUFFERED"] = "1"
         started_at = dt.datetime.now()
         self.log_queue.put(("info", f"Starting scraper: {' '.join(command)}"))
         try:
@@ -181,6 +183,7 @@ class ScraperRunner:
                 stderr=subprocess.STDOUT,
                 text=True,
                 bufsize=1,
+                env=env,
             )
             if self.process.stdout:
                 for line in self.process.stdout:
