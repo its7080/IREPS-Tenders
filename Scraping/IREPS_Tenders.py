@@ -24,23 +24,14 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 # from email.mime.application import MIMEApplication
-from selenium import webdriver
-import chromedriver_autoinstaller
-from selenium.webdriver.chrome.options import Options
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 # import shutil
 # import urllib.request
-from selenium.webdriver.common.alert import Alert
-from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
-from selenium.common.exceptions import NoSuchElementException
 # from urllib.parse import urlparse
 import requests
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.support.ui import Select
 import xlsxwriter
 import math
 import pdfplumber
@@ -50,8 +41,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 # from chrome_updater import ChromeUpdater
 from Program_Files.scraping_library import check_internet_connection
 # from Program_Files.scraping_library import get_folder_size_in_mb
@@ -71,14 +60,30 @@ from Program_Files.captcha_solver import predict_captcha
 import base64
 import io
 from PIL import Image
+
+
+def accept_dialog(dialog):
+    print("Alert Text:", dialog.message)
+    dialog.accept()
+
+
+def set_input_value(page, selector, value):
+    page.locator(selector).fill(str(value))
+
+
+def set_select_value(page, selector, value):
+    page.select_option(selector, str(value))
+
+
+def click_xpath(page, xpath, timeout=10000):
+    page.locator(f"xpath={xpath}").click(timeout=timeout)
+
 # # =======================
 # # chrome_updater
 # # =======================
 # # Create an instance of ChromeUpdater
 # updater = ChromeUpdater()
 
-# # Step 1: Open Chrome with Selenium
-# driver = updater.relaunch_chrome_with_selenium()
 
 # # Step 2: Close Chrome to prepare for the update
 # time.sleep(5)  # Simulate some activity
@@ -88,8 +93,6 @@ from PIL import Image
 # updater.download_chrome_installer()
 # updater.install_chrome()
 
-# # Step 4: Relaunch Chrome after the update
-# driver = updater.relaunch_chrome_with_selenium()
 
 
 
@@ -227,7 +230,7 @@ def is_otp_valid():
 
 def is_under_maintenance(driver, url):
     # Check if the page contains the specified text
-    if "Module under maintenance" in driver.page_source:
+    if "Module under maintenance" in driver.content():
         print(f"{url}  -  Module under maintenance")
     else:
         print(f"{url} link is Accessible ")
@@ -236,32 +239,15 @@ def is_under_maintenance(driver, url):
 
 
 
-# def get_verification(driver):
-#     if captcha_manual_input == 1:
-
-#          # blue #3BB9FF & red #640A0A
-#     # Find all img elements inside the span with id "verimage" using XPath
-#     img_tags = driver.find_elements(By.XPATH, "//span[@id='verimage']//img")
-
-#     # Iterate through the img elements
-#     for img_tag in img_tags:
-#         src = img_tag.get_attribute("src")
-#         if "Captcha.jpg?r=" in src:
-#             captcha_chars = src.split('Captcha.jpg?r=')[1][:6]
-#             # print("Image Source:", src)
-#             print("verification Code: ", captcha_chars)
-#     return driver, captcha_chars
-
-
 def get_verification(driver):
     captcha_chars = None
 
-    if captcha_manual_input == 1:
-        # Locate the captcha <img>
-        img_element = driver.find_element(By.ID, "imgCaptcha")
-        src = img_element.get_attribute("src")
+    # Step 1: Get captcha image element
+    img_element = driver.locator("#imgCaptcha")
+    src = img_element.get_attribute("src")
 
-        if src.startswith("data:image"):
+    if captcha_manual_input == 1:
+        if src and src.startswith("data:image"):
             # Base64 decode
             img_data = src.split(",")[1]
             image = Image.open(io.BytesIO(base64.b64decode(img_data)))
@@ -271,17 +257,13 @@ def get_verification(driver):
         captcha_chars = input("Enter CAPTCHA from the image: ").strip()
 
     else:
-        # Step 1: Get captcha image element
-        img_element = driver.find_element(By.ID, "imgCaptcha")
-        src = img_element.get_attribute("src")
-
         # Save captcha image to temp.png
-        if src.startswith("data:image"):  # If base64 encoded
+        if src and src.startswith("data:image"):  # If base64 encoded
             header, encoded = src.split(",", 1)
             data = base64.b64decode(encoded)
             with open("temp.png", "wb") as f:
                 f.write(data)
-        else:  # If src is a URL
+        elif src:  # If src is a URL
             response = requests.get(src)
             with open("temp.png", "wb") as f:
                 f.write(response.content)
@@ -297,45 +279,28 @@ def get_verification(driver):
 
         captcha_chars = predicted_text.strip()
 
-
     return driver, captcha_chars
 
 
-
-
-
 def login(driver, mobile_no):
-    """
-    Log in to a website using the provided WebDriver instance and mobile number.
-    
-    Args:
-        driver (WebDriver): Selenium WebDriver instance for browser.
-        mobile_no (str): Mobile number for login.
-    
-    Returns:
-        WebDriver: Updated WebDriver instance after login, or None if login fails.
-    """
+    """Log in to IREPS using a Playwright page and mobile number."""
 
     # Attempt to refresh the page up to 3 times if a timeout occurs
     for _ in range(3):
         try:
-            driver.refresh()
+            driver.reload(wait_until="domcontentloaded", timeout=60000)
             break
-        except TimeoutException:
+        except PlaywrightTimeoutError:
             print("Timeout occurred. Retrying refresh...")
             time.sleep(2)
     else:
-        raise TimeoutException("Exceeded maximum retries. Unable to refresh.")
+        raise PlaywrightTimeoutError("Exceeded maximum retries. Unable to refresh.")
 
     time.sleep(3)  # Short delay before starting login
 
-    # Attempt the login process up to 3 times
+    # Attempt the login process up to 100 times
     for attempt in range(100):
-        try:
-            # Accept alert if present, then proceed
-            Alert(driver).accept()
-        except:
-            pass  # Ignore if no alert
+        # Dialogs are handled by the page-level dialog listener.
 
         # Get verification code and OTP, and fill in login details
         driver, ver_code = get_verification(driver)
@@ -343,82 +308,23 @@ def login(driver, mobile_no):
             return None  # Return None if verification retrieval fails
 
         otp = load_otp()
-        driver.execute_script(f"document.getElementById('mobileNo').value='{mobile_no}'")
-        driver.execute_script(f"document.getElementById('verification').value='{ver_code}'")
-        driver.execute_script(f"document.getElementById('otp').value='{otp}'")
+        set_input_value(driver, "#mobileNo", mobile_no)
+        set_input_value(driver, "#verification", ver_code)
+        set_input_value(driver, "#otp", otp)
 
         # Click the "Proceed" button and wait for the "custumSearchId" element
         time.sleep(2)
-        driver.find_element("xpath", "//input[@value='Proceed']").click()
+        click_xpath(driver, "//input[@value='Proceed']")
 
         try:
-            driver.find_element(By.ID, "custumSearchId").click()
+            driver.locator("#custumSearchId").click(timeout=10000)
             return driver  # Return driver if login succeeds
         except Exception as e:
             print(f"Attempt {attempt + 1} failed - Exception: {e}")
-            driver.get("https://www.ireps.gov.in/epsn/anonymSearch.do")
+            driver.goto("https://www.ireps.gov.in/epsn/anonymSearch.do", wait_until="domcontentloaded", timeout=60000)
             time.sleep(5)
 
     return driver  # Return driver if all login attempts fail
-
-
-# def login(driver, mobile_no):
-
-#     retries = 0
-#     while retries < 3:
-#         try:
-#             driver.refresh()
-#             # If the refresh succeeds, break out of the loop
-#             break
-#         except TimeoutException:
-#             print("Timeout exception occurred. Retrying...")
-#             retries += 1
-#             # Add some delay before retrying to avoid overwhelming the server
-#             time.sleep(2)
-#     else:
-#         # If all retries fail, raise the TimeoutException
-#         raise TimeoutException("Exceeded maximum retries. Unable to refresh.")
-
-#     time.sleep(3)
-
-#     # Retry login process up to 3 times
-#     for attempt in range(3):
-#         try:
-
-#             try:
-#                 alert = Alert(driver)
-#                 alert.accept()
-#             except:
-#                 pass
-
-#             driver, ver_code = get_verification(driver)
-
-#             if ver_code is None:
-#                 return None
-
-#             otp = load_otp()
-#             # Fill in login details and proceed
-#             driver.execute_script("document.getElementById('mobileNo').value='" + mobile_no + "'")
-#             time.sleep(1)
-#             driver.execute_script("document.getElementById('verification').value='" + ver_code + "'")
-#             time.sleep(1)
-#             driver.execute_script("document.getElementById('otp').value='" + otp + "'")
-#             time.sleep(2)
-#             driver.find_element("xpath", "//input[@value='Proceed']").click()
-
-#             # WebDriverWait block to wait for the presence of the element with ID "customSearchId"
-#             driver.find_element(By.ID, "custumSearchId").click()
-#             # If everything is successful, break out of the loop
-#             return driver
-
-#         except Exception as e:
-#             # Handle other exceptions while clicking 'Custom Search' button
-#             print(f"Attempt {attempt + 1} login or Custom Search button  -  Exception") # {e}")
-#             driver.get("https://www.ireps.gov.in/epsn/anonymSearch.do")
-#             time.sleep(5)
-
-#     return driver
-
 
 
 def is_no_result_found_present_in_page(driver):
@@ -426,17 +332,17 @@ def is_no_result_found_present_in_page(driver):
     Check if the page contains the "No Results Found" message.
     
     Args:
-        driver (WebDriver): The Selenium WebDriver instance for interacting with the page.
+        driver (Page): The Playwright Page instance for interacting with the page.
 
     Returns:
         tuple: (bool, driver) where the boolean is True if "No Results Found" is present, False otherwise.
     """
     try:
-        # Get the page source using Selenium
-        page_source = driver.page_source
+        # Get the page source using Playwright
+        html_content = driver.content()
 
         # Parse the HTML content with BeautifulSoup
-        soup = BeautifulSoup(page_source, 'html.parser')
+        soup = BeautifulSoup(html_content, 'html.parser')
 
         # Find the element containing the specific class and style attributes
         result_element = soup.find('td', {'class': 'formLabel', 'style': 'color: #C00000'})
@@ -448,7 +354,7 @@ def is_no_result_found_present_in_page(driver):
 
         return False, driver
     
-    except NoSuchElementException as e:
+    except Exception as e:
         print(f"An error occurred while checking the page: {e}")
         return False, driver
 
@@ -552,45 +458,27 @@ def getpdfdata():
 def tenders(driver, org_number, org_name, program_file_dir):
     for _ in range(3):  # Try the action three times
         try:
-            # Locate the dropdown element using an appropriate selector
-            dropdown_element = driver.find_element(By.ID, "organization")
-            # Create a Select object and interact with the dropdown
-            select = Select(dropdown_element)
-
-            # Select option by value
-            select.select_by_value(org_number)
-
+            # Select organization by value.
+            set_select_value(driver, "#organization", org_number)
             time.sleep(1)
-
-            # Double select organization
-            # Check if the element is still present
-            if dropdown_element:
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
-            else:
-                print("Element with ID 'organization' not found")
-            
-            # If everything is successful, break out of the loop
+            # Double select organization.
+            set_select_value(driver, "#organization", org_number)
             break
-
-        except Exception as e:
-            # Handle other exceptions while clicking organization dropdown button
-            print(f"organization dropdown  -  Exception")
-            driver.refresh()
+        except Exception:
+            print("organization dropdown  -  Exception")
+            driver.reload(wait_until="domcontentloaded", timeout=60000)
             time.sleep(2)
-
 
     """Stores all options in a dictionary. then print the zone list"""
 
     time.sleep(1)
-    railway_zone_dropdown = Select(driver.find_element(By.XPATH, "//*[@id='railwayZone']"))
-    # print(railway_zone_dropdown)
-    options = railway_zone_dropdown.options
-    # print(options)
+    options = driver.locator("#railwayZone option")
 
     options_dict = {}
-    for option in options:
+    for index in range(options.count()):
+        option = options.nth(index)
         value = option.get_attribute("value")
-        text = option.get_attribute("innerText")
+        text = option.inner_text()
         options_dict[value] = text
 
     # Print the options dictionary
@@ -602,50 +490,41 @@ def tenders(driver, org_number, org_name, program_file_dir):
 
     """ End """
 
-
     for zone_number, zone in options_dict.items():
         last_tender = False
-        if zone in skip_zones: # this condition skip all zones inside skip_zones
+        if zone in skip_zones:  # this condition skip all zones inside skip_zones
             continue  # Skip the current iteration and move to the next one
         print(f"\nScraping ZONE -> {zone}")
         print("----------------")
-
 
         for _ in range(3):  # Try the action three times
             try:
                 # filling search criteria
                 time.sleep(3)
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
+                set_select_value(driver, "#organization", org_number)
                 time.sleep(3)
-                driver.execute_script("document.getElementById('workArea').value='WT'") # works
+                set_select_value(driver, "#workArea", "WT")  # works
                 time.sleep(3)
-                driver.execute_script("document.getElementById('railwayZone').value='"+ zone_number +"'")
+                set_select_value(driver, "#railwayZone", zone_number)
                 time.sleep(3)
-                driver.execute_script("document.getElementById('tenderType').value=2") # open
+                set_select_value(driver, "#tenderType", "2")  # open
                 time.sleep(3)
-                driver.execute_script("document.getElementById('tenderStage').value=1") # published
+                set_select_value(driver, "#tenderStage", "1")  # published
                 time.sleep(3)
-                driver.execute_script("document.getElementsByName('selectDate')[0].value = 'TENDER_OPENING_DATE'") # Tender Closing Date
+                set_select_value(driver, "select[name='selectDate']", "TENDER_OPENING_DATE")  # Tender Closing Date
                 # Get the current date
                 current_date = datetime.datetime.now()
                 # Add four months to the current date
                 four_months_later = current_date + relativedelta(months=4)
                 # Format the date as a string (optional)
                 formatted_date = four_months_later.strftime("%d/%m/%Y")
-                driver.execute_script("document.getElementById('ddmmyyDateformat2').value='" + formatted_date + "'")
+                set_input_value(driver, "#ddmmyyDateformat2", formatted_date)
                 time.sleep(0.5)
-                # driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
-                xpath = "//input[@value='Show Results']"
-                element = driver.find_element(By.XPATH, xpath)
-                element.click()
-
-                # If everything is successful, break out of the loop
+                click_xpath(driver, "//input[@value='Show Results']")
                 break
-
-            except Exception as e:
-                # Handle other exceptions while clicking 'Custom Search' button
-                print(f"Show Results button  -  Exception")
-                driver.refresh()
+            except Exception:
+                print("Show Results button  -  Exception")
+                driver.reload(wait_until="domcontentloaded", timeout=60000)
                 time.sleep(2)
 
         result, driver = is_no_result_found_present_in_page(driver)
@@ -657,13 +536,13 @@ def tenders(driver, org_number, org_name, program_file_dir):
         try:
             tender_count = 0
             time.sleep(3.5)
-            
+
             # Get the page source and parse it with BeautifulSoup
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            
+            soup = BeautifulSoup(driver.content(), 'html.parser')
+
             # Find all 'b' tags within 'tr' tags
             b_tags = soup.find_all('b')
-            
+
             # Iterate over the 'b' tags
             for i in range(len(b_tags)):
                 # If the 'b' tag contains "Tender search results"
@@ -671,30 +550,15 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     # If there is a next 'b' tag, print it
                     if i + 1 < len(b_tags):
                         tender_count = b_tags[i + 1].text
-                        if int(tender_count) < 1 :  # Check if tender_count exists but is None
+                        if int(tender_count) < 1:  # Check if tender_count exists but is None
                             print("Unable to get tender search result, Variable is None and has no value assigned. ", tender_count)
                             continue
                         print("Tender search results ", tender_count)
                     break
 
         except Exception as e:
-            print(f"An error occurred: Tender search results", e)
+            print("An error occurred: Tender search results", e)
             break
-
-        # # Get the page source and parse it with BeautifulSoup
-        # soup = BeautifulSoup(driver.page_source, 'html.parser')
-        # # Find all 'b' tags within 'tr' tags
-        # b_tags = soup.find_all('b')
-        # # Iterate over the 'b' tags
-        # for i in range(len(b_tags)):
-        #     # If the 'b' tag contains "Tender search results"
-        #     if "Tender search results" in b_tags[i].text:
-        #         # If there is a next 'b' tag, print it
-        #         if i+1 < len(b_tags):
-        #             tender_count = b_tags[i+1].text
-        #             print("Tender search results ", tender_count)
-        #         break
-
 
         # Get the current date and time
         current_date = datetime.datetime.now()
@@ -704,6 +568,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
         file_name = f'{zone}_{fname}.xlsx'
         # Create a file path for the new Excel workbook
         file_path = os.path.join(program_files_dir, org_name, file_name)
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
         # Create a new Excel workbook and a worksheet within it
         workbook = xlsxwriter.Workbook(file_path)
         worksheet1 = workbook.add_worksheet("ListOfTenders")
@@ -711,7 +576,6 @@ def tenders(driver, org_number, org_name, program_file_dir):
         headers = ["Zone", "Dept.", "Tender No.", "Tender Title", "Type", "Due Date/Time", "Due Days", "Advertised Value", "Doc Link", "Bidding type", "Bidding System", "Date Time Of Uploading Tender", "Pre-Bid Conference Date Time", "Earnest Money (Rs.)", "Contract Type"]
         for index, header in enumerate(headers):
             worksheet1.write(0, index, header)
-
 
         # Calculate the number of pages based on the tender count
         tender_count = int(tender_count)
@@ -721,107 +585,65 @@ def tenders(driver, org_number, org_name, program_file_dir):
         # Print the number of pages
         print("Pages = ", page_count)
 
-
         cnt = 1
         k = 0
         # Loop through all the pages
         while cnt <= page_count:
             time.sleep(3)
-            for _ in range(3):  # Try the action three times
-                try:
-                    # If the element is found, you can perform further actions here
-                    a_tags = driver.find_elements(By.CSS_SELECTOR, "a[onclick]")      
-                    # If everything is successful, break out of the loop
-                    break
-                except Exception as e:
-                    # Handle other exceptions while clicking 'Custom Search' button
-                    print(f"a_tags tender link - Exception")
-                    time.sleep(2)
-                    continue
+            try:
+                a_tags = driver.locator("a[onclick]")
+                a_tag_count = a_tags.count()
+            except Exception:
+                print("a_tags tender link - Exception")
+                time.sleep(2)
+                continue
 
-            if not a_tags:
+            if a_tag_count == 0:
                 break
 
-            filtered_a_tags = [tag for tag in a_tags if 'postRequestNewWindow(\'/epsn/nitViewAnonyms/rfq/nitPublish.do?' in tag.get_attribute('onclick')]
+            filtered_indexes = []
+            for index in range(a_tag_count):
+                onclick = a_tags.nth(index).get_attribute('onclick') or ""
+                if "postRequestNewWindow('/epsn/nitViewAnonyms/rfq/nitPublish.do?" in onclick:
+                    filtered_indexes.append(index)
 
-            # Get the initial window handle
-            initial_handle = driver.current_window_handle
-            for a_tag in filtered_a_tags:
+            for tag_index in filtered_indexes:
                 k += 1
                 print('\r' + "Tender  : " + str(k) + " ", end='')
 
                 try:
-                    a_tag.click()
-                    # WebDriverWait(driver, 20).until(lambda x: x.execute_script('return document.readyState') == 'complete')
-                except Exception as e:
+                    with driver.expect_popup(timeout=15000) as tender_popup_info:
+                        a_tags.nth(tag_index).click()
+                    tender_page = tender_popup_info.value
+                    tender_page.on("dialog", accept_dialog)
+                    tender_page.wait_for_load_state("domcontentloaded", timeout=60000)
+                except Exception:
                     print("Result page a_tags tender link click - Exception")
-                    driver.switch_to.window(initial_handle)
                     time.sleep(2)
                     continue
-            
-
-                handles = driver.window_handles
-                time.sleep(0.25)
-                driver.switch_to.window(handles[1])
-
-                # # checkpoint
-                # temp_url = driver.current_url
-                # print(" >> ", temp_url)
-
 
                 try:
                     time.sleep(1)
-                    xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
-                    download_button = driver.find_element(By.XPATH, xpath)
-                    download_button.click()
-                except Exception as e:
-                    # Handle other exceptions while clicking 'Custom Search' button
-                    print(f"Download Tender Doc. (Pdf) button - Exception")
-                    for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                        driver.switch_to.window(window_handle)
-                        time.sleep(0.25)
-                        driver.close()
-                    driver.switch_to.window(initial_handle)
+                    download_button = tender_page.locator("xpath=//a[contains(text(), 'Download Tender Doc. (Pdf)')]")
+                    with tender_page.expect_popup(timeout=15000) as pdf_popup_info:
+                        download_button.click()
+                    pdf_page = pdf_popup_info.value
+                    pdf_page.on("dialog", accept_dialog)
+                    pdf_page.wait_for_load_state("domcontentloaded", timeout=60000)
+                except Exception:
+                    print("Download Tender Doc. (Pdf) button - Exception")
+                    tender_page.close()
                     time.sleep(2)
                     continue
 
-                handles = driver.window_handles
-                time.sleep(0.25)
-                driver.switch_to.window(handles[2])
-
-
-                # # Define a function to wait for the page to fully load
-                # def page_fully_loaded(driver):
-                #     return driver.execute_script("return document.readyState") == "complete"
-
-                # # Wait for the page to fully load
-                # WebDriverWait(driver, 10).until(page_fully_loaded)
-
-                pdf_url = driver.current_url
+                pdf_url = pdf_page.url
                 print(" ", pdf_url)
-
-                # # Execute JavaScript to get the current window's URL
-                # window_url = driver.execute_script("return window.location.href;")
-                # url_pattern = re.compile(r'^https:\/\/www\.ireps\.gov\.in\/ireps\/works\/pdfdocs\/.*\.pdf$')
-
-                # while True:
-                #     if url_pattern.match(pdf_url):
-                #         print("URL is valid. ", pdf_url)
-                #         break
-                #     else:
-                #         print("URL is not valid.")
-                #         time.sleep(0.25)
-                #         pdf_url = driver.current_url
-                #         continue
 
                 if pdf_url.endswith(".pdf"):
                     download_pdf(pdf_url)
                 else:
-                    for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                        driver.switch_to.window(window_handle)
-                        time.sleep(0.25)
-                        driver.close()
-                    driver.switch_to.window(initial_handle)
+                    pdf_page.close()
+                    tender_page.close()
                     continue
 
                 dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata()
@@ -831,9 +653,8 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     closing_datetime = datetime.datetime.strptime(tender_closing_date_time, '%d/%m/%Y %H:%M')
                     uploading_datetime = datetime.datetime.strptime(date_time_of_uploading_tender, '%d/%m/%Y %H:%M')
                     due_days = (closing_datetime - uploading_datetime).days
-                except ValueError as e:
-                    due_days = " " 
-                    pass
+                except ValueError:
+                    due_days = " "
 
                 worksheet1.write(k, 0, zone)
                 worksheet1.write(k, 1, dept_rly)
@@ -851,12 +672,8 @@ def tenders(driver, org_number, org_name, program_file_dir):
                 worksheet1.write(k, 13, earnest_money)
                 worksheet1.write(k, 14, contract_type)
 
-                # Switch back to the initial window
-                for window_handle in filter(lambda handle: handle != initial_handle, handles):
-                    driver.switch_to.window(window_handle)
-                    time.sleep(0.25)
-                    driver.close()
-                driver.switch_to.window(initial_handle)
+                pdf_page.close()
+                tender_page.close()
 
                 if k == tender_count:
                     last_tender = True
@@ -865,55 +682,38 @@ def tenders(driver, org_number, org_name, program_file_dir):
 
             print("\n")
 
-            if last_tender == True:
+            if last_tender:
                 break
             else:
+                xpath = f"//a[text()='{cnt + 1}']"
+                for attempt in range(3):
+                    try:
+                        element = driver.locator(f"xpath={xpath}")
+                        element.click(timeout=5000)
+                        print(f"Successfully clicked page {cnt + 1} on attempt {attempt + 1}")
+                        time.sleep(5)
+                        break
+                    except Exception as e:
+                        print(f"Attempt {attempt + 1} failed to click page {cnt + 1}: {e}")
+                        time.sleep(2)
+                else:
+                    print(f"Failed to click page {cnt + 1} after 3 attempts.")
 
-                try:
-                    xpath = f"//a[text()='{cnt + 1}']"
-                    for attempt in range(3):
-                        try:
-                            # Wait up to 5 seconds for the element to be clickable
-                            element = WebDriverWait(driver, 5).until(
-                                EC.element_to_be_clickable((By.XPATH, xpath))
-                            )
-                            element.click()
-                            print(f"Successfully clicked page {cnt + 1} on attempt {attempt + 1}")
-                            time.sleep(5)
-                            break  # Success!
-                        except Exception as e:
-                            print(f"Attempt {attempt + 1} failed to click page {cnt + 1}: {e}")
-                            time.sleep(2)
-                    else:
-                        print(f"Failed to click page {cnt + 1} after 3 attempts.")
-
-                except Exception as e:
-                    print(f"Exception while trying to click page {cnt + 1}: {e}")
-
-            if i % 10 == 0:
+            if cnt % 10 == 0:
                 print("\n")
                 try:
-                    # driver.find_element(By.XPATH, f"//a[font[text()='next']]").click()
-                    xpath = "//a[font[text()='next']]"
-                    element = driver.find_element(By.XPATH, xpath)
-                    element.click()
-
-                except Exception as e:
-                    print(f"Element with text 'next' not found")
+                    click_xpath(driver, "//a[font[text()='next']]")
+                except Exception:
+                    print("Element with text 'next' not found")
                     break
 
             cnt += 1
 
-        # Create the folder if it doesn't exist
-        file_path = f"{program_files_dir}/{org_name}"
-        if not os.path.exists(file_path):
-            os.makedirs(file_path)
         # Close the workbook and print a message
         workbook.close()
         print("Zone data Saved.")
 
     return True
-
 
 
 # extract message from adb device connected
@@ -974,104 +774,72 @@ def get_sms_message():
 
 # generate OTP
 def generate_otp(driver, mobile_no):
-    driver.refresh()
+    driver.reload(wait_until="domcontentloaded", timeout=60000)
     time.sleep(3)
-    
+
     # print("Current Mobile No. :", mobile_no)
     driver, Verification_code = get_verification(driver)
     # mobile_no = input("Enter 10 digit Mobile No: ")
-    driver.execute_script("document.getElementById('mobileNo').value='" + mobile_no + "'")
+    set_input_value(driver, "#mobileNo", mobile_no)
+    set_input_value(driver, "#verification", Verification_code)
 
-    driver.execute_script("document.getElementById('verification').value='" + Verification_code + "'")
-    
-
-    driver.find_element("xpath", "//input[@value='Get OTP']").click()
+    click_xpath(driver, "//input[@value='Get OTP']")
     time.sleep(3)
-
-    try:
-        # Check if an alert is present
-        alert = driver.switch_to.alert
-        print("Alert Text:", alert.text)
-        if alert.text == "you have entered wrong verification code.":
-            alert.accept()
-            generate_otp(driver, mobile_no)
-
-        alert.accept()  # Close the alert (Accept/Dismiss)
-    except NoAlertPresentException:
-        print("No alert present after clicking 'Get OTP'")
+    print("No blocking alert present after clicking 'Get OTP'")
     return driver
-
-
 
 
 def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     mail_triger = False
-    chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                        # and if it doesn't exist, download it automatically,
-                                        # then add chromedriver to path
 
     # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
     # print(org_number, org_name, mobile_no, otp_file_location)
 
-    options = Options()
-    options.add_argument("--disable-application-cache")  # Disable application cache
-    options.add_argument('--ignore-certificate-errors')
-    if browser == "0":
-        options.add_argument("--headless")
-    
-    # options.add_argument("--disable-gpu")  
-    options.add_argument("--log-level=3")
-    # # Set the download path
-    # options.add_experimental_option("prefs", {
-    #     "download.default_directory": initial_download,
-    #     "download.prompt_for_download": False,
-    #     "download.directory_upgrade": True,
-    #     "safebrowsing.enabled": True
-    #     })
-
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(60)  
-    driver.implicitly_wait(10) # Wait for a few seconds to see the results  
-
-    # Open a website
-    # Open the URL and wait for the page title to be "IREPS - Guest Login"
     url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
-    
 
-    while True:
+    with sync_playwright() as playwright:
+        browser_instance = playwright.chromium.launch(
+            headless=(browser == "0"),
+            args=["--disable-application-cache"],
+        )
+        context = browser_instance.new_context(ignore_https_errors=True)
+        driver = context.new_page()
+        driver.set_default_navigation_timeout(60000)
+        driver.set_default_timeout(10000)
+        driver.on("dialog", accept_dialog)
+
         try:
-            driver.get(url)
-            break # break the loop if no exception occurs
-        except Exception as e:
-            print(f"{url} - url exception") # - {e}") # print the exception message
-            print("Retrying...") # print a retry message
-            time.sleep(2)
+            while True:
+                try:
+                    driver.goto(url, wait_until="domcontentloaded", timeout=60000)
+                    break  # break the loop if no exception occurs
+                except Exception:
+                    print(f"{url} - url exception")
+                    print("Retrying...")
+                    time.sleep(2)
 
-    driver = is_under_maintenance(driver, url)
-    print("Current Mobile NO. ", mobile_no)
+            driver = is_under_maintenance(driver, url)
+            print("Current Mobile NO. ", mobile_no)
 
-    if is_otp_valid():
-        driver = login(driver, mobile_no)
-        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    else:
-        driver = generate_otp(driver, mobile_no)
-        countdown_timer("generate_otp", 60)
+            if is_otp_valid():
+                driver = login(driver, mobile_no)
+                mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+            else:
+                driver = generate_otp(driver, mobile_no)
+                countdown_timer("generate_otp", 60)
 
-        while get_sms_message():
-            countdown_timer("get_sms_message", 20)
-            get_sms_message()
+                while get_sms_message():
+                    countdown_timer("get_sms_message", 20)
+                    get_sms_message()
 
-        driver = login(driver, mobile_no)
-        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    print(f"\n\nExeting.... From {org_name}.\n\n")
-    driver.close()
+                driver = login(driver, mobile_no)
+                mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+            print(f"\n\nExeting.... From {org_name}.\n\n")
+        finally:
+            context.close()
+            browser_instance.close()
 
     return mail_triger
-
-
-
-
-
 
 
 def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
