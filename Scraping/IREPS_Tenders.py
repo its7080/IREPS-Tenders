@@ -8,13 +8,13 @@ Description: IREPS tenders automation.
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       
 """
 
+import gc
 import json
 import os
-import pandas as pd
 import subprocess
 import sys
 import re
-# from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 import time
 # import tempfile
 # import shutil
@@ -131,6 +131,7 @@ DEFAULT_WAIT_SECONDS = 20
 SHORT_WAIT_SECONDS = 5
 PDF_DOWNLOAD_TIMEOUT = 30
 PDF_DOWNLOAD_RETRIES = 5
+PDF_DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
@@ -517,15 +518,21 @@ def download_pdf(url, retries=PDF_DOWNLOAD_RETRIES):
 
     for i in range(retries):
         tmp_file_path = f"{tender_pdf_file_path}.download"
+        downloaded_bytes = 0
         try:
-            response = requests.get(url, headers=headers, timeout=PDF_DOWNLOAD_TIMEOUT)
-            response.raise_for_status()
+            with requests.get(url, headers=headers, timeout=PDF_DOWNLOAD_TIMEOUT, stream=True) as response:
+                response.raise_for_status()
 
-            if not response.content:
+                with open(tmp_file_path, 'wb') as output_file:
+                    for chunk in response.iter_content(chunk_size=PDF_DOWNLOAD_CHUNK_SIZE):
+                        if not chunk:
+                            continue
+                        output_file.write(chunk)
+                        downloaded_bytes += len(chunk)
+
+            if downloaded_bytes == 0:
                 raise ValueError("Downloaded PDF is empty")
 
-            with open(tmp_file_path, 'wb') as output_file:
-                output_file.write(response.content)
             os.replace(tmp_file_path, tender_pdf_file_path)
             print("Download successful")
             return True
@@ -774,7 +781,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
         # Create a file path for the new Excel workbook
         file_path = os.path.join(org_folder_path, file_name)
         # Create a new Excel workbook and a worksheet within it
-        workbook = xlsxwriter.Workbook(file_path)
+        workbook = xlsxwriter.Workbook(file_path, {'constant_memory': True})
         worksheet1 = workbook.add_worksheet("ListOfTenders")
         # Write the column headers in the worksheet
         headers = ["Zone", "Dept.", "Tender No.", "Tender Title", "Type", "Due Date/Time", "Due Days", "Advertised Value", "Doc Link", "Bidding type", "Bidding System", "Date Time Of Uploading Tender", "Pre-Bid Conference Date Time", "Earnest Money (Rs.)", "Contract Type"]
@@ -885,6 +892,8 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     continue
 
                 dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata()
+                if os.path.exists(tender_pdf_file_path):
+                    os.remove(tender_pdf_file_path)
 
                 try:
                     # Calculate due_days
@@ -913,6 +922,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
 
                 # Switch back to the initial window
                 close_extra_windows(driver, initial_handle)
+                gc.collect()
 
                 if k == tender_count:
                     last_tender = True
@@ -958,6 +968,7 @@ def tenders(driver, org_number, org_name, program_file_dir):
                     print(f"Element with text 'next' not found")
                     break
 
+            gc.collect()
             cnt += 1
 
         # Close the workbook and print a message
@@ -1058,6 +1069,7 @@ def generate_otp(driver, mobile_no):
 
 def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     mail_triger = False
+    driver = None
     chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
                                         # and if it doesn't exist, download it automatically,
                                         # then add chromedriver to path
@@ -1070,8 +1082,14 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     options.add_argument('--ignore-certificate-errors')
     if browser == "0":
         options.add_argument("--headless")
-    
-    # options.add_argument("--disable-gpu")  
+
+    # Keep Chrome lightweight during long scraping runs.
+    options.add_argument("--disable-background-networking")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disk-cache-size=1")
+    options.add_argument("--media-cache-size=1")
     options.add_argument("--log-level=3")
     # # Set the download path
     # options.add_experimental_option("prefs", {
@@ -1081,48 +1099,50 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     #     "safebrowsing.enabled": True
     #     })
 
-    driver = webdriver.Chrome(options=options)
-    driver.set_page_load_timeout(60)  
-    driver.implicitly_wait(10) # Wait for a few seconds to see the results  
+    try:
+        driver = webdriver.Chrome(options=options)
+        driver.set_page_load_timeout(60)
+        driver.implicitly_wait(10) # Wait for a few seconds to see the results
 
-    # Open a website
-    # Open the URL and wait for the page title to be "IREPS - Guest Login"
-    url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
-    
+        # Open a website
+        # Open the URL and wait for the page title to be "IREPS - Guest Login"
+        url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
 
-    while True:
-        try:
-            driver.get(url)
-            break # break the loop if no exception occurs
-        except Exception as e:
-            print(f"{url} - url exception") # - {e}") # print the exception message
-            print("Retrying...") # print a retry message
-            time.sleep(2)
+        while True:
+            try:
+                driver.get(url)
+                break # break the loop if no exception occurs
+            except Exception as e:
+                print(f"{url} - url exception") # - {e}") # print the exception message
+                print("Retrying...") # print a retry message
+                time.sleep(2)
 
-    driver = is_under_maintenance(driver, url)
-    print("Current Mobile NO. ", mobile_no)
+        driver = is_under_maintenance(driver, url)
+        print("Current Mobile NO. ", mobile_no)
 
-    if is_otp_valid():
-        driver = login(driver, mobile_no)
-        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    else:
-        driver = generate_otp(driver, mobile_no)
-        countdown_timer("generate_otp", 60)
+        if is_otp_valid():
+            driver = login(driver, mobile_no)
+            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+        else:
+            driver = generate_otp(driver, mobile_no)
+            countdown_timer("generate_otp", 60)
 
-        while get_sms_message():
-            countdown_timer("get_sms_message", 20)
-            get_sms_message()
+            while get_sms_message():
+                countdown_timer("get_sms_message", 20)
+                get_sms_message()
 
-        driver = login(driver, mobile_no)
-        mail_triger = tenders(driver, org_number, org_name, program_files_dir)
-    print(f"\n\nExeting.... From {org_name}.\n\n")
-    driver.close()
+            driver = login(driver, mobile_no)
+            mail_triger = tenders(driver, org_number, org_name, program_files_dir)
+    finally:
+        print(f"\n\nExeting.... From {org_name}.\n\n")
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception as exc:
+                print(f"Unable to quit Chrome cleanly: {exc}")
+        gc.collect()
 
     return mail_triger
-
-
-
-
 
 
 
@@ -1131,39 +1151,62 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
         os.makedirs(output_directory)
         print(f"Folder '{output_directory}' created successfully.")
 
-    b = datetime.datetime.now()
-    merged_data = pd.DataFrame()
-
-    for folder_name in folders:
-        folder_path = os.path.join(program_file_dir, folder_name[1])  # Replace 'path_to_root_folder' with the actual root folder path
-
-        if os.path.exists(folder_path) and os.path.isdir(folder_path):
-            files = os.listdir(folder_path)
-
-            for file in files:
-                if file.endswith('.xlsx'):
-                    file_path = os.path.join(folder_path, file)
-                    data = pd.read_excel(file_path)
-
-                    # Filter out columns that are all-NA
-                    data = data.dropna(how='all', axis=1)
-
-                    # Add the current date to the data
-                    b = datetime.datetime.now()
-                    data['Get Date'] = b.strftime("%d/%m/%Y")
-
-                    # Concatenate the filtered data
-                    merged_data = pd.concat([merged_data, data], ignore_index=True)
-
-    # Create the timestamp for the filename
     timestamp = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-
-    # Output file path and name
     output_filename = f"merged_IREPS_{timestamp}.xlsx"
     output_file_path = os.path.join(output_directory, output_filename)
+    get_date = datetime.datetime.now().strftime("%d/%m/%Y")
 
-    # Save the merged data to the output file
-    merged_data.to_excel(output_file_path, index=False)
+    output_workbook = Workbook(write_only=True)
+    output_sheet = output_workbook.create_sheet("ListOfTenders")
+    header_written = False
+    source_files = 0
+    total_rows = 0
+
+    try:
+        for folder_name in folders:
+            folder_path = os.path.join(program_file_dir, folder_name[1])  # Replace 'path_to_root_folder' with the actual root folder path
+
+            if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
+                continue
+
+            for file in os.listdir(folder_path):
+                if not file.endswith('.xlsx'):
+                    continue
+
+                file_path = os.path.join(folder_path, file)
+                source_workbook = None
+                try:
+                    source_workbook = load_workbook(file_path, read_only=True, data_only=True)
+                    source_sheet = source_workbook.active
+                    rows = source_sheet.iter_rows(values_only=True)
+                    source_header = next(rows, None)
+
+                    if source_header is None:
+                        continue
+
+                    source_files += 1
+                    if not header_written:
+                        output_sheet.append(list(source_header) + ['Get Date'])
+                        header_written = True
+
+                    for row in rows:
+                        if row is None or all(cell is None for cell in row):
+                            continue
+                        output_sheet.append(list(row) + [get_date])
+                        total_rows += 1
+                finally:
+                    if source_workbook is not None:
+                        source_workbook.close()
+                    gc.collect()
+
+        if not header_written:
+            output_sheet.append(['Get Date'])
+
+        output_workbook.save(output_file_path)
+        print(f"Merged {total_rows} rows from {source_files} xlsx file(s).")
+    finally:
+        output_workbook.close()
+        gc.collect()
 
     return output_file_path
 
