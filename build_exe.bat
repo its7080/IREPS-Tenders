@@ -27,15 +27,25 @@ if not exist "%PROGRAM_FILES_DIR%" (
     exit /b 1
 )
 
-echo [1/5] Upgrading build tooling...
+echo [1/6] Checking Python version...
+python -c "import sys; v=sys.version_info; print(f'Python {v.major}.{v.minor}.{v.micro}'); sys.exit(0 if (v.major, v.minor) in ((3, 10), (3, 11), (3, 12)) else 1)"
+if errorlevel 1 (
+    echo.
+    echo Unsupported Python version. This project currently builds with Python 3.10, 3.11, or 3.12.
+    echo Python 3.13+ is not supported by the pinned requirements, including pandas and TensorFlow.
+    echo Create a fresh virtual environment with a supported Python version, then run build_exe.bat again.
+    exit /b 1
+)
+
+echo [2/6] Upgrading build tooling...
 python -m pip install --upgrade pip pyinstaller
 if errorlevel 1 goto :fail
 
-echo [2/5] Installing Python requirements...
+echo [3/6] Installing Python requirements...
 python -m pip install -r "%PROJECT_ROOT%requirements.txt"
 if errorlevel 1 goto :fail
 
-echo [3/5] Cleaning old build artifacts...
+echo [4/6] Cleaning old build artifacts...
 if exist "%PROJECT_ROOT%build" rmdir /s /q "%PROJECT_ROOT%build"
 if exist "%PROJECT_ROOT%dist" rmdir /s /q "%PROJECT_ROOT%dist"
 if exist "%SCRAPING_DIR%\build" rmdir /s /q "%SCRAPING_DIR%\build"
@@ -46,7 +56,7 @@ if exist "%SCRAPING_DIR%\IREPS_scraping_gui.spec" del /q "%SCRAPING_DIR%\IREPS_s
 if exist "%SCRAPING_DIR%\IREPS_Tenders.exe" del /q "%SCRAPING_DIR%\IREPS_Tenders.exe"
 if exist "%SCRAPING_DIR%\IREPS_scraping_gui.exe" del /q "%SCRAPING_DIR%\IREPS_scraping_gui.exe"
 
-echo [4/5] Building one-file EXE from IREPS_Tenders.py...
+echo [5/6] Building one-file EXE from IREPS_Tenders.py...
 pushd "%SCRAPING_DIR%"
 pyinstaller --noconfirm --clean --onefile --name IREPS_Tenders ^
     !EXTRA_DATA! ^
@@ -61,7 +71,7 @@ if errorlevel 1 (
     goto :fail
 )
 
-echo [5/5] Building one-file EXE from IREPS_scraping_gui.py...
+echo [6/6] Building one-file EXE from IREPS_scraping_gui.py...
 pyinstaller --noconfirm --clean --onefile --windowed --name IREPS_scraping_gui ^
     !EXTRA_DATA! ^
     --add-data "app_logo.ico;." ^
