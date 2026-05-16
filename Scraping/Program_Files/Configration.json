@@ -4,7 +4,7 @@
     "captcha_manual_input": "0",
     "adb_device_ip": "192.168.0.70",
     "sender_email_id": "tenderautomation@royalconstruct.in",
-    "sender_email_password": "Auto@2023",
+    "sender_email_password": "xxxxxxxx",
     "notification_emailids": [
         "am7059141480@gmail.com",
         "anupammanna07@gmail.com"
@@ -19,6 +19,6 @@
     "otp": "489708",
     "signal_datelog": "FALSE",
     "signal_ireps": "FALSE",
-    "max_org_workers": 4,
+    "max_org_workers": 5,
     "max_zone_workers": 8
 }
