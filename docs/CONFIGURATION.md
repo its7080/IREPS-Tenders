@@ -79,7 +79,7 @@ Run the scraper and configuration editor from the `Scraping/` directory unless p
 ## Worker model
 
 - Organization workers are controlled by `max_org_workers`.
-- Organization `01: Indian Railway` has an additional zone-level worker pool controlled by `max_zone_workers`. The scraper first reads the available Indian Railway zones, then launches a separate Selenium/Chrome worker for each zone up to the configured limit.
+- Organization `01: Indian Railway` has an additional zone-level worker pool controlled by `max_zone_workers`. The scraper first reads the available Indian Railway zones, then launches a separate Playwright/Chromium worker for each zone up to the configured limit.
 - Non-Indian-Railway organizations continue to scrape zones sequentially inside their organization worker.
 - Set `max_zone_workers` lower on machines with limited CPU/RAM because each zone worker owns a separate browser session.
 
