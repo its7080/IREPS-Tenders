@@ -24,23 +24,23 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 # from email.mime.application import MIMEApplication
-from selenium import webdriver
-import chromedriver_autoinstaller
-from selenium.webdriver.chrome.options import Options
+from playwright_compat import (
+    Alert,
+    By,
+    EC,
+    NoAlertPresentException,
+    NoSuchElementException,
+    PlaywrightDriver,
+    Select,
+    TimeoutException,
+    WebDriverWait,
+)
 # import shutil
 # import urllib.request
-from selenium.webdriver.common.alert import Alert
-from selenium.webdriver.common.by import By
-# from selenium.webdriver.support.ui import WebDriverWait
-# from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
-from selenium.common.exceptions import NoSuchElementException
-# from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse
 import requests
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.support.ui import Select
 import xlsxwriter
 import math
 import pdfplumber
@@ -54,50 +54,6 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-# from chrome_updater import ChromeUpdater
-from Program_Files.scraping_library import check_internet_connection
-# from Program_Files.scraping_library import get_folder_size_in_mb
-# from Program_Files.scraping_library import delete_empty_folders
-from Program_Files.scraping_library import delete_folder
-from Program_Files.scraping_library import packaging
-from Program_Files.scraping_library import create_folder_if_not_exists
-from Program_Files.scraping_library import is_android_device_connected
-# from Program_Files.scraping_library import send_email
-from Program_Files.scraping_library import countdown_timer
-from Program_Files.scraping_library import delete_xlsx_files
-from Program_Files.scraping_library import no_adb_mail
-from Program_Files.scraping_library import skip_zones
-from Program_Files.scraping_library import get_current_device_serial
-from Program_Files.captcha_solver import predict_captcha
-
-import base64
-import io
-from PIL import Image
-# # =======================
-# # chrome_updater
-# # =======================
-# # Create an instance of ChromeUpdater
-# updater = ChromeUpdater()
-
-# # Step 1: Open Chrome with Selenium
-# driver = updater.relaunch_chrome_with_selenium()
-
-# # Step 2: Close Chrome to prepare for the update
-# time.sleep(5)  # Simulate some activity
-# updater.close_chrome(driver)
-
-# # Step 3: Download and install the latest version of Chrome
-# updater.download_chrome_installer()
-# updater.install_chrome()
-
-# # Step 4: Relaunch Chrome after the update
-# driver = updater.relaunch_chrome_with_selenium()
-
-
-
-
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
 # Determine script directory
 script_path = os.path.abspath(sys.argv[0])  # Absolute path of the executable
@@ -135,7 +91,6 @@ SHORT_WAIT_SECONDS = 5
 PDF_DOWNLOAD_TIMEOUT = 30
 PDF_DOWNLOAD_RETRIES = 5
 PDF_DOWNLOAD_CHUNK_SIZE = 1024 * 1024
-CHROMEDRIVER_INSTALL_LOCK = threading.Lock()
 OTP_REFRESH_LOCK = threading.Lock()
 
 
@@ -198,7 +153,7 @@ with open(config_file_path, 'w') as file:
 
 
 def retry_action(action, retries=3, delay=2, description="operation"):
-    """Run a Selenium or file operation with bounded retries."""
+    """Run a browser or file operation with bounded retries."""
     last_error = None
     for attempt in range(1, retries + 1):
         try:
@@ -213,7 +168,7 @@ def retry_action(action, retries=3, delay=2, description="operation"):
 
 
 def close_extra_windows(driver, initial_handle):
-    """Close every browser window except the initial results window."""
+    """Close every browser page except the initial results page."""
     for window_handle in list(driver.window_handles):
         if window_handle == initial_handle:
             continue
@@ -221,17 +176,17 @@ def close_extra_windows(driver, initial_handle):
             driver.switch_to.window(window_handle)
             driver.close()
         except Exception as exc:
-            print(f"Unable to close extra browser window: {exc}")
+            print(f"Unable to close extra browser page: {exc}")
     driver.switch_to.window(initial_handle)
 
 
 
 def wait_for_new_window(driver, current_handles, timeout=DEFAULT_WAIT_SECONDS):
-    """Wait until Selenium opens a new window and return the new handle."""
+    """Wait until Playwright opens a new page and return the new handle."""
     WebDriverWait(driver, timeout).until(lambda d: len(d.window_handles) > len(current_handles))
     new_handles = [handle for handle in driver.window_handles if handle not in current_handles]
     if not new_handles:
-        raise TimeoutException("New browser window did not open")
+        raise TimeoutException("New browser page did not open")
     return new_handles[-1]
 
 
@@ -241,6 +196,99 @@ def safe_click(driver, locator, timeout=DEFAULT_WAIT_SECONDS):
     element = WebDriverWait(driver, timeout).until(EC.element_to_be_clickable(locator))
     element.click()
     return element
+
+
+PDF_URL_PATTERN = re.compile(r"(?:https?://|/|[A-Za-z0-9_./-])[^'\"\s<>]*\.pdf(?:\?[^'\"\s<>]*)?", re.IGNORECASE)
+PDF_DOWNLOAD_LINK_XPATH = (
+    "//a[contains(translate(normalize-space(.), "
+    "'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'download tender doc') "
+    "and contains(translate(normalize-space(.), "
+    "'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pdf')]"
+)
+
+
+def extract_pdf_url_from_text(text, base_url):
+    """Return the first direct PDF URL from text or HTML."""
+    if not text:
+        return None
+
+    pdf_match = PDF_URL_PATTERN.search(text)
+    if not pdf_match:
+        return None
+
+    return urljoin(base_url, pdf_match.group(0))
+
+
+def extract_pdf_url_from_element(element, base_url):
+    """Return a direct tender PDF URL from a link element when available."""
+    for attribute_name in ("href", "onclick"):
+        pdf_url = extract_pdf_url_from_text(element.get_attribute(attribute_name), base_url)
+        if pdf_url:
+            return pdf_url
+
+    return None
+
+
+def find_tender_pdf_link(driver):
+    """Find the tender document PDF link using tolerant text matching."""
+    deadline = time.monotonic() + DEFAULT_WAIT_SECONDS
+    last_error = None
+
+    while time.monotonic() <= deadline:
+        try:
+            pdf_links = driver.find_elements(By.XPATH, PDF_DOWNLOAD_LINK_XPATH)
+            if not pdf_links:
+                pdf_links = [
+                    link
+                    for link in driver.find_elements(By.XPATH, "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pdf')]")
+                    if "download" in (link.get_attribute("innerText") or "").lower()
+                ]
+
+            if pdf_links:
+                return pdf_links[0]
+        except Exception as exc:
+            last_error = exc
+
+        time.sleep(0.25)
+
+    if last_error:
+        raise TimeoutException(str(last_error))
+    raise TimeoutException("Tender PDF download link was not found")
+
+
+def resolve_tender_pdf_url(driver):
+    """Resolve the tender PDF URL from the page or by clicking the PDF link."""
+    pdf_url = extract_pdf_url_from_text(driver.page_source, driver.current_url)
+    if pdf_url:
+        return pdf_url
+
+    pdf_link = find_tender_pdf_link(driver)
+    pdf_url = extract_pdf_url_from_element(pdf_link, driver.current_url)
+    if pdf_url:
+        return pdf_url
+
+    existing_handles = driver.window_handles
+    previous_url = driver.current_url
+    pdf_link.click(force=True)
+
+    try:
+        pdf_window = wait_for_new_window(driver, existing_handles, SHORT_WAIT_SECONDS)
+        driver.switch_to.window(pdf_window)
+        return driver.current_url
+    except TimeoutException:
+        if driver.current_url != previous_url:
+            return driver.current_url
+
+        pdf_url = extract_pdf_url_from_text(driver.page_source, driver.current_url)
+        if pdf_url:
+            return pdf_url
+
+        raise TimeoutException("Tender PDF click did not open a new page or expose a PDF URL")
+
+
+def is_pdf_url(url):
+    """Return True when the URL path points to a PDF, ignoring query strings."""
+    return urlparse(url).path.lower().endswith(".pdf")
 
 
 
@@ -365,14 +413,14 @@ def get_verification(driver):
 
 def login(driver, mobile_no):
     """
-    Log in to a website using the provided WebDriver instance and mobile number.
+    Log in to a website using the provided browser instance and mobile number.
 
     Args:
-        driver (WebDriver): Selenium WebDriver instance for browser.
+        driver (PlaywrightDriver): Playwright-backed browser instance.
         mobile_no (str): Mobile number for login.
 
     Returns:
-        WebDriver: Updated WebDriver instance after login, or None if login fails.
+        PlaywrightDriver: Updated browser instance after login, or None if login fails.
     """
 
     # Attempt to refresh the page up to 3 times if a timeout occurs
@@ -484,13 +532,13 @@ def is_no_result_found_present_in_page(driver):
     Check if the page contains the "No Results Found" message.
 
     Args:
-        driver (WebDriver): The Selenium WebDriver instance for interacting with the page.
+        driver (PlaywrightDriver): The browser instance for interacting with the page.
 
     Returns:
         tuple: (bool, driver) where the boolean is True if "No Results Found" is present, False otherwise.
     """
     try:
-        # Get the page source using Selenium
+        # Get the page source using Playwright
         page_source = driver.page_source
 
         # Parse the HTML content with BeautifulSoup
@@ -681,7 +729,7 @@ def get_zone_options(driver):
 
 
 def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zone):
-    """Scrape one organization zone with the supplied Selenium driver."""
+    """Scrape one organization zone with the supplied Playwright driver."""
     last_tender = False
     print(f"\nScraping ZONE -> {zone}")
     print("----------------")
@@ -846,29 +894,21 @@ def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zon
 
 
             try:
-                xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
-                existing_handles = driver.window_handles
-                safe_click(driver, (By.XPATH, xpath), DEFAULT_WAIT_SECONDS)
-                pdf_window = wait_for_new_window(driver, existing_handles)
-                driver.switch_to.window(pdf_window)
+                pdf_url = resolve_tender_pdf_url(driver)
             except Exception as e:
-                # Handle other exceptions while clicking 'Custom Search' button
                 print(f"Download Tender Doc. (Pdf) button - Exception: {e}")
+                tender_page_path = os.path.join(temp_dir_path, f"tender_page_{threading.get_ident()}_{uuid.uuid4().hex}.html")
+                try:
+                    os.makedirs(temp_dir_path, exist_ok=True)
+                    with open(tender_page_path, "w", encoding="utf-8") as tender_page_file:
+                        tender_page_file.write(driver.page_source)
+                    print(f"Saved tender page HTML for debugging: {tender_page_path}")
+                except Exception as save_exc:
+                    print(f"Unable to save tender page HTML for debugging: {save_exc}")
                 close_extra_windows(driver, initial_handle)
                 time.sleep(2)
                 continue
 
-            handles = driver.window_handles
-
-
-            # # Define a function to wait for the page to fully load
-            # def page_fully_loaded(driver):
-            #     return driver.execute_script("return document.readyState") == "complete"
-
-            # # Wait for the page to fully load
-            # WebDriverWait(driver, 10).until(page_fully_loaded)
-
-            pdf_url = driver.current_url
             print(" ", pdf_url)
 
             # # Execute JavaScript to get the current window's URL
@@ -885,7 +925,7 @@ def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zon
             #         pdf_url = driver.current_url
             #         continue
 
-            if pdf_url.lower().endswith(".pdf"):
+            if is_pdf_url(pdf_url):
                 pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
                 if not download_pdf(pdf_url, pdf_file_path):
                     close_extra_windows(driver, initial_handle)
@@ -1085,28 +1125,20 @@ def generate_otp(driver, mobile_no):
 
 
 def create_logged_in_driver(mobile_no):
-    """Create a Chrome driver, open IREPS, refresh OTP when needed, and log in."""
-    with CHROMEDRIVER_INSTALL_LOCK:
-        chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
-                                            # and if it doesn't exist, download it automatically,
-                                            # then add chromedriver to path
+    """Create a Playwright browser, open IREPS, refresh OTP when needed, and log in."""
+    # Keep Chromium lightweight during long scraping runs.
+    browser_args = [
+        "--disable-application-cache",
+        "--disable-background-networking",
+        "--disable-dev-shm-usage",
+        "--disable-extensions",
+        "--disable-gpu",
+        "--disk-cache-size=1",
+        "--media-cache-size=1",
+        "--log-level=3",
+    ]
 
-    options = Options()
-    options.add_argument("--disable-application-cache")  # Disable application cache
-    options.add_argument('--ignore-certificate-errors')
-    if browser == "0":
-        options.add_argument("--headless")
-
-    # Keep Chrome lightweight during long scraping runs.
-    options.add_argument("--disable-background-networking")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-extensions")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disk-cache-size=1")
-    options.add_argument("--media-cache-size=1")
-    options.add_argument("--log-level=3")
-
-    driver = webdriver.Chrome(options=options)
+    driver = PlaywrightDriver(headless=(browser == "0"), browser_args=browser_args)
     driver.set_page_load_timeout(60)
     driver.implicitly_wait(10) # Wait for a few seconds to see the results
 
@@ -1149,7 +1181,7 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
             try:
                 driver.quit()
             except Exception as exc:
-                print(f"Unable to quit Chrome cleanly: {exc}")
+                print(f"Unable to quit Playwright browser cleanly: {exc}")
         gc.collect()
 
     return mail_triger
@@ -1190,7 +1222,7 @@ def scrape_indian_railway_zone_worker(org_number, org_name, zone_option):
             try:
                 driver.quit()
             except Exception as exc:
-                print(f"Unable to quit Indian Railway zone worker Chrome cleanly: {exc}")
+                print(f"Unable to quit Indian Railway zone worker Playwright browser cleanly: {exc}")
         print(f"Finished Indian Railway zone worker for {zone}.")
         gc.collect()
 
