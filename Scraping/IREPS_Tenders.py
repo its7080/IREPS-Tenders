@@ -1411,7 +1411,7 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 
 
 # smtp send status
-def send_mail(program_file_dir, all_email_ids):
+def send_mail(program_file_dir, all_email_ids, master_xlsx_path=None):
     # Check if read_email_ids list has at least one item
     if not all_email_ids:
         print("Email skipped: receiver_emailids is empty.")
@@ -1425,7 +1425,7 @@ def send_mail(program_file_dir, all_email_ids):
     receiver_emails = all_email_ids # ["am7059141480@gmail.com", "vmaskara@royalconstruct.com"]
     subject = "IREPS Tender Scraping Report"
 
-    notification_text = "This is an automated notification to inform you that the IREPS tender scraping process has been completed. please verify the results \n\n"
+    notification_text = "This is an automated notification to inform you that the IREPS tender scraping process has been completed. The master xlsx file is attached. Please verify the results. \n\n"
 
     # Gather system information
     system_info = (
@@ -1469,28 +1469,34 @@ def send_mail(program_file_dir, all_email_ids):
     #         print(f"The file {log_file_path} is empty or does not exist. Not attaching to the email.")
     #         return
 
-    # Attach the first .xlsx file found in the specified folder
-    xlsx_folder = program_file_dir
+    # Attach the newly created master .xlsx file. If an explicit path was not
+    # supplied, fall back to the newest .xlsx in the program folder so the
+    # email never attaches an older workbook by accident.
+    xlsx_file_path = master_xlsx_path
+    if xlsx_file_path is None:
+        xlsx_folder = program_file_dir
+        xlsx_candidates = [
+            os.path.join(xlsx_folder, filename)
+            for filename in os.listdir(xlsx_folder)
+            if filename.endswith(".xlsx")
+        ]
+        if xlsx_candidates:
+            xlsx_file_path = max(xlsx_candidates, key=os.path.getmtime)
 
-    # List all files in the folder
-    files_in_folder = os.listdir(xlsx_folder)
-
-    # Find the first .xlsx file
     attachment_found = False
-    for filename in files_in_folder:
-        if filename.endswith(".xlsx"):
-            xlsx_file_path = os.path.join(xlsx_folder, filename)
-            with open(xlsx_file_path, "rb") as attachment:
-                part = MIMEBase("application", "octet-stream")
-                part.set_payload((attachment).read())
-                encoders.encode_base64(part)
-                part.add_header("Content-Disposition", f"attachment; filename={filename}")
-                msg.attach(part)
-            attachment_found = True
-            break  # Attach the first .xlsx file found
+    if xlsx_file_path and os.path.exists(xlsx_file_path) and xlsx_file_path.endswith(".xlsx"):
+        filename = os.path.basename(xlsx_file_path)
+        with open(xlsx_file_path, "rb") as attachment:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload((attachment).read())
+            encoders.encode_base64(part)
+            part.add_header("Content-Disposition", f"attachment; filename={filename}")
+            msg.attach(part)
+        attachment_found = True
+        print(f"Attached master xlsx to email: {xlsx_file_path}")
 
     if not attachment_found:
-        print(f"Email warning: no .xlsx attachment found in {xlsx_folder}.")
+        print(f"Email warning: master .xlsx attachment not found: {xlsx_file_path}")
 
     # Establish a connection to the SMTP server
     smtp_server = "smtp.office365.com"
@@ -1660,9 +1666,11 @@ def log_to_file(filename):
             #         print(program_file_dir, all_email_ids, log_file_path)
             #         send_mail(program_file_dir, all_email_ids, log_file_path, attach_log=False)
 
-            if mail_triger_main == True:
-                print(program_files_dir, receiver_emailids)
-                send_mail(program_files_dir, receiver_emailids)
+            if os.path.exists(output_file_path2):
+                print(program_files_dir, receiver_emailids, output_file_path2)
+                send_mail(program_files_dir, receiver_emailids, output_file_path2)
+            else:
+                print(f"Email skipped: master xlsx was not saved at {output_file_path2}.")
 
 
 
