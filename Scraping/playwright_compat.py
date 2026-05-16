@@ -101,8 +101,8 @@ class PlaywrightElement:
     def __init__(self, locator):
         self.locator = locator.first
 
-    def click(self):
-        self.locator.click(timeout=20_000)
+    def click(self, force=False):
+        self.locator.click(timeout=20_000, force=force)
 
     def get_attribute(self, name):
         if name == "innerText":

@@ -39,7 +39,7 @@ from playwright_compat import (
 # import urllib.request
 from dateutil.relativedelta import relativedelta
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import requests
 import xlsxwriter
 import math
@@ -198,21 +198,97 @@ def safe_click(driver, locator, timeout=DEFAULT_WAIT_SECONDS):
     return element
 
 
+PDF_URL_PATTERN = re.compile(r"(?:https?://|/|[A-Za-z0-9_./-])[^'\"\s<>]*\.pdf(?:\?[^'\"\s<>]*)?", re.IGNORECASE)
+PDF_DOWNLOAD_LINK_XPATH = (
+    "//a[contains(translate(normalize-space(.), "
+    "'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'download tender doc') "
+    "and contains(translate(normalize-space(.), "
+    "'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pdf')]"
+)
+
+
+def extract_pdf_url_from_text(text, base_url):
+    """Return the first direct PDF URL from text or HTML."""
+    if not text:
+        return None
+
+    pdf_match = PDF_URL_PATTERN.search(text)
+    if not pdf_match:
+        return None
+
+    return urljoin(base_url, pdf_match.group(0))
+
+
 def extract_pdf_url_from_element(element, base_url):
     """Return a direct tender PDF URL from a link element when available."""
     for attribute_name in ("href", "onclick"):
-        attribute_value = element.get_attribute(attribute_name)
-        if not attribute_value:
-            continue
-
-        pdf_match = re.search(r"(?:https?://|/|[A-Za-z0-9_./-])[^'\"\s<>]*\.pdf(?:\?[^'\"\s<>]*)?", attribute_value)
-        if not pdf_match:
-            continue
-
-        pdf_url = pdf_match.group(0)
-        return urljoin(base_url, pdf_url)
+        pdf_url = extract_pdf_url_from_text(element.get_attribute(attribute_name), base_url)
+        if pdf_url:
+            return pdf_url
 
     return None
+
+
+def find_tender_pdf_link(driver):
+    """Find the tender document PDF link using tolerant text matching."""
+    deadline = time.monotonic() + DEFAULT_WAIT_SECONDS
+    last_error = None
+
+    while time.monotonic() <= deadline:
+        try:
+            pdf_links = driver.find_elements(By.XPATH, PDF_DOWNLOAD_LINK_XPATH)
+            if not pdf_links:
+                pdf_links = [
+                    link
+                    for link in driver.find_elements(By.XPATH, "//a[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'pdf')]")
+                    if "download" in (link.get_attribute("innerText") or "").lower()
+                ]
+
+            if pdf_links:
+                return pdf_links[0]
+        except Exception as exc:
+            last_error = exc
+
+        time.sleep(0.25)
+
+    if last_error:
+        raise TimeoutException(str(last_error))
+    raise TimeoutException("Tender PDF download link was not found")
+
+
+def resolve_tender_pdf_url(driver):
+    """Resolve the tender PDF URL from the page or by clicking the PDF link."""
+    pdf_url = extract_pdf_url_from_text(driver.page_source, driver.current_url)
+    if pdf_url:
+        return pdf_url
+
+    pdf_link = find_tender_pdf_link(driver)
+    pdf_url = extract_pdf_url_from_element(pdf_link, driver.current_url)
+    if pdf_url:
+        return pdf_url
+
+    existing_handles = driver.window_handles
+    previous_url = driver.current_url
+    pdf_link.click(force=True)
+
+    try:
+        pdf_window = wait_for_new_window(driver, existing_handles, SHORT_WAIT_SECONDS)
+        driver.switch_to.window(pdf_window)
+        return driver.current_url
+    except TimeoutException:
+        if driver.current_url != previous_url:
+            return driver.current_url
+
+        pdf_url = extract_pdf_url_from_text(driver.page_source, driver.current_url)
+        if pdf_url:
+            return pdf_url
+
+        raise TimeoutException("Tender PDF click did not open a new page or expose a PDF URL")
+
+
+def is_pdf_url(url):
+    """Return True when the URL path points to a PDF, ignoring query strings."""
+    return urlparse(url).path.lower().endswith(".pdf")
 
 
 
@@ -818,21 +894,17 @@ def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zon
 
 
             try:
-                xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
-                pdf_link = WebDriverWait(driver, DEFAULT_WAIT_SECONDS).until(
-                    EC.element_to_be_clickable((By.XPATH, xpath))
-                )
-                pdf_url = extract_pdf_url_from_element(pdf_link, driver.current_url)
-
-                if not pdf_url:
-                    existing_handles = driver.window_handles
-                    pdf_link.click()
-                    pdf_window = wait_for_new_window(driver, existing_handles)
-                    driver.switch_to.window(pdf_window)
-                    pdf_url = driver.current_url
+                pdf_url = resolve_tender_pdf_url(driver)
             except Exception as e:
-                # Handle other exceptions while clicking 'Custom Search' button
                 print(f"Download Tender Doc. (Pdf) button - Exception: {e}")
+                tender_page_path = os.path.join(temp_dir_path, f"tender_page_{threading.get_ident()}_{uuid.uuid4().hex}.html")
+                try:
+                    os.makedirs(temp_dir_path, exist_ok=True)
+                    with open(tender_page_path, "w", encoding="utf-8") as tender_page_file:
+                        tender_page_file.write(driver.page_source)
+                    print(f"Saved tender page HTML for debugging: {tender_page_path}")
+                except Exception as save_exc:
+                    print(f"Unable to save tender page HTML for debugging: {save_exc}")
                 close_extra_windows(driver, initial_handle)
                 time.sleep(2)
                 continue
@@ -853,7 +925,7 @@ def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zon
             #         pdf_url = driver.current_url
             #         continue
 
-            if pdf_url.lower().endswith(".pdf"):
+            if is_pdf_url(pdf_url):
                 pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
                 if not download_pdf(pdf_url, pdf_file_path):
                     close_extra_windows(driver, initial_handle)
