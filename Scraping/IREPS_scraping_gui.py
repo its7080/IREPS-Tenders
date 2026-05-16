@@ -29,7 +29,8 @@ import customtkinter as ctk
 APP_TITLE = "IREPS Tender Scraper"
 CONFIG_FILENAME = "Configration.json"
 ORGANIZATION_FILENAME = "Organization_list.txt"
-SCRAPER_FILENAME = "IREPS_Tenders.py"
+SCRAPER_SCRIPT_FILENAME = "IREPS_Tenders.py"
+SCRAPER_EXE_FILENAME = "IREPS_Tenders.exe"
 TOGGLE_FIELDS = {"browser", "adb_device", "captcha_manual_input"}
 LIST_FIELDS = {"notification_emailids", "receiver_emailids"}
 SECRET_FIELDS = {"sender_email_password", "otp"}
@@ -50,6 +51,18 @@ WARNING = "#CA5010"
 ERROR_CLR = "#C42B1C"
 
 
+def is_frozen_app() -> bool:
+    """Return True when running from a PyInstaller-built executable."""
+    return bool(getattr(sys, "frozen", False))
+
+
+def application_dir() -> Path:
+    """Return the writable folder that sits beside the scripts or EXEs."""
+    if is_frozen_app():
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
 class ConfigStore:
     """Read and write scraper configuration files from Program_Files."""
 
@@ -58,7 +71,17 @@ class ConfigStore:
         self.program_files_dir = app_dir / "Program_Files"
         self.config_path = self.program_files_dir / CONFIG_FILENAME
         self.organization_path = self.program_files_dir / ORGANIZATION_FILENAME
-        self.scraper_path = app_dir / SCRAPER_FILENAME
+        self.scraper_script_path = app_dir / SCRAPER_SCRIPT_FILENAME
+        self.scraper_exe_path = app_dir / SCRAPER_EXE_FILENAME
+
+    @property
+    def scraper_path(self) -> Path:
+        return self.scraper_exe_path if is_frozen_app() else self.scraper_script_path
+
+    def scraper_command(self) -> list[str]:
+        if is_frozen_app():
+            return [str(self.scraper_exe_path)]
+        return [sys.executable, "-u", str(self.scraper_script_path)]
 
     def load_config(self) -> dict[str, Any]:
         if not self.config_path.exists():
@@ -170,7 +193,7 @@ class ScraperRunner:
             self.log_queue.put(("error", f"Scraper file not found: {self.store.scraper_path}"))
             return
 
-        command = [sys.executable, "-u", str(self.store.scraper_path)]
+        command = self.store.scraper_command()
         env = os.environ.copy()
         env["PYTHONUNBUFFERED"] = "1"
         started_at = dt.datetime.now()
@@ -700,7 +723,7 @@ class IREPSScrapingGUI(ctk.CTk):
 
 
 def launch() -> None:
-    app_dir = Path(__file__).resolve().parent
+    app_dir = application_dir()
     app = IREPSScrapingGUI(ConfigStore(app_dir))
     app.mainloop()
 

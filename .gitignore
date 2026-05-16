@@ -25,6 +25,8 @@ consolelog/
 # PyInstaller
 *.manifest
 *.spec
+IREPS_Tenders_Portable/
+IREPS_Tenders_Portable.zip
 
 # Installer logs
 pip-log.txt
