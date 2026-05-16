@@ -1,11 +1,11 @@
 """
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||     
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 Author: Anupam Manna
 Email ID: am7059141480@gmail.com
 Mobile No: +91 7059141480
 Date: October 2, 2023
 Description: IREPS tenders automation.
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||       
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 """
 
 import gc
@@ -175,6 +175,8 @@ excel_file_path = data.get('excel_file_path')
 notification_emailids = data['notification_emailids']
 receiver_emailids = data['receiver_emailids']
 max_org_workers = data.get('max_org_workers', 1)
+max_zone_workers = data.get('max_zone_workers', 1)
+INDIAN_RAILWAY_ORG_NUMBER = "01"
 # print(notification_emailids)
 sender_email_id = data['sender_email_id']
 sender_email_password = data['sender_email_password']
@@ -186,7 +188,7 @@ data["signal_ireps"] = "FALSE"
 data["signal_datelog"] = "FALSE"
 # Write the modified data back to the file
 with open(config_file_path, 'w') as file:
-    json.dump(data, file, indent=4) 
+    json.dump(data, file, indent=4)
 
 #----------------------------------------------------------------------------------------------- Extension to global variable
 
@@ -250,7 +252,7 @@ def load_otp():
             return data.get("otp")
     except FileNotFoundError:
         return None
-    
+
 
 
 
@@ -263,7 +265,7 @@ def load_otp_date():
             return data.get("otp_date")
     except FileNotFoundError:
         return None
-    
+
 
 
 
@@ -281,7 +283,7 @@ def is_otp_valid():
     else:
         print("No atching OTP found for today's date.")
         return False
-    
+
 
 
 
@@ -364,11 +366,11 @@ def get_verification(driver):
 def login(driver, mobile_no):
     """
     Log in to a website using the provided WebDriver instance and mobile number.
-    
+
     Args:
         driver (WebDriver): Selenium WebDriver instance for browser.
         mobile_no (str): Mobile number for login.
-    
+
     Returns:
         WebDriver: Updated WebDriver instance after login, or None if login fails.
     """
@@ -480,7 +482,7 @@ def login(driver, mobile_no):
 def is_no_result_found_present_in_page(driver):
     """
     Check if the page contains the "No Results Found" message.
-    
+
     Args:
         driver (WebDriver): The Selenium WebDriver instance for interacting with the page.
 
@@ -503,7 +505,7 @@ def is_no_result_found_present_in_page(driver):
             return True, driver
 
         return False, driver
-    
+
     except NoSuchElementException as e:
         print(f"An error occurred while checking the page: {e}")
         return False, driver
@@ -624,365 +626,373 @@ def getpdfdata(pdf_file_path):
 
 
 
-def tenders(driver, org_number, org_name, program_file_dir):
+def select_organization(driver, org_number):
+    """Select the requested organization on the IREPS search page."""
     for _ in range(3):  # Try the action three times
         try:
-            # Locate the dropdown element using an appropriate selector
             dropdown_element = WebDriverWait(driver, DEFAULT_WAIT_SECONDS).until(
                 EC.presence_of_element_located((By.ID, "organization"))
             )
-            # Create a Select object and interact with the dropdown
             select = Select(dropdown_element)
-
-            # Select option by value
             select.select_by_value(org_number)
-
             time.sleep(1)
 
-            # Double select organization
-            # Check if the element is still present
             if dropdown_element:
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
+                driver.execute_script("document.getElementById('organization').value='" + org_number + "'")
             else:
                 print("Element with ID 'organization' not found")
-            
-            # If everything is successful, break out of the loop
-            break
+            return True
 
-        except Exception as e:
-            # Handle other exceptions while clicking organization dropdown button
-            print(f"organization dropdown  -  Exception")
+        except Exception:
+            print("organization dropdown  -  Exception")
             driver.refresh()
             time.sleep(2)
 
+    return False
 
-    """Stores all options in a dictionary. then print the zone list"""
 
+
+def get_zone_options(driver):
+    """Return all configured zone dropdown options for the selected organization."""
     time.sleep(1)
     railway_zone_element = WebDriverWait(driver, DEFAULT_WAIT_SECONDS).until(
         EC.presence_of_element_located((By.XPATH, "//*[@id='railwayZone']"))
     )
     railway_zone_dropdown = Select(railway_zone_element)
-    # print(railway_zone_dropdown)
-    options = railway_zone_dropdown.options
-    # print(options)
 
     options_dict = {}
-    for option in options:
+    for option in railway_zone_dropdown.options:
         value = option.get_attribute("value")
         text = option.get_attribute("innerText")
         options_dict[value] = text
 
-    # Print the options dictionary
+    zone_options = [
+        (zone_number, zone)
+        for zone_number, zone in options_dict.items()
+        if zone not in skip_zones
+    ]
+
     print("\n--------- ZONE LIST ---------")
-    for zone in options_dict.values():
-        if zone in skip_zones:
-            continue  # Skip the current iteration and move to the next one
+    for _, zone in zone_options:
         print(zone)
 
-    """ End """
+    return zone_options
 
 
-    for zone_number, zone in options_dict.items():
-        last_tender = False
-        if zone in skip_zones: # this condition skip all zones inside skip_zones
-            continue  # Skip the current iteration and move to the next one
-        print(f"\nScraping ZONE -> {zone}")
-        print("----------------")
+
+def scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zone):
+    """Scrape one organization zone with the supplied Selenium driver."""
+    last_tender = False
+    print(f"\nScraping ZONE -> {zone}")
+    print("----------------")
 
 
+    for _ in range(3):  # Try the action three times
+        try:
+            # filling search criteria
+            time.sleep(3)
+            driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
+            time.sleep(3)
+            driver.execute_script("document.getElementById('workArea').value='WT'") # works
+            time.sleep(3)
+            driver.execute_script("document.getElementById('railwayZone').value='"+ zone_number +"'")
+            time.sleep(3)
+            driver.execute_script("document.getElementById('tenderType').value=2") # open
+            time.sleep(3)
+            driver.execute_script("document.getElementById('tenderStage').value=1") # published
+            time.sleep(3)
+            driver.execute_script("document.getElementsByName('selectDate')[0].value = 'TENDER_OPENING_DATE'") # Tender Closing Date
+            # Get the current date
+            current_date = datetime.datetime.now()
+            # Add four months to the current date
+            four_months_later = current_date + relativedelta(months=4)
+            # Format the date as a string (optional)
+            formatted_date = four_months_later.strftime("%d/%m/%Y")
+            driver.execute_script("document.getElementById('ddmmyyDateformat2').value='" + formatted_date + "'")
+            time.sleep(0.5)
+            # driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
+            xpath = "//input[@value='Show Results']"
+            element = driver.find_element(By.XPATH, xpath)
+            element.click()
+
+            # If everything is successful, break out of the loop
+            break
+
+        except Exception as e:
+            # Handle other exceptions while clicking 'Custom Search' button
+            print(f"Show Results button  -  Exception")
+            driver.refresh()
+            time.sleep(2)
+
+    result, driver = is_no_result_found_present_in_page(driver)
+
+    packages = packaging()
+    if result:
+        return False
+
+    try:
+        tender_count = 0
+        time.sleep(3.5)
+
+        # Get the page source and parse it with BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+        # Find all 'b' tags within 'tr' tags
+        b_tags = soup.find_all('b')
+
+        # Iterate over the 'b' tags
+        for i in range(len(b_tags)):
+            # If the 'b' tag contains "Tender search results"
+            if "Tender search results" in b_tags[i].text:
+                # If there is a next 'b' tag, print it
+                if i + 1 < len(b_tags):
+                    tender_count = b_tags[i + 1].text
+                    if int(tender_count) < 1 :  # Check if tender_count exists but is None
+                        print("Unable to get tender search result, Variable is None and has no value assigned. ", tender_count)
+                        continue
+                    print("Tender search results ", tender_count)
+                break
+
+    except Exception as e:
+        print(f"An error occurred: Tender search results", e)
+        return False
+
+    # # Get the page source and parse it with BeautifulSoup
+    # soup = BeautifulSoup(driver.page_source, 'html.parser')
+    # # Find all 'b' tags within 'tr' tags
+    # b_tags = soup.find_all('b')
+    # # Iterate over the 'b' tags
+    # for i in range(len(b_tags)):
+    #     # If the 'b' tag contains "Tender search results"
+    #     if "Tender search results" in b_tags[i].text:
+    #         # If there is a next 'b' tag, print it
+    #         if i+1 < len(b_tags):
+    #             tender_count = b_tags[i+1].text
+    #             print("Tender search results ", tender_count)
+    #         break
+
+
+    # Get the current date and time
+    current_date = datetime.datetime.now()
+    # Format the date and time string
+    fname = current_date.strftime("%d-%m-%Y %H_%M_%S")
+    # Create a file name using the value and the formatted date and time
+    file_name = f'{zone}_{fname}.xlsx'
+    org_folder_path = os.path.join(program_file_dir, org_name)
+    os.makedirs(org_folder_path, exist_ok=True)
+    # Create a file path for the new Excel workbook
+    file_path = os.path.join(org_folder_path, file_name)
+    # Create a new Excel workbook and a worksheet within it
+    workbook = xlsxwriter.Workbook(file_path, {'constant_memory': True})
+    worksheet1 = workbook.add_worksheet("ListOfTenders")
+    # Write the column headers in the worksheet
+    headers = ["Zone", "Dept.", "Tender No.", "Tender Title", "Type", "Due Date/Time", "Due Days", "Advertised Value", "Doc Link", "Bidding type", "Bidding System", "Date Time Of Uploading Tender", "Pre-Bid Conference Date Time", "Earnest Money (Rs.)", "Contract Type"]
+    for index, header in enumerate(headers):
+        worksheet1.write(0, index, header)
+
+
+    # Calculate the number of pages based on the tender count
+    tender_count = int(tender_count)
+    decimal_number = tender_count / 25
+    # Round up to the nearest integer to get the page count
+    page_count = math.ceil(decimal_number)
+    # Print the number of pages
+    print("Pages = ", page_count)
+
+
+    cnt = 1
+    k = 0
+    # Loop through all the pages
+    while cnt <= page_count:
+        time.sleep(3)
         for _ in range(3):  # Try the action three times
             try:
-                # filling search criteria
-                time.sleep(3)
-                driver.execute_script("document.getElementById('organization').value='"+ org_number +"'")
-                time.sleep(3)
-                driver.execute_script("document.getElementById('workArea').value='WT'") # works
-                time.sleep(3)
-                driver.execute_script("document.getElementById('railwayZone').value='"+ zone_number +"'")
-                time.sleep(3)
-                driver.execute_script("document.getElementById('tenderType').value=2") # open
-                time.sleep(3)
-                driver.execute_script("document.getElementById('tenderStage').value=1") # published
-                time.sleep(3)
-                driver.execute_script("document.getElementsByName('selectDate')[0].value = 'TENDER_OPENING_DATE'") # Tender Closing Date
-                # Get the current date
-                current_date = datetime.datetime.now()
-                # Add four months to the current date
-                four_months_later = current_date + relativedelta(months=4)
-                # Format the date as a string (optional)
-                formatted_date = four_months_later.strftime("%d/%m/%Y")
-                driver.execute_script("document.getElementById('ddmmyyDateformat2').value='" + formatted_date + "'")
-                time.sleep(0.5)
-                # driver.find_element(By.XPATH, "//input[@value='Show Results']").click()
-                xpath = "//input[@value='Show Results']"
+                # If the element is found, you can perform further actions here
+                a_tags = driver.find_elements(By.CSS_SELECTOR, "a[onclick]")
+                # If everything is successful, break out of the loop
+                break
+            except Exception as e:
+                # Handle other exceptions while clicking 'Custom Search' button
+                print(f"a_tags tender link - Exception")
+                time.sleep(2)
+                continue
+
+        if not a_tags:
+            break
+
+        filtered_a_tags = [tag for tag in a_tags if 'postRequestNewWindow(\'/epsn/nitViewAnonyms/rfq/nitPublish.do?' in tag.get_attribute('onclick')]
+
+        # Get the initial window handle
+        initial_handle = driver.current_window_handle
+        for a_tag in filtered_a_tags:
+            k += 1
+            print('\r' + "Tender  : " + str(k) + " ", end='')
+
+            try:
+                existing_handles = driver.window_handles
+                a_tag.click()
+                tender_window = wait_for_new_window(driver, existing_handles)
+                driver.switch_to.window(tender_window)
+            except Exception as e:
+                print(f"Result page tender link click - Exception: {e}")
+                close_extra_windows(driver, initial_handle)
+                time.sleep(2)
+                continue
+
+
+            # # checkpoint
+            # temp_url = driver.current_url
+            # print(" >> ", temp_url)
+
+
+            try:
+                xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
+                existing_handles = driver.window_handles
+                safe_click(driver, (By.XPATH, xpath), DEFAULT_WAIT_SECONDS)
+                pdf_window = wait_for_new_window(driver, existing_handles)
+                driver.switch_to.window(pdf_window)
+            except Exception as e:
+                # Handle other exceptions while clicking 'Custom Search' button
+                print(f"Download Tender Doc. (Pdf) button - Exception: {e}")
+                close_extra_windows(driver, initial_handle)
+                time.sleep(2)
+                continue
+
+            handles = driver.window_handles
+
+
+            # # Define a function to wait for the page to fully load
+            # def page_fully_loaded(driver):
+            #     return driver.execute_script("return document.readyState") == "complete"
+
+            # # Wait for the page to fully load
+            # WebDriverWait(driver, 10).until(page_fully_loaded)
+
+            pdf_url = driver.current_url
+            print(" ", pdf_url)
+
+            # # Execute JavaScript to get the current window's URL
+            # window_url = driver.execute_script("return window.location.href;")
+            # url_pattern = re.compile(r'^https:\/\/www\.ireps\.gov\.in\/ireps\/works\/pdfdocs\/.*\.pdf$')
+
+            # while True:
+            #     if url_pattern.match(pdf_url):
+            #         print("URL is valid. ", pdf_url)
+            #         break
+            #     else:
+            #         print("URL is not valid.")
+            #         time.sleep(0.25)
+            #         pdf_url = driver.current_url
+            #         continue
+
+            if pdf_url.lower().endswith(".pdf"):
+                pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
+                if not download_pdf(pdf_url, pdf_file_path):
+                    close_extra_windows(driver, initial_handle)
+                    continue
+            else:
+                close_extra_windows(driver, initial_handle)
+                continue
+
+            dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata(pdf_file_path)
+            if os.path.exists(pdf_file_path):
+                os.remove(pdf_file_path)
+
+            try:
+                # Calculate due_days
+                closing_datetime = datetime.datetime.strptime(tender_closing_date_time, '%d/%m/%Y %H:%M')
+                uploading_datetime = datetime.datetime.strptime(date_time_of_uploading_tender, '%d/%m/%Y %H:%M')
+                due_days = (closing_datetime - uploading_datetime).days
+            except ValueError as e:
+                due_days = " "
+                pass
+
+            worksheet1.write(k, 0, zone)
+            worksheet1.write(k, 1, dept_rly)
+            worksheet1.write(k, 2, tender_no)
+            worksheet1.write(k, 3, name_of_work)
+            worksheet1.write(k, 4, tender_type)
+            worksheet1.write(k, 5, tender_closing_date_time)
+            worksheet1.write(k, 6, due_days)
+            worksheet1.write(k, 7, advertised_value)
+            worksheet1.write(k, 8, pdf_url)
+            worksheet1.write(k, 9, bidding_type)
+            worksheet1.write(k, 10, bidding_system)
+            worksheet1.write(k, 11, date_time_of_uploading_tender)
+            worksheet1.write(k, 12, pre_bid_conference_date_time)
+            worksheet1.write(k, 13, earnest_money)
+            worksheet1.write(k, 14, contract_type)
+
+            # Switch back to the initial window
+            close_extra_windows(driver, initial_handle)
+            gc.collect()
+
+            if k == tender_count:
+                last_tender = True
+            else:
+                last_tender = False
+
+        print("\n")
+
+        if last_tender == True:
+            break
+        else:
+
+            try:
+                xpath = f"//a[text()='{cnt + 1}']"
+                for attempt in range(3):
+                    try:
+                        # Wait up to 5 seconds for the element to be clickable
+                        element = WebDriverWait(driver, 5).until(
+                            EC.element_to_be_clickable((By.XPATH, xpath))
+                        )
+                        element.click()
+                        print(f"Successfully clicked page {cnt + 1} on attempt {attempt + 1}")
+                        time.sleep(5)
+                        break  # Success!
+                    except Exception as e:
+                        print(f"Attempt {attempt + 1} failed to click page {cnt + 1}: {e}")
+                        time.sleep(2)
+                else:
+                    print(f"Failed to click page {cnt + 1} after 3 attempts.")
+
+            except Exception as e:
+                print(f"Exception while trying to click page {cnt + 1}: {e}")
+
+        if cnt % 10 == 0:
+            print("\n")
+            try:
+                # driver.find_element(By.XPATH, f"//a[font[text()='next']]").click()
+                xpath = "//a[font[text()='next']]"
                 element = driver.find_element(By.XPATH, xpath)
                 element.click()
 
-                # If everything is successful, break out of the loop
-                break
-
             except Exception as e:
-                # Handle other exceptions while clicking 'Custom Search' button
-                print(f"Show Results button  -  Exception")
-                driver.refresh()
-                time.sleep(2)
-
-        result, driver = is_no_result_found_present_in_page(driver)
-
-        packages = packaging()
-        if result:
-            continue
-
-        try:
-            tender_count = 0
-            time.sleep(3.5)
-            
-            # Get the page source and parse it with BeautifulSoup
-            soup = BeautifulSoup(driver.page_source, 'html.parser')
-            
-            # Find all 'b' tags within 'tr' tags
-            b_tags = soup.find_all('b')
-            
-            # Iterate over the 'b' tags
-            for i in range(len(b_tags)):
-                # If the 'b' tag contains "Tender search results"
-                if "Tender search results" in b_tags[i].text:
-                    # If there is a next 'b' tag, print it
-                    if i + 1 < len(b_tags):
-                        tender_count = b_tags[i + 1].text
-                        if int(tender_count) < 1 :  # Check if tender_count exists but is None
-                            print("Unable to get tender search result, Variable is None and has no value assigned. ", tender_count)
-                            continue
-                        print("Tender search results ", tender_count)
-                    break
-
-        except Exception as e:
-            print(f"An error occurred: Tender search results", e)
-            break
-
-        # # Get the page source and parse it with BeautifulSoup
-        # soup = BeautifulSoup(driver.page_source, 'html.parser')
-        # # Find all 'b' tags within 'tr' tags
-        # b_tags = soup.find_all('b')
-        # # Iterate over the 'b' tags
-        # for i in range(len(b_tags)):
-        #     # If the 'b' tag contains "Tender search results"
-        #     if "Tender search results" in b_tags[i].text:
-        #         # If there is a next 'b' tag, print it
-        #         if i+1 < len(b_tags):
-        #             tender_count = b_tags[i+1].text
-        #             print("Tender search results ", tender_count)
-        #         break
-
-
-        # Get the current date and time
-        current_date = datetime.datetime.now()
-        # Format the date and time string
-        fname = current_date.strftime("%d-%m-%Y %H_%M_%S")
-        # Create a file name using the value and the formatted date and time
-        file_name = f'{zone}_{fname}.xlsx'
-        org_folder_path = os.path.join(program_files_dir, org_name)
-        os.makedirs(org_folder_path, exist_ok=True)
-        # Create a file path for the new Excel workbook
-        file_path = os.path.join(org_folder_path, file_name)
-        # Create a new Excel workbook and a worksheet within it
-        workbook = xlsxwriter.Workbook(file_path, {'constant_memory': True})
-        worksheet1 = workbook.add_worksheet("ListOfTenders")
-        # Write the column headers in the worksheet
-        headers = ["Zone", "Dept.", "Tender No.", "Tender Title", "Type", "Due Date/Time", "Due Days", "Advertised Value", "Doc Link", "Bidding type", "Bidding System", "Date Time Of Uploading Tender", "Pre-Bid Conference Date Time", "Earnest Money (Rs.)", "Contract Type"]
-        for index, header in enumerate(headers):
-            worksheet1.write(0, index, header)
-
-
-        # Calculate the number of pages based on the tender count
-        tender_count = int(tender_count)
-        decimal_number = tender_count / 25
-        # Round up to the nearest integer to get the page count
-        page_count = math.ceil(decimal_number)
-        # Print the number of pages
-        print("Pages = ", page_count)
-
-
-        cnt = 1
-        k = 0
-        # Loop through all the pages
-        while cnt <= page_count:
-            time.sleep(3)
-            for _ in range(3):  # Try the action three times
-                try:
-                    # If the element is found, you can perform further actions here
-                    a_tags = driver.find_elements(By.CSS_SELECTOR, "a[onclick]")      
-                    # If everything is successful, break out of the loop
-                    break
-                except Exception as e:
-                    # Handle other exceptions while clicking 'Custom Search' button
-                    print(f"a_tags tender link - Exception")
-                    time.sleep(2)
-                    continue
-
-            if not a_tags:
+                print(f"Element with text 'next' not found")
                 break
 
-            filtered_a_tags = [tag for tag in a_tags if 'postRequestNewWindow(\'/epsn/nitViewAnonyms/rfq/nitPublish.do?' in tag.get_attribute('onclick')]
+        gc.collect()
+        cnt += 1
 
-            # Get the initial window handle
-            initial_handle = driver.current_window_handle
-            for a_tag in filtered_a_tags:
-                k += 1
-                print('\r' + "Tender  : " + str(k) + " ", end='')
-
-                try:
-                    existing_handles = driver.window_handles
-                    a_tag.click()
-                    tender_window = wait_for_new_window(driver, existing_handles)
-                    driver.switch_to.window(tender_window)
-                except Exception as e:
-                    print(f"Result page tender link click - Exception: {e}")
-                    close_extra_windows(driver, initial_handle)
-                    time.sleep(2)
-                    continue
-            
-
-                # # checkpoint
-                # temp_url = driver.current_url
-                # print(" >> ", temp_url)
+    # Close the workbook and print a message
+    workbook.close()
+    print("Zone data Saved.")
 
 
-                try:
-                    xpath = "//a[contains(text(), 'Download Tender Doc. (Pdf)')]"
-                    existing_handles = driver.window_handles
-                    safe_click(driver, (By.XPATH, xpath), DEFAULT_WAIT_SECONDS)
-                    pdf_window = wait_for_new_window(driver, existing_handles)
-                    driver.switch_to.window(pdf_window)
-                except Exception as e:
-                    # Handle other exceptions while clicking 'Custom Search' button
-                    print(f"Download Tender Doc. (Pdf) button - Exception: {e}")
-                    close_extra_windows(driver, initial_handle)
-                    time.sleep(2)
-                    continue
 
-                handles = driver.window_handles
+def tenders(driver, org_number, org_name, program_file_dir):
+    if not select_organization(driver, org_number):
+        return False
 
+    zone_options = get_zone_options(driver)
+    if org_number == INDIAN_RAILWAY_ORG_NUMBER:
+        return scrape_indian_railway_zones_with_workers(org_number, org_name, zone_options)
 
-                # # Define a function to wait for the page to fully load
-                # def page_fully_loaded(driver):
-                #     return driver.execute_script("return document.readyState") == "complete"
+    mail_trigger = False
+    for zone_number, zone in zone_options:
+        mail_trigger = scrape_zone(driver, org_number, org_name, program_file_dir, zone_number, zone) or mail_trigger
 
-                # # Wait for the page to fully load
-                # WebDriverWait(driver, 10).until(page_fully_loaded)
-
-                pdf_url = driver.current_url
-                print(" ", pdf_url)
-
-                # # Execute JavaScript to get the current window's URL
-                # window_url = driver.execute_script("return window.location.href;")
-                # url_pattern = re.compile(r'^https:\/\/www\.ireps\.gov\.in\/ireps\/works\/pdfdocs\/.*\.pdf$')
-
-                # while True:
-                #     if url_pattern.match(pdf_url):
-                #         print("URL is valid. ", pdf_url)
-                #         break
-                #     else:
-                #         print("URL is not valid.")
-                #         time.sleep(0.25)
-                #         pdf_url = driver.current_url
-                #         continue
-
-                if pdf_url.lower().endswith(".pdf"):
-                    pdf_file_path = os.path.join(temp_dir_path, f"tender_{threading.get_ident()}_{uuid.uuid4().hex}.pdf")
-                    if not download_pdf(pdf_url, pdf_file_path):
-                        close_extra_windows(driver, initial_handle)
-                        continue
-                else:
-                    close_extra_windows(driver, initial_handle)
-                    continue
-
-                dept_rly, tender_no, name_of_work, bidding_type, tender_type, bidding_system, tender_closing_date_time, date_time_of_uploading_tender, pre_bid_conference_date_time, advertised_value, earnest_money, contract_type = getpdfdata(pdf_file_path)
-                if os.path.exists(pdf_file_path):
-                    os.remove(pdf_file_path)
-
-                try:
-                    # Calculate due_days
-                    closing_datetime = datetime.datetime.strptime(tender_closing_date_time, '%d/%m/%Y %H:%M')
-                    uploading_datetime = datetime.datetime.strptime(date_time_of_uploading_tender, '%d/%m/%Y %H:%M')
-                    due_days = (closing_datetime - uploading_datetime).days
-                except ValueError as e:
-                    due_days = " " 
-                    pass
-
-                worksheet1.write(k, 0, zone)
-                worksheet1.write(k, 1, dept_rly)
-                worksheet1.write(k, 2, tender_no)
-                worksheet1.write(k, 3, name_of_work)
-                worksheet1.write(k, 4, tender_type)
-                worksheet1.write(k, 5, tender_closing_date_time)
-                worksheet1.write(k, 6, due_days)
-                worksheet1.write(k, 7, advertised_value)
-                worksheet1.write(k, 8, pdf_url)
-                worksheet1.write(k, 9, bidding_type)
-                worksheet1.write(k, 10, bidding_system)
-                worksheet1.write(k, 11, date_time_of_uploading_tender)
-                worksheet1.write(k, 12, pre_bid_conference_date_time)
-                worksheet1.write(k, 13, earnest_money)
-                worksheet1.write(k, 14, contract_type)
-
-                # Switch back to the initial window
-                close_extra_windows(driver, initial_handle)
-                gc.collect()
-
-                if k == tender_count:
-                    last_tender = True
-                else:
-                    last_tender = False
-
-            print("\n")
-
-            if last_tender == True:
-                break
-            else:
-
-                try:
-                    xpath = f"//a[text()='{cnt + 1}']"
-                    for attempt in range(3):
-                        try:
-                            # Wait up to 5 seconds for the element to be clickable
-                            element = WebDriverWait(driver, 5).until(
-                                EC.element_to_be_clickable((By.XPATH, xpath))
-                            )
-                            element.click()
-                            print(f"Successfully clicked page {cnt + 1} on attempt {attempt + 1}")
-                            time.sleep(5)
-                            break  # Success!
-                        except Exception as e:
-                            print(f"Attempt {attempt + 1} failed to click page {cnt + 1}: {e}")
-                            time.sleep(2)
-                    else:
-                        print(f"Failed to click page {cnt + 1} after 3 attempts.")
-
-                except Exception as e:
-                    print(f"Exception while trying to click page {cnt + 1}: {e}")
-
-            if cnt % 10 == 0:
-                print("\n")
-                try:
-                    # driver.find_element(By.XPATH, f"//a[font[text()='next']]").click()
-                    xpath = "//a[font[text()='next']]"
-                    element = driver.find_element(By.XPATH, xpath)
-                    element.click()
-
-                except Exception as e:
-                    print(f"Element with text 'next' not found")
-                    break
-
-            gc.collect()
-            cnt += 1
-
-        # Close the workbook and print a message
-        workbook.close()
-        print("Zone data Saved.")
-
-    return True
+    return mail_trigger
 
 
 
@@ -1003,7 +1013,7 @@ def get_sms_message():
                 message_date = datetime.datetime.fromtimestamp(timestamp).date()
                 # Compare the message date with today's date
                 if message_date == datetime.datetime.today().date():  # Use datetime.today() instead of datetime.date.today()
-                    # print(line) 
+                    # print(line)
                     if 'IREPS' in line:
                         match_otp = re.search(r'body=(\d{6})', line)
                         if match_otp:
@@ -1033,7 +1043,7 @@ def get_sms_message():
                             print("Pattern not found.")
                     else:
                         message = "Messages not yet received; retring to access the OTP"
-        print(message)               
+        print(message)
         return True
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {e}")
@@ -1046,14 +1056,14 @@ def get_sms_message():
 def generate_otp(driver, mobile_no):
     driver.refresh()
     time.sleep(3)
-    
+
     # print("Current Mobile No. :", mobile_no)
     driver, Verification_code = get_verification(driver)
     # mobile_no = input("Enter 10 digit Mobile No: ")
     driver.execute_script("document.getElementById('mobileNo').value='" + mobile_no + "'")
 
     driver.execute_script("document.getElementById('verification').value='" + Verification_code + "'")
-    
+
 
     driver.find_element("xpath", "//input[@value='Get OTP']").click()
     time.sleep(3)
@@ -1074,16 +1084,12 @@ def generate_otp(driver, mobile_no):
 
 
 
-def tenders_main(org_number, org_name, mobile_no, program_files_dir):
-    mail_triger = False
-    driver = None
+def create_logged_in_driver(mobile_no):
+    """Create a Chrome driver, open IREPS, refresh OTP when needed, and log in."""
     with CHROMEDRIVER_INSTALL_LOCK:
         chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
                                             # and if it doesn't exist, download it automatically,
                                             # then add chromedriver to path
-
-    # org_number, org_name, mobile_no, otp_file_location, program_file_dir = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[4]
-    # print(org_number, org_name, mobile_no, otp_file_location)
 
     options = Options()
     options.add_argument("--disable-application-cache")  # Disable application cache
@@ -1099,46 +1105,43 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
     options.add_argument("--disk-cache-size=1")
     options.add_argument("--media-cache-size=1")
     options.add_argument("--log-level=3")
-    # # Set the download path
-    # options.add_experimental_option("prefs", {
-    #     "download.default_directory": initial_download,
-    #     "download.prompt_for_download": False,
-    #     "download.directory_upgrade": True,
-    #     "safebrowsing.enabled": True
-    #     })
 
+    driver = webdriver.Chrome(options=options)
+    driver.set_page_load_timeout(60)
+    driver.implicitly_wait(10) # Wait for a few seconds to see the results
+
+    url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
+    while True:
+        try:
+            driver.get(url)
+            break # break the loop if no exception occurs
+        except Exception:
+            print(f"{url} - url exception")
+            print("Retrying...")
+            time.sleep(2)
+
+    driver = is_under_maintenance(driver, url)
+    print("Current Mobile NO. ", mobile_no)
+
+    if not is_otp_valid():
+        with OTP_REFRESH_LOCK:
+            if not is_otp_valid():
+                driver = generate_otp(driver, mobile_no)
+                countdown_timer("generate_otp", 60)
+
+                while get_sms_message():
+                    countdown_timer("get_sms_message", 20)
+                    get_sms_message()
+
+    return login(driver, mobile_no)
+
+
+
+def tenders_main(org_number, org_name, mobile_no, program_files_dir):
+    mail_triger = False
+    driver = None
     try:
-        driver = webdriver.Chrome(options=options)
-        driver.set_page_load_timeout(60)
-        driver.implicitly_wait(10) # Wait for a few seconds to see the results
-
-        # Open a website
-        # Open the URL and wait for the page title to be "IREPS - Guest Login"
-        url = "https://www.ireps.gov.in/epsn/anonymSearch.do"
-
-        while True:
-            try:
-                driver.get(url)
-                break # break the loop if no exception occurs
-            except Exception as e:
-                print(f"{url} - url exception") # - {e}") # print the exception message
-                print("Retrying...") # print a retry message
-                time.sleep(2)
-
-        driver = is_under_maintenance(driver, url)
-        print("Current Mobile NO. ", mobile_no)
-
-        if not is_otp_valid():
-            with OTP_REFRESH_LOCK:
-                if not is_otp_valid():
-                    driver = generate_otp(driver, mobile_no)
-                    countdown_timer("generate_otp", 60)
-
-                    while get_sms_message():
-                        countdown_timer("get_sms_message", 20)
-                        get_sms_message()
-
-        driver = login(driver, mobile_no)
+        driver = create_logged_in_driver(mobile_no)
         mail_triger = tenders(driver, org_number, org_name, program_files_dir)
     finally:
         print(f"\n\nExeting.... From {org_name}.\n\n")
@@ -1151,6 +1154,76 @@ def tenders_main(org_number, org_name, mobile_no, program_files_dir):
 
     return mail_triger
 
+
+def get_configured_zone_worker_count(total_zones):
+    """Return the safe Indian Railway zone worker count from Configration.json."""
+    if total_zones <= 0:
+        return 0
+
+    try:
+        configured_workers = int(max_zone_workers)
+    except (TypeError, ValueError):
+        configured_workers = 1
+
+    configured_workers = max(1, configured_workers)
+
+    if str(captcha_manual_input) == "1" and configured_workers > 1:
+        print("Manual CAPTCHA input is enabled; forcing Indian Railway zone workers to 1.")
+        configured_workers = 1
+
+    return min(configured_workers, total_zones)
+
+
+
+def scrape_indian_railway_zone_worker(org_number, org_name, zone_option):
+    """Open a separate logged-in browser worker for one Indian Railway zone."""
+    zone_number, zone = zone_option
+    driver = None
+    try:
+        print(f"Starting Indian Railway zone worker for {zone}.")
+        driver = create_logged_in_driver(mobile_no)
+        if not select_organization(driver, org_number):
+            return False
+        return bool(scrape_zone(driver, org_number, org_name, program_files_dir, zone_number, zone))
+    finally:
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception as exc:
+                print(f"Unable to quit Indian Railway zone worker Chrome cleanly: {exc}")
+        print(f"Finished Indian Railway zone worker for {zone}.")
+        gc.collect()
+
+
+
+def scrape_indian_railway_zones_with_workers(org_number, org_name, zone_options):
+    """Run separate multi-threaded workers for zones of organization 01: Indian Railway."""
+    if not zone_options:
+        print("No Indian Railway zones configured for scraping.")
+        return False
+
+    worker_count = get_configured_zone_worker_count(len(zone_options))
+    print(
+        f"Starting {worker_count} Indian Railway zone worker(s) "
+        f"for {len(zone_options)} zone(s)."
+    )
+
+    mail_trigger_main = False
+    with ThreadPoolExecutor(max_workers=worker_count) as executor:
+        future_to_zone = {
+            executor.submit(scrape_indian_railway_zone_worker, org_number, org_name, zone_option): zone_option
+            for zone_option in zone_options
+        }
+
+        for future in as_completed(future_to_zone):
+            zone_number, zone = future_to_zone[future]
+            try:
+                mail_trigger_main = bool(future.result()) or mail_trigger_main
+            except Exception as exc:
+                print(f"Indian Railway zone worker failed for {zone_number}: {zone}. Error: {exc}")
+
+    print("All Indian Railway zone workers finished.")
+    return mail_trigger_main
 
 
 def get_configured_org_worker_count(total_organizations):
@@ -1285,7 +1358,7 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 
 #     for folder_name in folders:
 #         folder_path = os.path.join(program_files_dir, folder_name[1])  # Replace 'path_to_root_folder' with the actual root folder path
-        
+
 #         # Check if the folder exists before attempting to process it
 #         if os.path.exists(folder_path) and os.path.isdir(folder_path):
 #             files = os.listdir(folder_path)
@@ -1337,7 +1410,7 @@ def merge_xlsx_files_in_folders(folders, output_directory, program_file_dir):
 
 
 
-# smtp send status 
+# smtp send status
 def send_mail(program_file_dir, all_email_ids):
     # Check if read_email_ids list has at least one item
     if not all_email_ids:
@@ -1483,7 +1556,7 @@ def log_to_file(filename):
     # print(full_filename)
     # time.sleep(1000)
     packge = packaging()
-    
+
 
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
@@ -1501,7 +1574,7 @@ def log_to_file(filename):
 
     try:
 
-            
+
         # Your main script logic goes here
         print(f"Starting script execution at {timestamp}\n")
 
@@ -1516,10 +1589,10 @@ def log_to_file(filename):
 
 
         def f2():
-            
 
 
-            # opening message 
+
+            # opening message
             print("\n|-----| Welcome to the IREPS Scraping system! |-----|\n")
 
 
@@ -1539,7 +1612,7 @@ def log_to_file(filename):
 
             # Deleting each Folder by the name of Orgination from "Program_Files (ireps_tender_scraping)"
             for orginazation in organizations:
-                file_path = os.path.join(script_dir_path, program_files_dir, orginazation[1]) 
+                file_path = os.path.join(script_dir_path, program_files_dir, orginazation[1])
                 delete_folder(file_path)
 
 
@@ -1555,7 +1628,7 @@ def log_to_file(filename):
                     no_adb_mail(subject, message, receiver_emailids)
             else:
                 adb = True
-            
+
             mail_triger_main = False
             if adb:
                 # Run Orginazation scraping in parallel and wait for all workers
@@ -1625,7 +1698,7 @@ def log_to_file(filename):
 
 
 
-        print("Exiting... from tenders download program.")    
+        print("Exiting... from tenders download program.")
         # Example: Simulate an exception
         # Uncomment the following line to simulate an exception
         # raise ValueError("This is a simulated exception")
