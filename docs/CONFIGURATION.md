@@ -48,6 +48,7 @@ You can also edit both files directly in a text editor. Keep JSON syntax valid a
 | `signal_datelog` | Internal signal value reset by the scraper at startup. |
 | `signal_ireps` | Internal signal value reset by the scraper at startup. |
 | `max_org_workers` | Maximum number of organizations scraped in parallel. The scraper waits for every organization worker to finish before merging xlsx files. Manual CAPTCHA mode forces this to `1`. |
+| `max_zone_workers` | Maximum number of separate zone workers for organization `01: Indian Railway`. Each zone worker opens its own logged-in Chrome session. Manual CAPTCHA mode forces this to `1`. |
 
 ## Organization list format
 
@@ -74,6 +75,13 @@ Rules:
 ## Working-directory expectations
 
 Run the scraper and configuration editor from the `Scraping/` directory unless paths are made absolute. Several paths are currently relative to that application folder.
+
+## Worker model
+
+- Organization workers are controlled by `max_org_workers`.
+- Organization `01: Indian Railway` has an additional zone-level worker pool controlled by `max_zone_workers`. The scraper first reads the available Indian Railway zones, then launches a separate Selenium/Chrome worker for each zone up to the configured limit.
+- Non-Indian-Railway organizations continue to scrape zones sequentially inside their organization worker.
+- Set `max_zone_workers` lower on machines with limited CPU/RAM because each zone worker owns a separate browser session.
 
 ## Secret-management recommendation
 

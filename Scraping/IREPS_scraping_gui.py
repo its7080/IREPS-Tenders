@@ -334,7 +334,7 @@ class IREPSScrapingGUI(ctk.CTk):
         self.stat_portals = self._make_stat(stats, "Orgs", "0", 0)
         self.stat_config = self._make_stat(stats, "Config", "OK", 1)
         self.stat_elapsed = self._make_stat(stats, "Elapsed", "00:00", 2)
-        self.stat_workers = self._make_stat(stats, "Workers", str(self.data.get("max_org_workers", "—")), 3)
+        self.stat_workers = self._make_stat(stats, "Workers", self._worker_stat_text(), 3)
 
         self.progress = ctk.CTkProgressBar(left, height=6, corner_radius=3, mode="determinate")
         self.progress.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
@@ -476,6 +476,12 @@ class IREPSScrapingGUI(ctk.CTk):
         )
         ctk.CTkLabel(tab, text=help_text, justify="left", anchor="nw", font=ctk.CTkFont(family="Segoe UI", size=15), wraplength=760).grid(row=0, column=0, sticky="nsew", padx=18, pady=18)
 
+    def _worker_stat_text(self) -> str:
+        """Return compact organization/zone worker counts for the status card."""
+        org_workers = self.data.get("max_org_workers", "—")
+        zone_workers = self.data.get("max_zone_workers", "—")
+        return f"O:{org_workers}/Z:{zone_workers}"
+
     def _make_stat(self, parent: ctk.CTkBaseClass, label: str, value: str, col: int) -> ctk.CTkLabel:
         frame = ctk.CTkFrame(parent, corner_radius=8)
         frame.grid(row=0, column=col, padx=4, pady=2, sticky="ew")
@@ -505,7 +511,7 @@ class IREPSScrapingGUI(ctk.CTk):
             if kind == "list":
                 raw = widget.get("1.0", "end-1c")
                 updated[key] = [line.strip() for line in raw.replace(",", "\n").splitlines() if line.strip()]
-            elif key == "max_org_workers":
+            elif key in {"max_org_workers", "max_zone_workers"}:
                 value = widget.get().strip()
                 updated[key] = int(value) if value.isdigit() else value
             else:
@@ -642,7 +648,7 @@ class IREPSScrapingGUI(ctk.CTk):
         org_count = len(ConfigStore.active_organizations(self.organization_content))
         self.stat_portals.configure(text=str(org_count))
         self.stat_config.configure(text="OK")
-        self.stat_workers.configure(text=str(self.data.get("max_org_workers", "—")))
+        self.stat_workers.configure(text=self._worker_stat_text())
 
     def _poll_timer(self) -> None:
         if self.running and self.start_time:
