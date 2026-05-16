@@ -20,5 +20,5 @@
     "signal_datelog": "FALSE",
     "signal_ireps": "FALSE",
     "max_org_workers": 4,
-    "max_zone_workers": 4
+    "max_zone_workers": 8
 }
