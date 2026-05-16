@@ -54,6 +54,27 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+
+
+
+
+from Program_Files.scraping_library import check_internet_connection
+# from Program_Files.scraping_library import get_folder_size_in_mb
+# from Program_Files.scraping_library import delete_empty_folders
+from Program_Files.scraping_library import delete_folder
+from Program_Files.scraping_library import packaging
+from Program_Files.scraping_library import create_folder_if_not_exists
+from Program_Files.scraping_library import is_android_device_connected
+# from Program_Files.scraping_library import send_email
+from Program_Files.scraping_library import countdown_timer
+from Program_Files.scraping_library import delete_xlsx_files
+from Program_Files.scraping_library import no_adb_mail
+from Program_Files.scraping_library import skip_zones
+from Program_Files.scraping_library import get_current_device_serial
+from Program_Files.captcha_solver import predict_captcha
+
+import base64
+import io
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>># Global Variables
 # Determine script directory
 script_path = os.path.abspath(sys.argv[0])  # Absolute path of the executable
