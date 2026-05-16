@@ -159,12 +159,16 @@ The dashboard de-duplicates rows by `Tender No.`.
 
 ## Packaging notes
 
-The repository includes prebuilt Windows executables:
+Run `build_exe.bat` on Windows to create a copy-paste portable build:
 
-- `Scraping/IREPS_Tenders.exe`
-- `Scraping/IREPS_scraping_gui.exe`
+- `IREPS_Tenders_Portable/` - folder to copy to another Windows computer.
+- `IREPS_Tenders_Portable.zip` - zipped copy of the same portable folder.
+- `IREPS_Tenders_Portable/Start_IREPS_Tenders.bat` - launcher for the GUI EXE.
+- `IREPS_Tenders_Portable/IREPS_scraping_gui.exe` - GUI/configuration editor.
+- `IREPS_Tenders_Portable/IREPS_Tenders.exe` - scraper engine launched by the GUI.
+- `IREPS_Tenders_Portable/Program_Files/` - runtime configuration, organization list, CAPTCHA model, and scraper support files.
 
-The dependency files also include `pyinstaller`, so these executables were likely built from the Python scripts. If rebuilding, prefer doing so in a clean virtual environment that matches the target operating system.
+Copy the whole `IREPS_Tenders_Portable` folder, or unzip `IREPS_Tenders_Portable.zip`, onto the target Windows computer and run `Start_IREPS_Tenders.bat` or `IREPS_scraping_gui.exe`. Keep `Program_Files` beside the EXE files; the GUI and scraper read/write `Configration.json`, `Organization_list.txt`, logs, temporary files, and output workbooks relative to the EXE folder. Google Chrome is still required on the target computer for Selenium browser automation.
 
 ## Troubleshooting
 
