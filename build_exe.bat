@@ -28,17 +28,17 @@ if not exist "%PROGRAM_FILES_DIR%" (
 )
 
 echo [1/6] Checking Python version...
-python -c "import sys; v=sys.version_info; print(f'Python {v.major}.{v.minor}.{v.micro}'); sys.exit(0 if (v.major, v.minor) in ((3, 10), (3, 11), (3, 12)) else 1)"
+python -c "import sys; v=sys.version_info; print(f'Python {v.major}.{v.minor}.{v.micro}'); sys.exit(0 if (v.major, v.minor) in ((3, 10), (3, 11), (3, 12), (3, 13)) else 1)"
 if errorlevel 1 (
     echo.
-    echo Unsupported Python version. This project currently builds with Python 3.10, 3.11, or 3.12.
-    echo Python 3.13+ is not supported by the pinned requirements, including pandas and TensorFlow.
+    echo Unsupported Python version. This project currently builds with Python 3.10, 3.11, 3.12, or 3.13.
+    echo Python 3.14+ is not supported by the current pinned build toolchain.
     echo Create a fresh virtual environment with a supported Python version, then run build_exe.bat again.
     exit /b 1
 )
 
 echo [2/6] Upgrading build tooling...
-python -m pip install --upgrade pip pyinstaller
+python -m pip install --upgrade pip setuptools wheel pyinstaller
 if errorlevel 1 goto :fail
 
 echo [3/6] Installing Python requirements...
@@ -63,6 +63,8 @@ pyinstaller --noconfirm --clean --onefile --name IREPS_Tenders ^
     --add-data "app_logo.ico;." ^
     --collect-all selenium ^
     --collect-all chromedriver_autoinstaller ^
+    --collect-all torch ^
+    --collect-all torchvision ^
     --icon app_logo.ico ^
     --distpath "%DIST_DIR%" ^
     IREPS_Tenders.py

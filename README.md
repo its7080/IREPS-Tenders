@@ -37,7 +37,7 @@ The repository contains two related applications:
 
 The project was written for a desktop automation environment and has several external runtime requirements:
 
-- Python 3.10, 3.11, or 3.12 recommended. Python 3.13+ is not currently supported by the pinned scientific/ML dependencies used by the scraper build.
+- Python 3.10, 3.11, 3.12, or 3.13 recommended. The dependency list has been updated for Python 3.13-compatible wheels and now uses the PyTorch CAPTCHA solver dependency that the scraper imports.
 - Google Chrome installed.
 - ChromeDriver-compatible browser automation support. The scraper uses `chromedriver-autoinstaller`.
 - Internet access to reach IREPS.
